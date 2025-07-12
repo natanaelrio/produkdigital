@@ -1,4 +1,5 @@
 import nodemailer from 'nodemailer';
+import CryptoJS from 'crypto-js';
 
 export async function POST(req, res) {
   // const data = await req.formData()
@@ -66,3 +67,5 @@ export async function POST(req, res) {
 
 
 }
+
+

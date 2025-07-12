@@ -1,6 +1,11 @@
 import styles from '@/component/fromData.module.css'
+import { HandlePayment } from '@/service/HandlePayment';
+import useSnapDuitku from '@/service/useSnapDuitku';
+import { GetRandomNumber } from '@/utils/getRandomNumber';
 import { useFormik } from 'formik';
 export default function FormData({ data }) {
+    const { snapEmbedDuitku } = useSnapDuitku()
+
     const validate = values => {
         const errors = {};
         if (!values.email) {
@@ -38,6 +43,21 @@ export default function FormData({ data }) {
         validate,
         onSubmit: values => {
             alert(JSON.stringify(values, null, 2));
+            const res = HandlePayment({
+                kodeBank: 'NQ',
+                note: data?.title,
+                merchantOrderId: GetRandomNumber(),
+                customerVaName: values.nama,
+                phoneNumber: values.nomer,
+                email: values.email,
+                itemDetails: [{
+                    "name": data.title,
+                    "price": data.price - ((data?.price * data?.diskon) / 100),
+                    "quantity": 1
+                }]
+            })
+            snapEmbedDuitku(res, process.env.NODE_ENV === 'production')
+
         },
     });
 
