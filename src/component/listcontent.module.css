@@ -1,0 +1,101 @@
+.content {
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+}
+
+.content .judul {
+    font-size: 40px;
+    font-weight: 700;
+}
+
+.contentluar {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content2 {
+    width: 1100px;
+}
+
+.content2dalam {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    justify-content: center;
+    /* background-color: red; */
+}
+
+.content2 .content2dalam .kotak {
+    width: 100%;
+}
+
+.content2 .content2dalam .kotak .gambar {
+    display: flex;
+}
+
+.content2 .content2dalam .kotak .gambar img {
+    width: 100%;
+    object-fit: contain;
+    height: fit-content;
+    border-radius: 5px 5px 0 0;
+
+}
+
+.kotak {
+    box-shadow: 0 12px 15px rgba(140, 152, 164, 0.1);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.kotak:hover {
+    transition: all ease 0.3s;
+    transform: translateY(-5px);
+}
+
+.kotak .text {
+    display: flex;
+    padding: 20px;
+    gap: 20px;
+    align-items: center;
+}
+
+.kotak .text .title {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+.kotak .text .title .judul {
+    font-weight: 700;
+}
+
+.kotak .text .title .deskripsi {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+
+.kotak .ikon {
+    font-size: 30px;
+}
+
+
+@media only screen and (max-width: 1200px) {
+    .content2 {
+        width: 100%;
+        padding: 0 30px;
+    }
+}
+
+@media only screen and (max-width: 720px) {
+    .content2 {
+        width: 100%;
+        padding: 0 30px;
+    }
+}

@@ -1,0 +1,40 @@
+.luarcontainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    background-color: rgb(243, 244, 245);
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+    width: 1100px;
+    font-weight: 700;
+    padding: 0 30px;
+}
+
+.share {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+}
+
+.share:hover {
+    background-color: rgb(188, 188, 188);
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.made {
+    display: flex;
+    gap: 5px;
+}
+
+.name {
+    font-weight: 500;
+    text-decoration: underline;
+    cursor: pointer;
+}

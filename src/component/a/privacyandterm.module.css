@@ -1,0 +1,33 @@
+.privacyPolicy {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+.title {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+
+.sectionTitle {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 24px;
+    margin-bottom: 8px;
+}
+
+.privacyPolicy ul {
+    padding-left: 20px;
+    margin-bottom: 16px;
+}
+
+.privacyPolicy li {
+    margin-bottom: 6px;
+}
+
+.privacyPolicy p {
+    margin-bottom: 16px;
+}

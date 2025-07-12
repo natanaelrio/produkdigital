@@ -1,0 +1,112 @@
+[
+    {
+        "id": 1,
+        "date": "2025-07-10",
+        "stock": 100,
+        "sold": 20,
+        "title": "Template CV Profesional",
+        "deskripsi": "Template CV profesional ini dirancang khusus untuk membantu Anda menonjol di antara pelamar lainnya. Dengan desain modern dan elegan, template ini memudahkan Anda menyusun pengalaman kerja, pendidikan, dan keahlian dengan rapi. Dilengkapi panduan penggunaan sehingga dapat diedit di Word atau Google Docs tanpa kesulitan. Template ini sangat cocok untuk berbagai industri, mulai dari kreatif, marketing, hingga korporasi. Berinvestasi pada CV yang baik dapat meningkatkan peluang Anda mendapatkan pekerjaan impian.",
+        "price": 50000,
+        "diskon": 10,
+        "image": "https://i0.wp.com/starfarm.co.id/wp-content/uploads/2020/08/kambing-kashmir-star-farm.jpg"
+    },
+    {
+        "id": 2,
+        "date": "2025-07-08",
+        "stock": 50,
+        "sold": 15,
+        "title": "Preset Lightroom Minimalis",
+        "deskripsi": "Preset Lightroom minimalis ini dibuat khusus bagi Anda yang ingin mempercantik feed media sosial dengan tampilan bersih dan konsisten. Hanya dengan satu klik, foto Anda akan memiliki tone cerah, natural, dan estetik, cocok untuk konten fashion, travel, maupun daily life. Paket ini dilengkapi file DNG yang bisa langsung digunakan di Lightroom mobile maupun desktop. Disertai tutorial lengkap agar pemula sekalipun dapat dengan mudah menerapkannya pada foto-foto mereka.",
+        "price": 30000,
+        "diskon": 20,
+        "image": "https://i0.wp.com/starfarm.co.id/wp-content/uploads/2020/08/kambing-kashmir-star-farm.jpg"
+    },
+    {
+        "id": 3,
+        "date": "2025-07-05",
+        "stock": 200,
+        "sold": 60,
+        "title": "Ebook Cara Sukses Bisnis Online",
+        "deskripsi": "Ebook ini membahas langkah-langkah praktis membangun bisnis online dari nol hingga menghasilkan omset jutaan rupiah per bulan. Di dalamnya terdapat strategi memilih produk, cara memasarkan di sosial media, optimasi toko online, serta tips mempertahankan loyalitas pelanggan. Ditulis berdasarkan pengalaman praktisi bisnis digital, buku ini sangat cocok untuk pemula maupun yang ingin mengembangkan usaha lebih serius. Dapatkan ilmu yang langsung bisa dipraktikkan tanpa teori bertele-tele.",
+        "price": 75000,
+        "diskon": 15,
+        "image": "https://i0.wp.com/starfarm.co.id/wp-content/uploads/2020/08/kambing-kashmir-star-farm.jpg"
+    },
+    {
+        "id": 4,
+        "date": "2025-07-03",
+        "stock": 80,
+        "sold": 25,
+        "title": "Font Handwritten Exclusive",
+        "deskripsi": "Koleksi font handwriting eksklusif ini menawarkan gaya tulisan tangan yang elegan dan natural, sangat pas digunakan untuk branding, undangan pernikahan, label produk, maupun konten media sosial. Setiap huruf dirancang teliti agar terlihat halus dan menyatu, menambah kesan personal dan premium pada desain Anda. File dalam format OTF & TTF, kompatibel dengan berbagai software desain seperti Photoshop, Illustrator, dan Canva. Cocok untuk desainer profesional maupun pemilik usaha kecil.",
+        "price": 40000,
+        "diskon": 5,
+        "image": "https://i0.wp.com/starfarm.co.id/wp-content/uploads/2020/08/kambing-kashmir-star-farm.jpg"
+    },
+    {
+        "id": 5,
+        "date": "2025-07-01",
+        "stock": 120,
+        "sold": 40,
+        "title": "Toolkit Desain Instagram",
+        "deskripsi": "Toolkit desain Instagram ini berisi ratusan template feed, story, highlight cover, serta elemen grafis pendukung untuk meningkatkan kualitas tampilan akun bisnis Anda. Dengan desain modern dan mudah diedit di Canva maupun Photoshop, Anda dapat menyesuaikan warna, tulisan, serta gambar sesuai identitas brand. Cocok untuk online shop, jasa, influencer, maupun UMKM yang ingin tampil lebih profesional di media sosial. Hemat waktu tanpa harus repot membuat desain dari awal.",
+        "price": 60000,
+        "diskon": 25,
+        "image": "https://i0.wp.com/starfarm.co.id/wp-content/uploads/2020/08/kambing-kashmir-star-farm.jpg"
+    },
+    {
+        "id": 6,
+        "date": "2025-06-28",
+        "stock": 90,
+        "sold": 30,
+        "title": "Mockup Kaos PSD",
+        "deskripsi": "Mockup kaos ini menggunakan resolusi tinggi dan realistic shadow, sangat ideal untuk menampilkan desain sablon Anda ke klien atau untuk preview toko online. Tersedia dalam format PSD layered yang memudahkan Anda mengganti desain dengan smart object hanya sekali klik. Warna kaos juga dapat disesuaikan dengan mudah. Dengan mockup ini, Anda dapat menampilkan hasil desain lebih meyakinkan sehingga meningkatkan daya tarik calon pembeli maupun partner bisnis.",
+        "price": 55000,
+        "diskon": 0,
+        "image": "https://i0.wp.com/starfarm.co.id/wp-content/uploads/2020/08/kambing-kashmir-star-farm.jpg"
+    },
+    {
+        "id": 7,
+        "date": "2025-06-25",
+        "stock": 70,
+        "sold": 10,
+        "title": "Template Invoice Bisnis",
+        "deskripsi": "Template invoice ini dibuat untuk membantu pelaku usaha kecil, freelancer, maupun UMKM dalam membuat tagihan pembayaran yang profesional. Dapat diedit di Excel atau Google Sheets, sudah disiapkan formula otomatis menghitung subtotal, pajak, dan total pembayaran. Tampilannya elegan dengan branding siap ganti logo dan informasi usaha. Invoice yang rapi akan meningkatkan kredibilitas bisnis Anda di mata pelanggan, mempermudah pencatatan keuangan, serta meminimalisir kesalahan.",
+        "price": 35000,
+        "diskon": 10,
+        "image": "https://i0.wp.com/starfarm.co.id/wp-content/uploads/2020/08/kambing-kashmir-star-farm.jpg"
+    },
+    {
+        "id": 8,
+        "date": "2025-06-23",
+        "stock": 60,
+        "sold": 22,
+        "title": "Sound Effect Cinematic",
+        "deskripsi": "Paket sound effect cinematic ini menghadirkan lebih dari 100 file audio berkualitas tinggi untuk memperkaya video Anda. Terdiri dari ambience, transition, impact, riser, hingga whoosh yang sering digunakan dalam video promosi, film pendek, maupun konten YouTube. Dengan format WAV dan MP3, mudah diintegrasikan ke software editing seperti Adobe Premiere atau Final Cut Pro. Jadikan video Anda lebih dramatis dan profesional dengan sound effect ini.",
+        "price": 45000,
+        "diskon": 15,
+        "image": "https://i0.wp.com/starfarm.co.id/wp-content/uploads/2020/08/kambing-kashmir-star-farm.jpg"
+    },
+    {
+        "id": 9,
+        "date": "2025-06-20",
+        "stock": 40,
+        "sold": 8,
+        "title": "Icon Pack Flat Design",
+        "deskripsi": "Icon pack flat design ini memuat lebih dari 500 ikon berkualitas tinggi dengan style clean & minimalis. Sangat cocok untuk desain web, aplikasi mobile, presentasi bisnis, maupun infografik. Disediakan dalam format SVG dan PNG sehingga mudah dikustomisasi warna dan ukuran tanpa pecah. Dengan membeli paket ini, Anda akan menghemat banyak waktu dalam mendesain sekaligus menjaga konsistensi visual brand Anda. Termasuk file source agar dapat disesuaikan lebih lanjut.",
+        "price": 25000,
+        "diskon": 5,
+        "image": "https://i0.wp.com/starfarm.co.id/wp-content/uploads/2020/08/kambing-kashmir-star-farm.jpg"
+    },
+    {
+        "id": 10,
+        "date": "2025-06-18",
+        "stock": 100,
+        "sold": 50,
+        "title": "Intro Video After Effects",
+        "deskripsi": "Template intro video ini dibuat dengan Adobe After Effects dan dirancang khusus untuk channel YouTube, video promosi, maupun reel Instagram. Anda cukup mengganti logo, teks, dan warna sesuai kebutuhan dalam hitungan menit. Efek transisi dan animasi sudah teroptimasi untuk tampil memukau di berbagai platform. Dapatkan kesan pertama yang profesional pada penonton dengan intro video berkualitas tinggi ini, sekaligus memperkuat branding visual Anda secara konsisten.",
+        "price": 70000,
+        "diskon": 20,
+        "image": "https://i0.wp.com/starfarm.co.id/wp-content/uploads/2020/08/kambing-kashmir-star-farm.jpg"
+    }
+]

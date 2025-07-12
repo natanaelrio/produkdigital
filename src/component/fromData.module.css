@@ -1,0 +1,120 @@
+.form {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    background-color: white;
+    width: 500px;
+    height: fit-content;
+    z-index: 1003;
+    padding: 20px;
+    border-radius: 7px;
+}
+
+.form .data {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form label {
+    display: flex;
+    width: fit-content;
+    gap: 5px;
+    margin-top: 20px;
+    position: relative;
+    white-space: nowrap;
+}
+
+.form input,
+.form select {
+    font-size: 1.2rem;
+    width: 100%;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: white;
+    color: #171717;
+    border: 1px solid #ccc;
+    padding: 8px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.checkboxLabel input[type="checkbox"] {
+    transform: scale(1.5);
+    accent-color: hsl(216, 100%, 50%);
+    background-color: white;
+    /* warna latar */
+    border: 1px solid #ccc;
+    /* biar kotaknya tetap terlihat */
+    border-radius: 4px;
+    margin-right: 10px;
+    cursor: pointer;
+    appearance: none;
+    /* hilangkan style default browser */
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    position: relative;
+}
+
+.checkboxLabel input[type="checkbox"]:checked::after {
+    content: '✔';
+    color: hsl(216, 100%, 50%);
+    position: absolute;
+    top: -2px;
+    bottom: 0;
+    left: 3px;
+    right: 0;
+    margin: 0;
+    /* left: 4px; */
+    font-size: 14px;
+}
+
+.form input::placeholder {
+    color: #40404094;
+}
+
+.form input:focus {
+    border-color: hsl(216, 100%, 50%);
+    /* warna utama */
+    box-shadow: 0 0 2px hsl(216, 100%, 50%);
+    /* efek bercahaya */
+}
+
+.form button {
+    font-size: 1.2rem;
+    padding: 20px;
+    background-color: hsl(216, 100%, 50%);
+    cursor: pointer;
+    border-radius: 7px;
+    font-weight: 700;
+    width: 100%;
+    margin-top: 20px;
+    border: 0;
+}
+
+.judul {
+    color: #40404094;
+    font-weight: 700;
+}
+
+.form .er {
+    color: red;
+    margin-top: 5px;
+    font-size: 0.8rem;
+}
+
+
+@media only screen and (max-width: 720px) {
+    .form {
+        width: 95%;
+        top: auto;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        margin: 0 auto;
+    }
+}
