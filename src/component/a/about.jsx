@@ -1,4 +1,5 @@
 import styles from '@/component/a/about.module.css'
+import Link from 'next/link'
 
 export default function About() {
     return (
@@ -43,11 +44,11 @@ export default function About() {
                 <p>Jika ingin berkolaborasi, hubungi saya di:</p>
                 <p>
                     Whatsapp: +628971041460
-                    {/* 📧 Email: <a href="mailto:email@example.com">email@example.com</a><br /> */}
+                    📧 Email: <Link href="mailto:invesdigi.official@gmail.com">invesdigi.official@gmail.com</Link><br />
                     {/* 📱 Instagram: <a href="https://instagram.com/akun_anda" target="_blank" rel="noopener noreferrer">@akun_anda</a><br /> */}
                     {/* 🌐 Website: <a href="https://www.websiteanda.com" target="_blank" rel="noopener noreferrer">www.websiteanda.com</a> */}
                 </p>
-                <p className={styles.thankyou}>Terima kasih telah mendukung produk digital karya anak bangsa! 🇮🇩</p>
+                <p className={styles.thankyou}>Terima kasih telah mendukung produk digital! 🇮🇩</p>
             </section>
         </div>
     )

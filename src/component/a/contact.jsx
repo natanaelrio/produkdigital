@@ -7,6 +7,8 @@ export default function Contact() {
             <h1 className={styles.heading}>Contact</h1>
             <p className={styles.intro}>
                 Whatsapp:   <Link style={{ textDecoration: 'underline' }} href={'https://wa.me/628971041460'} target='_blank'>+628971041460</Link>
+                <br />
+                Gmail:   <Link style={{ textDecoration: 'underline' }} href={'mailto:invesdigi.official@gmail.com'} target='_blank'>invesdigi.official@gmail.com</Link>
             </p>
 
         </div>

@@ -15,7 +15,6 @@ export default function Privacy() {
                 <li>Nama lengkap</li>
                 <li>Alamat email</li>
                 <li>Nomor telepon</li>
-                <li>Alamat pengiriman</li>
                 <li>Informasi pembayaran (diproses secara aman oleh penyedia layanan pembayaran kami)</li>
                 <li>Riwayat pesanan dan preferensi pembelian</li>
             </ul>

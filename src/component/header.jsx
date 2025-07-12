@@ -8,7 +8,8 @@ export default function Header({ slug, title }) {
 
     const text = `Cek ${title ? title : 'produk ini'}, keren banget!`;
     const url = process.env.NEXT_PUBLIC_URL + '/' + slug;
-    const message = encodeURIComponent(`${text} ${url}`);
+    const url2 = process.env.NEXT_PUBLIC_URL;
+    const message = encodeURIComponent(`${text} ${title ? url : url2}`);
 
     return (
         <>

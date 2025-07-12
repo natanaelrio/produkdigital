@@ -27,10 +27,10 @@ export default function Terms() {
 
             <h2 className={styles.sectionTitle}>4. Pengiriman</h2>
             <p>
-                Pengiriman akan dilakukan setelah pembayaran Anda berhasil dikonfirmasi. Produk digital akan dikirimkan melalui email dan juga melalui nomor WhatsApp yang Anda daftarkan saat melakukan pembelian.
+                Pengiriman akan dilakukan setelah pembayaran Anda berhasil dikonfirmasi. Produk digital akan dikirimkan melalui email secara otomatis saat melakukan pembelian.
             </p>
             <p>
-                Pastikan Anda mengisi data kontak dengan benar. Keterlambatan atau kegagalan pengiriman akibat kesalahan input bukan tanggung jawab kami.
+                Pastikan Anda mengisi data kontak dengan benar. Keterlambatan atau kegagalan pengiriman akibat kesalahan input bukan tanggung jawab kami.Hubungi Kami jika belum menerima produk setelah pembelian.
             </p>
 
             <h2 className={styles.sectionTitle}>5. Pengembalian dan Refund</h2>
