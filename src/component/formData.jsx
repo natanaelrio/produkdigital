@@ -48,7 +48,8 @@ export default function FormData({ data }) {
             setLoading(true)
             try {
                 const res = await HandlePayment({
-                    kodeBank: 'NQ',
+                    // kodeBank: 'NQ',
+                    kodeBank: 'BC',
                     note: data?.title,
                     merchantOrderId: GetRandomNumber(),
                     customerVaName: values.nama,
