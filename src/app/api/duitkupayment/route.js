@@ -1,18 +1,19 @@
 import nodemailer from 'nodemailer';
 import CryptoJS from 'crypto-js';
+import { Rupiah } from '@/utils/rupiah';
 
 export async function POST(req, res) {
-  // const data = await req.formData()
-  // const merchantCode = data.get('merchantCode')
-  // const merchantOrderId = data.get('merchantOrderId')
-  // const productDetail = data.get('productDetail')
-  // const amount = data.get('amount')
-  // const signature = data.get('signature')
+  const data = await req.formData()
+  const merchantCode = data.get('merchantCode')
+  const merchantOrderId = data.get('merchantOrderId')
+  const productDetail = data.get('productDetail')
+  const amount = data.get('amount')
+  const signature = data.get('signature')
 
-  // const params = merchantCode + Number(amount) + merchantOrderId + process.env.SERVER_KEYDUITKU;
-  // const calcSignature = CryptoJS.MD5(params).toString();
-  // signature == calcSignature
-  if (true) {
+  const params = merchantCode + Number(amount) + merchantOrderId + process.env.SERVER_KEYDUITKU;
+  const calcSignature = CryptoJS.MD5(params).toString();
+
+  if (signature == calcSignature) {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
@@ -37,8 +38,8 @@ export async function POST(req, res) {
     </div>
 
     <div style="background-color: #f9f9f9; padding: 20px; margin: 30px 0; border-left: 4px solid #0055FF; border-radius: 8px;">
-      <p style="margin: 0; font-size: 16px;"><strong>Produk:</strong> Template CV Profesional</p>
-      <p style="margin: 0; font-size: 16px;"><strong>Harga:</strong> Rp45.000</p>
+      <p style="margin: 0; font-size: 16px;"><strong>Produk:</strong> ${productDetail}</p>
+      <p style="margin: 0; font-size: 16px;"><strong>Harga:</strong> ${Rupiah(amount)}</p>
       <p style="margin: 0; font-size: 16px;"><strong>Status:</strong> Pembayaran diterima</p>
     </div>
 

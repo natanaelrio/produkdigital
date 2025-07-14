@@ -1,6 +1,6 @@
 import CryptoJS from 'crypto-js';
 import getJakartaUnixTimestamp from '@/utils/getJakartaUnixTimestamp';
-import { ResponseData } from '@/components/api/ResponseData';
+import { ResponseData } from '@/utils/responseData';
 
 export async function POST(req) {
     const authorization = req.headers.get('authorization')

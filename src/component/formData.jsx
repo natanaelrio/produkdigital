@@ -3,8 +3,11 @@ import { HandlePayment } from '@/service/HandlePayment';
 import useSnapDuitku from '@/service/useSnapDuitku';
 import { GetRandomNumber } from '@/utils/getRandomNumber';
 import { useFormik } from 'formik';
+import { useState } from 'react';
+
 export default function FormData({ data }) {
     const { snapEmbedDuitku } = useSnapDuitku()
+    const [loading, setLoading] = useState(false)
 
     const validate = values => {
         const errors = {};
@@ -41,22 +44,30 @@ export default function FormData({ data }) {
             qris: false,
         },
         validate,
-        onSubmit: values => {
-            alert(JSON.stringify(values, null, 2));
-            const res = HandlePayment({
-                kodeBank: 'NQ',
-                note: data?.title,
-                merchantOrderId: GetRandomNumber(),
-                customerVaName: values.nama,
-                phoneNumber: values.nomer,
-                email: values.email,
-                itemDetails: [{
-                    "name": data.title,
-                    "price": data.price - ((data?.price * data?.diskon) / 100),
-                    "quantity": 1
-                }]
-            })
-            snapEmbedDuitku(res, process.env.NODE_ENV === 'production')
+        onSubmit: async (values) => {
+            setLoading(true)
+            try {
+                const res = await HandlePayment({
+                    kodeBank: 'NQ',
+                    note: data?.title,
+                    merchantOrderId: GetRandomNumber(),
+                    customerVaName: values.nama,
+                    phoneNumber: values.nomer.toString(),
+                    email: values.email,
+                    itemDetails: [{
+                        "name": data.title,
+                        "price": data.price - ((data?.price * data?.diskon) / 100),
+                        "quantity": 1
+                    }]
+                })
+
+                // snapEmbedDuitku(res.data, process.env.NODE_ENV === 'production')
+                snapEmbedDuitku(res.data, false)
+                setLoading(false)
+            } catch (e) {
+                console.log(e);
+                setLoading(false)
+            }
 
         },
     });
@@ -111,8 +122,7 @@ export default function FormData({ data }) {
                         /> Bayar dengan QRIS
                     </label>
                     {formik.errors.qris && <div className={styles.er}>{formik.errors.qris}</div>}
-
-                    <button type="submit">BUY NOW - IDR {data.price - ((data?.price * data?.diskon) / 100)}</button>
+                    <button type="submit">{loading ? 'Loading...' : `BUY NOW - IDR ${data.price - ((data?.price * data?.diskon) / 100)} `}</button>
                 </form>
             </div>
         </>
