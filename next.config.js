@@ -1,10 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    api: {
-        bodyParser: {
-            sizeLimit: '100mb', // Ubah ini sesuai kebutuhan
-        },
-    },
     images: {
         domains: ['i0.wp.com', 'picsum.photos'],
     }, async headers() {
