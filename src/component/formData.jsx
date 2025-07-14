@@ -63,9 +63,8 @@ export default function FormData({ data }) {
                 })
 
                 console.log(res);
-
                 // snapEmbedDuitku(res.data, process.env.NODE_ENV === 'production')
-                snapEmbedDuitku(res.data, false)
+                // snapEmbedDuitku(res.data, false)
                 setLoading(false)
             } catch (e) {
                 console.log(e);
@@ -125,7 +124,7 @@ export default function FormData({ data }) {
                         /> Bayar dengan QRIS
                     </label>
                     {formik.errors.qris && <div className={styles.er}>{formik.errors.qris}</div>}
-                    <button type="submit">{loading ? 'Loading...' : `BUY NOW - IDR ${data.price - ((data?.price * data?.diskon) / 100)} `}</button>
+                    <button disabled={loading} type="submit">{loading ? 'Loading...' : `BUY NOW - IDR ${data.price - ((data?.price * data?.diskon) / 100)} `}</button>
                 </form>
             </div>
         </>
