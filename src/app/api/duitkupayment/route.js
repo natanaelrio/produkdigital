@@ -38,8 +38,8 @@ export async function POST(req, res) {
     </div>
 
     <div style="background-color: #f9f9f9; padding: 20px; margin: 30px 0; border-left: 4px solid #0055FF; border-radius: 8px;">
-      <p style="margin: 0; font-size: 16px;"><strong>Produk:</strong> ${productDetail}</p>
-      <p style="margin: 0; font-size: 16px;"><strong>Harga:</strong> ${Rupiah(amount)}</p>
+      <p style="margin: 0; font-size: 16px;"><strong>Produk:</strong> WWWWWWWWWWW}</p>
+      <p style="margin: 0; font-size: 16px;"><strong>Harga:</strong> ${Rupiah(10000000)}</p>
       <p style="margin: 0; font-size: 16px;"><strong>Status:</strong> Pembayaran diterima</p>
     </div>
 
