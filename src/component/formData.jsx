@@ -89,6 +89,7 @@ export default function FormData({ data }) {
                         placeholder='Your Email'
                         onChange={formik.handleChange}
                         value={formik.values.email}
+                        disabled={loading}
                     />
                     {formik.errors.email && <div className={styles.er}>{formik.errors.email}</div>}
 
@@ -100,6 +101,7 @@ export default function FormData({ data }) {
                         placeholder='Your Name'
                         onChange={formik.handleChange}
                         value={formik.values.nama}
+                        disabled={loading}
                     />
                     {formik.errors.nama && <div className={styles.er}>{formik.errors.nama}</div>}
 
@@ -112,6 +114,7 @@ export default function FormData({ data }) {
                         placeholder='08xxxxxxx'
                         onChange={formik.handleChange}
                         value={formik.values.nomer}
+                        disabled={loading}
                     />
                     {formik.errors.nomer && <div className={styles.er}>{formik.errors.nomer}</div>}
 
@@ -121,6 +124,7 @@ export default function FormData({ data }) {
                             name="qris"
                             checked={formik.values.qris}
                             onChange={formik.handleChange}
+                            disabled={loading}
                         /> Bayar dengan QRIS
                     </label>
                     {formik.errors.qris && <div className={styles.er}>{formik.errors.qris}</div>}
