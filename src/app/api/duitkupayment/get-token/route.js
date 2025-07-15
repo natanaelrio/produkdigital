@@ -13,6 +13,7 @@ export async function POST(req) {
         phoneNumber,
         email,
         itemDetails,
+        linkProduk,
     } = await req.json()
 
     const Timestamps = getJakartaUnixTimestamp()
@@ -30,7 +31,8 @@ export async function POST(req) {
         "productDetails": note ? note : 'tidak ada catatan',
         "additionalParam": JSON.stringify({
             email: email,
-            name: customerVaName
+            name: customerVaName,
+            linkProduk: linkProduk
         }),
         "customerVaName": customerVaName,
         "email": email,

@@ -12,8 +12,6 @@ export async function POST(req, res) {
   const additionalParam = data.get('additionalParam')
   const add = JSON.parse(additionalParam);
 
-  console.log('Natanael Rio Wijaya');
-
   const params = merchantCode + Number(amount) + merchantOrderId + process.env.SERVER_KEYDUITKU;
   const calcSignature = CryptoJS.MD5(params).toString();
   if (signature == calcSignature) {
@@ -47,7 +45,7 @@ export async function POST(req, res) {
     </div>
 
     <div style="text-align: center; margin-top: 30px;">
-      <a href="https://invesdigi.com/produk/template-cv-profesional" style="display: inline-block; background-color: #0055FF; color: #fff; text-decoration: none; padding: 12px 24px; border-radius: 6px; font-size: 16px;">
+      <a href=${add.linkProduk} target="_blank" style="display: inline-block; background-color: #0055FF; color: #fff; text-decoration: none; padding: 12px 24px; border-radius: 6px; font-size: 16px;">
         Lihat & Unduh Produk
       </a>
     </div>
