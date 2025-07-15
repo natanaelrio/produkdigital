@@ -10,6 +10,7 @@ export async function POST(req, res) {
   const amount = data.get('amount')
   const signature = data.get('signature')
   const additionalParam = data.get('additionalParam')
+  const add = additionalParam.json()
 
   const params = merchantCode + Number(amount) + merchantOrderId + process.env.SERVER_KEYDUITKU;
   const calcSignature = CryptoJS.MD5(params).toString();
@@ -24,7 +25,7 @@ export async function POST(req, res) {
 
     const mailOptions = {
       from: 'invesdigi.official@gmail.com',
-      to: additionalParam.email,
+      to: add.email,
       subject: `Pembayaran Sukses - Order`,
       html: `
 <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f4; padding: 40px 20px;">
@@ -33,7 +34,7 @@ export async function POST(req, res) {
     <div style="text-align: center;">
       <img src="https://invesdigi.vercel.app/logo.png" alt="Invesdigi Logo" width="100" style="margin-bottom: 20px;" />
       <h2 style="color: #333;">Pembayaran Anda Berhasil!</h2>
-      <p style="font-size: 16px; color: #555;">Halo <strong>${additionalParam.name}Pelanggan Invesdigi</strong>,</p>
+      <p style="font-size: 16px; color: #555;">Halo <strong>${add.name}Pelanggan Invesdigi</strong>,</p>
       <p style="font-size: 16px; color: #555;">Terima kasih telah melakukan pembelian di Invesdigi. Kami telah menerima pembayaran Anda dan pesanan Anda sedang diproses.</p>
     </div>
 
