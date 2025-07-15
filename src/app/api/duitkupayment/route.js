@@ -12,6 +12,8 @@ export async function POST(req, res) {
   const additionalParam = data.get('additionalParam')
   const add = JSON.parse(additionalParam);
 
+  console.log('Natanael Rio Wijaya');
+
   const params = merchantCode + Number(amount) + merchantOrderId + process.env.SERVER_KEYDUITKU;
   const calcSignature = CryptoJS.MD5(params).toString();
   if (signature == calcSignature) {
