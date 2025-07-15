@@ -29,9 +29,15 @@ importers:
       react-dom:
         specifier: ^18
         version: 18.3.1(react@18.3.1)
+      react-facebook-pixel:
+        specifier: ^1.0.4
+        version: 1.0.4
       react-icons:
         specifier: ^5.5.0
         version: 5.5.0(react@18.3.1)
+      zustand:
+        specifier: ^5.0.6
+        version: 5.0.6(@types/react@19.1.8)(react@18.3.1)
 
 packages:
 
@@ -204,6 +210,9 @@ packages:
     peerDependencies:
       react: ^18.3.1
 
+  react-facebook-pixel@1.0.4:
+    resolution: {integrity: sha512-givZY8MS0v/mdbRzvcvouBo/j0TtDiu/93f4gIjJXwDDgwlf6bYUiQvb2qcqjluOOD/hIKUQHNYLNsSOnoEklg==}
+
   react-fast-compare@2.0.4:
     resolution: {integrity: sha512-suNP+J1VU1MWFKcyt7RtjiSWUjvidmQSlqu+eHslq+342xCbGTYmC0mEhPCOHxlW0CywylOC1u2DFAT+bv4dBw==}
 
@@ -248,6 +257,24 @@ packages:
 
   tslib@2.8.1:
     resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
+
+  zustand@5.0.6:
+    resolution: {integrity: sha512-ihAqNeUVhe0MAD+X8M5UzqyZ9k3FFZLBTtqo6JLPwV53cbRB/mJwBI0PxcIgqhBBHlEs8G45OTDTMq3gNcLq3A==}
+    engines: {node: '>=12.20.0'}
+    peerDependencies:
+      '@types/react': '>=18.0.0'
+      immer: '>=9.0.6'
+      react: '>=18.0.0'
+      use-sync-external-store: '>=1.2.0'
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      immer:
+        optional: true
+      react:
+        optional: true
+      use-sync-external-store:
+        optional: true
 
 snapshots:
 
@@ -399,6 +426,8 @@ snapshots:
       react: 18.3.1
       scheduler: 0.23.2
 
+  react-facebook-pixel@1.0.4: {}
+
   react-fast-compare@2.0.4: {}
 
   react-icons@5.5.0(react@18.3.1):
@@ -427,3 +456,8 @@ snapshots:
   tiny-warning@1.0.3: {}
 
   tslib@2.8.1: {}
+
+  zustand@5.0.6(@types/react@19.1.8)(react@18.3.1):
+    optionalDependencies:
+      '@types/react': 19.1.8
+      react: 18.3.1

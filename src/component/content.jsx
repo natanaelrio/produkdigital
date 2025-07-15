@@ -6,9 +6,11 @@ import FormData from '@/component/formData';
 import { useState } from 'react';
 import Image from 'next/image';
 import { Rupiah } from '@/utils/rupiah';
+import { useBearStore } from '@/zustand/zustand';
 
 export default function Content({ data }) {
-    const [isTrue, setIsTrue] = useState(true)
+    const [isTrue, setIsTrue] = useState(false)
+    const black = useBearStore((state) => state.black)
 
     return (
         <>
@@ -34,7 +36,7 @@ export default function Content({ data }) {
                             <h2>DESCRIPTION</h2>
                             <div dangerouslySetInnerHTML={{ __html: data.deskripsi }} />
                         </div>
-                        <button onClick={() => setIsTrue(false)}>AMBIL PROMO</button>
+                        <button onClick={() => setIsTrue(true)}>AMBIL PROMO</button>
                     </div>
                 </div>
             </div>
@@ -44,14 +46,14 @@ export default function Content({ data }) {
                         <FaWhatsapp />
                     </Link>
                 </div>
-                <div className={styles.tombolbuy} onClick={() => setIsTrue(false)}>
+                <div className={styles.tombolbuy} onClick={() => setIsTrue(true)}>
                     <button>AMBIL PROMO</button>
                 </div>
             </div>
-            {!isTrue &&
+            {isTrue &&
                 <>
                     <FormData data={data} />
-                    <div className={styles.bgblack} onClick={() => setIsTrue(true)}></div>
+                    <div className={styles.bgblack} onClick={() => setIsTrue(black ? true : false)}></div>
                 </>
             }
         </>

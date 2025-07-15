@@ -2,12 +2,15 @@ import styles from '@/component/fromData.module.css'
 import { HandlePayment } from '@/service/HandlePayment';
 import useSnapDuitku from '@/service/useSnapDuitku';
 import { GetRandomNumber } from '@/utils/getRandomNumber';
+import { useBearStore } from '@/zustand/zustand';
 import { useFormik } from 'formik';
 import { useState } from 'react';
 
 export default function FormData({ data }) {
     const { snapEmbedDuitku } = useSnapDuitku()
     const [loading, setLoading] = useState(false)
+    const setBlack = useBearStore((state) => state.setBlack)
+    const black = useBearStore((state) => state.black)
 
     const validate = values => {
         const errors = {};
@@ -47,6 +50,7 @@ export default function FormData({ data }) {
         onSubmit: async (values) => {
             setLoading(true)
             try {
+                setBlack(true)
                 const res = await HandlePayment({
                     // kodeBank: 'NQ',
                     kodeBank: 'BC',
@@ -62,16 +66,16 @@ export default function FormData({ data }) {
                         "quantity": 1
                     }]
                 })
-
                 // console.log(res);
                 // snapEmbedDuitku(res.data, process.env.NODE_ENV === 'production')
+
                 snapEmbedDuitku(res.data, false)
                 setLoading(false)
             } catch (e) {
                 console.log(e);
+                setBlack(false)
                 setLoading(false)
             }
-
         },
     });
 
