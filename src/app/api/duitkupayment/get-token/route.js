@@ -19,9 +19,9 @@ export async function POST(req) {
     const headers = {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'x-duitku-signature': CryptoJS.SHA256(process.env.SERVER_KODEMC + Timestamps + process.env.SERVER_KEYDUITKU).toString(CryptoJS.enc.Hex),
+        'x-duitku-signature': CryptoJS.SHA256(process.env.NEXT_PUBLIC_KODEMC + Timestamps + process.env.SERVER_KEYDUITKU).toString(CryptoJS.enc.Hex),
         'x-duitku-timestamp': Timestamps,
-        'x-duitku-merchantcode': process.env.SERVER_KODEMC
+        'x-duitku-merchantcode': process.env.NEXT_PUBLIC_KODEMC
     };
 
     const bodynya = {
