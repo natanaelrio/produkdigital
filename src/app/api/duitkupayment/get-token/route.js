@@ -28,10 +28,36 @@ export async function POST(req) {
         "paymentAmount": itemDetails.map((data) => data.price).reduce((acc, curr) => acc + curr, 0),
         "merchantOrderId": merchantOrderId,
         "productDetails": note ? note : 'tidak ada catatan',
+        "additionalParam": "",
+        "merchantUserInfo": "",
         "customerVaName": customerVaName,
         "email": email,
         "phoneNumber": phoneNumber,
         "itemDetails": itemDetails,
+        "customerDetail": {
+            "firstName": customerVaName,
+            "lastName": customerVaName,
+            "email": "natanaelriowijaya@gmail.com",
+            "phoneNumber": phoneNumber,
+            "billingAddress": {
+                "firstName": customerVaName,
+                "lastName": customerVaName,
+                "address": "iNDONESIA",
+                "city": "iNDONESIA",
+                "postalCode": "11111",
+                "phone": phoneNumber,
+                "countryCode": "ID"
+            },
+            "shippingAddress": {
+                "firstName": "InvesDigi",
+                "lastName": "Official",
+                "address": "Salatiga",
+                "city": "Salatiga",
+                "postalCode": "50700",
+                "phone": "08971041460",
+                "countryCode": "ID"
+            }
+        },
         "callbackUrl": `${process.env.NEXT_PUBLIC_URL}/api/duitkupayment`,
         "returnUrl": `${process.env.NEXT_PUBLIC_URL}`,
         "expiryPeriod": 60,

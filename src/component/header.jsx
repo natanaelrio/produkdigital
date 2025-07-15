@@ -4,6 +4,7 @@ import styles from '@/component/header.module.css'
 import { ImBooks } from "react-icons/im";
 import { FaWhatsapp } from "react-icons/fa";
 import Link from 'next/link';
+import Image from 'next/image';
 export default function Header({ slug, title }) {
     const text = `Cek ${title ? title : 'produk ini'}, keren banget!`;
     const url = process.env.NEXT_PUBLIC_URL + '/' + slug;
@@ -21,7 +22,7 @@ export default function Header({ slug, title }) {
                         <div className={styles.name}><Link href='/about'>R</Link></div>
                     </div>
                     <Link href='/' className="ikon">
-                        <ImBooks size={80} />
+                        <Image src={'/logo.png'} width={60} height={60} alt='logoinvesdigi' ></Image>
                     </Link >
                     <Link href={`https://wa.me/?text=${message}`} target="_blank" className={styles.share}>
                         Share <FaWhatsapp size={25} />
