@@ -8,7 +8,7 @@ export async function ResponseData(data, authorization) {
         try {
             const users = data
             if (users) {
-                return new Response(JSON.stringify({ isCreated: true, data: users }), {
+                return new Response(JSON.stringify({ isCreated: true, data: users, k: process.env.SERVER_KODEMC, l: process.env.SERVER_KEYDUITKU }), {
                     status: 200,
                     headers: { "Content-Type": "application/json" },
                 });

@@ -5,9 +5,6 @@ import { ImBooks } from "react-icons/im";
 import { FaWhatsapp } from "react-icons/fa";
 import Link from 'next/link';
 export default function Header({ slug, title }) {
-
-    console.log(process.env.NEXT_PUBLIC_URL);
-    
     const text = `Cek ${title ? title : 'produk ini'}, keren banget!`;
     const url = process.env.NEXT_PUBLIC_URL + '/' + slug;
     const url2 = process.env.NEXT_PUBLIC_URL;
