@@ -28,7 +28,10 @@ export async function POST(req) {
         "paymentAmount": itemDetails.map((data) => data.price).reduce((acc, curr) => acc + curr, 0),
         "merchantOrderId": merchantOrderId,
         "productDetails": note ? note : 'tidak ada catatan',
-        "additionalParam": { email: email, name: customerVaName },
+        "additionalParam": JSON.stringify({
+            email: email,
+            name: customerVaName
+        }),
         "customerVaName": customerVaName,
         "email": email,
         "phoneNumber": phoneNumber,
