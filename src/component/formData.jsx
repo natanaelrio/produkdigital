@@ -62,9 +62,9 @@ export default function FormData({ data }) {
                     }]
                 })
 
-                console.log(res);
+                // console.log(res);
                 // snapEmbedDuitku(res.data, process.env.NODE_ENV === 'production')
-                // snapEmbedDuitku(res.data, false)
+                snapEmbedDuitku(res.data, false)
                 setLoading(false)
             } catch (e) {
                 console.log(e);
