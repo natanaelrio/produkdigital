@@ -32,9 +32,9 @@ export async function POST(req, res) {
   <div style="max-width: 600px; margin: auto; background-color: #ffffff; padding: 30px; border-radius: 12px; box-shadow: 0 0 12px rgba(0,0,0,0.05);">
     
     <div style="text-align: center;">
-      <img src="https://invesdigi.vercel.app/logo.png" alt="Invesdigi Logo" width="100" style="margin-bottom: 20px;" />
+      <img src="https://invesdigi.vercel.app/logo.png" alt="Invesdigi Logo" width="50" style="margin-bottom: 20px;" />
       <h2 style="color: #333;">Pembayaran Anda Berhasil!</h2>
-      <p style="font-size: 16px; color: #555;">Halo <strong>${add.name}Pelanggan Invesdigi</strong>,</p>
+      <p style="font-size: 16px; color: #555;">Halo <strong>${add.name}, Pelanggan Invesdigi</strong>,</p>
       <p style="font-size: 16px; color: #555;">Terima kasih telah melakukan pembelian di Invesdigi. Kami telah menerima pembayaran Anda dan pesanan Anda sedang diproses.</p>
     </div>
 
