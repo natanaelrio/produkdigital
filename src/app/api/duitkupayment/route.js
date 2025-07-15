@@ -10,7 +10,7 @@ export async function POST(req, res) {
   const amount = data.get('amount')
   const signature = data.get('signature')
   const additionalParam = data.get('additionalParam')
-  const add = additionalParam.json()
+  const add = JSON.parse(additionalParam);
 
   const params = merchantCode + Number(amount) + merchantOrderId + process.env.SERVER_KEYDUITKU;
   const calcSignature = CryptoJS.MD5(params).toString();
