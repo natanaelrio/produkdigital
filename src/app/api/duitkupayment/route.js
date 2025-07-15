@@ -24,7 +24,7 @@ export async function POST(req, res) {
 
     const mailOptions = {
       from: 'invesdigi.official@gmail.com',
-      to: additionalParam,
+      to: additionalParam.email,
       subject: `Pembayaran Sukses - Order`,
       html: `
 <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f4; padding: 40px 20px;">
@@ -33,12 +33,12 @@ export async function POST(req, res) {
     <div style="text-align: center;">
       <img src="https://invesdigi.vercel.app/logo.png" alt="Invesdigi Logo" width="100" style="margin-bottom: 20px;" />
       <h2 style="color: #333;">Pembayaran Anda Berhasil!</h2>
-      <p style="font-size: 16px; color: #555;">Halo <strong>Pelanggan Invesdigi</strong>,</p>
+      <p style="font-size: 16px; color: #555;">Halo <strong>${additionalParam.name}Pelanggan Invesdigi</strong>,</p>
       <p style="font-size: 16px; color: #555;">Terima kasih telah melakukan pembelian di Invesdigi. Kami telah menerima pembayaran Anda dan pesanan Anda sedang diproses.</p>
     </div>
 
     <div style="background-color: #f9f9f9; padding: 20px; margin: 30px 0; border-left: 4px solid #0055FF; border-radius: 8px;">
-      <p style="margin: 0; font-size: 16px;"><strong>Produk:</strong> ${productDetail}}</p>
+      <p style="margin: 0; font-size: 16px;"><strong>Produk:</strong> ${productDetail}</p>
       <p style="margin: 0; font-size: 16px;"><strong>Harga:</strong> ${Rupiah(amount)}</p>
       <p style="margin: 0; font-size: 16px;"><strong>Status:</strong> Pembayaran diterima</p>
     </div>
