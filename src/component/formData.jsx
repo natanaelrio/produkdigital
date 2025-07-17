@@ -112,7 +112,7 @@ export default function FormData({ data }) {
                             onChange={formik.handleChange}
                             disabled={loading}
                         />
-                        Bayar dengan <Image src='/qris.svg' alt='qris' width='50' height='80'></Image>
+                        Payment <Image src='/qris.svg' alt='qris' width='50' height='80'></Image>
                     </label>
                     {formik.errors.qris && <div className={styles.er}>{formik.errors.qris}</div>}
                     <button disabled={loading} type="submit">{loading ? 'Loading...' : `BUY NOW - IDR ${data.price - ((data?.price * data?.diskon) / 100)} `}</button>
