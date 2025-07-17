@@ -94,6 +94,7 @@
     cursor: pointer;
     font-weight: 700;
     background-color: hsl(216, 100%, 50%);
+    font-size: 1rem;
 }
 
 .content button:hover {
