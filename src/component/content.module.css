@@ -89,7 +89,7 @@
 .content button {
     width: fit-content;
     border: 0;
-    padding: 12px;
+    padding: 12px 28px;
     border-radius: 5px;
     cursor: pointer;
     font-weight: 700;

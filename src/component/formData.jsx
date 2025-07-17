@@ -23,14 +23,8 @@ export default function FormData({ data }) {
 
         if (!values.nama) {
             errors.nama = 'Required';
-        } else if (values.nama.length > 15) {
-            errors.nama = 'Must be 15 characters or less';
-        }
-
-        if (!values.nomer) {
-            errors.nomer = 'Required';
-        } else if (values.nomer.length > 20) {
-            errors.nomer = 'Must be 20 characters or less';
+        } else if (values.nama.length > 20) {
+            errors.nama = 'Must be 20 characters or less';
         }
 
         if (!values.qris) {
@@ -59,7 +53,7 @@ export default function FormData({ data }) {
                     note: data?.title,
                     merchantOrderId: GetRandomNumber(),
                     customerVaName: values.nama,
-                    phoneNumber: values.nomer.toString(),
+                    // phoneNumber: values.nomer.toString(),
                     email: values.email,
                     itemDetails: [{
                         "name": data.title,
@@ -87,7 +81,7 @@ export default function FormData({ data }) {
                     BUYER INFO
                 </div>
                 <form onSubmit={formik.handleSubmit}>
-                    <label htmlFor="email">Email Address</label>
+                    <label htmlFor="email"><span>*</span>Email Address</label>
                     <input
                         id="email"
                         name="email"
@@ -99,7 +93,7 @@ export default function FormData({ data }) {
                     />
                     {formik.errors.email && <div className={styles.er}>{formik.errors.email}</div>}
 
-                    <label htmlFor="nama">Your Name</label>
+                    <label htmlFor="nama"><span>*</span>Your Name</label>
                     <input
                         id="nama"
                         name="nama"
@@ -110,20 +104,6 @@ export default function FormData({ data }) {
                         disabled={loading}
                     />
                     {formik.errors.nama && <div className={styles.er}>{formik.errors.nama}</div>}
-
-                    <label htmlFor="nomer">Phone Number</label>
-                    <input
-                        style={{ width: '70%' }}
-                        id="nomer"
-                        name="nomer"
-                        type="number"
-                        placeholder='08xxxxxxx'
-                        onChange={formik.handleChange}
-                        value={formik.values.nomer}
-                        disabled={loading}
-                    />
-                    {formik.errors.nomer && <div className={styles.er}>{formik.errors.nomer}</div>}
-
                     <label className={styles.checkboxLabel}>
                         <input
                             type="checkbox"
@@ -131,7 +111,7 @@ export default function FormData({ data }) {
                             checked={formik.values.qris}
                             onChange={formik.handleChange}
                             disabled={loading}
-                        /> 
+                        />
                         Bayar dengan <Image src='/qris.svg' alt='qris' width='50' height='80'></Image>
                     </label>
                     {formik.errors.qris && <div className={styles.er}>{formik.errors.qris}</div>}
