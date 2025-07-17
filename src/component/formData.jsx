@@ -5,6 +5,7 @@ import { GetRandomNumber } from '@/utils/getRandomNumber';
 import { useBearStore } from '@/zustand/zustand';
 import { useFormik } from 'formik';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useState } from 'react';
 
 export default function FormData({ data }) {
@@ -28,8 +29,11 @@ export default function FormData({ data }) {
         }
 
         if (!values.qris) {
-            errors.qris = 'Wajib centang pembayaran QRIS';
+            errors.qris = 'It is mandatory to check QRIS payments';
         }
+        // if (!values.term) {
+        //     errors.term = 'It is mandatory to check Term of Use';
+        // }
 
         return errors;
     };
@@ -40,6 +44,7 @@ export default function FormData({ data }) {
             email: '',
             nomer: '',
             qris: false,
+            // term: false,
         },
         validate,
         onSubmit: async (values) => {
@@ -112,9 +117,24 @@ export default function FormData({ data }) {
                             onChange={formik.handleChange}
                             disabled={loading}
                         />
-                        Payment <Image src='/qris.svg' alt='qris' width='50' height='80'></Image>
+                        <div className={styles.cek}>
+                            Payment <Image src='/qris.svg' alt='qris' width='50' height='80'></Image>
+                        </div>
                     </label>
                     {formik.errors.qris && <div className={styles.er}>{formik.errors.qris}</div>}
+                    {/* <label className={styles.checkboxLabel}>
+                        <input
+                            type="checkbox"
+                            name="term"
+                            checked={formik.values.term}
+                            onChange={formik.handleChange}
+                            disabled={loading}
+                        />
+                        <div className={styles.cek}>
+                            I agree to the <Link href={'/terms'} target='_blank'>Terms of Use</Link>
+                        </div>
+                    </label>
+                    {formik.errors.term && <div className={styles.er}>{formik.errors.term}</div>} */}
                     <button disabled={loading} type="submit">{loading ? 'Loading...' : `BUY NOW - IDR ${data.price - ((data?.price * data?.diskon) / 100)} `}</button>
                 </form>
             </div>

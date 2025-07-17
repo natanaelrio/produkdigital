@@ -118,6 +118,13 @@
     height: fit-content;
 }
 
+.form a {
+    color: hsl(216, 100%, 50%);
+    font-weight: 700;
+}
+
+
+
 @media only screen and (max-width: 720px) {
     .form {
         width: 95%;
