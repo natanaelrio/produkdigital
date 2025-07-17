@@ -109,6 +109,10 @@
 }
 
 
+.form img {
+    height: fit-content;
+}
+
 @media only screen and (max-width: 720px) {
     .form {
         width: 95%;

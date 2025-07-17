@@ -4,6 +4,7 @@ import useSnapDuitku from '@/service/useSnapDuitku';
 import { GetRandomNumber } from '@/utils/getRandomNumber';
 import { useBearStore } from '@/zustand/zustand';
 import { useFormik } from 'formik';
+import Image from 'next/image';
 import { useState } from 'react';
 
 export default function FormData({ data }) {
@@ -130,7 +131,8 @@ export default function FormData({ data }) {
                             checked={formik.values.qris}
                             onChange={formik.handleChange}
                             disabled={loading}
-                        /> Bayar dengan QRIS
+                        /> 
+                        Bayar dengan <Image src='/qris.svg' alt='qris' width='50' height='80'></Image>
                     </label>
                     {formik.errors.qris && <div className={styles.er}>{formik.errors.qris}</div>}
                     <button disabled={loading} type="submit">{loading ? 'Loading...' : `BUY NOW - IDR ${data.price - ((data?.price * data?.diskon) / 100)} `}</button>
