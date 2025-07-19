@@ -42,7 +42,7 @@ export default function Content({ data }) {
             </div>
             <div className={styles.belimobile}>
                 <div className={styles.tombolsharewa}>
-                    <Link href={'https://wa.me/628971041460'} color='white' target='_blank'>
+                    <Link  href={'https://wa.me/628971041460'} color='white' target='_blank'>
                         <FaWhatsapp />
                     </Link>
                 </div>

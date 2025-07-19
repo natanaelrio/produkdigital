@@ -66,10 +66,16 @@ export default function FormData({ data }) {
                         "quantity": 1
                     }]
                 })
+
+                const { trackEvent } = await import('@/utils/facebookPixel');
+                trackEvent('order', { order: formatRupiah(data.price - ((data?.price * data?.diskon) / 100)) });
+
                 // console.log(res);
                 // snapEmbedDuitku(res.data, process.env.NODE_ENV === 'production')
+                // const { trackEvent } = await import('@/utils/facebookPixel');
+                // trackEvent('whatsapp', { notif: 'whatsapp' })
 
-                snapEmbedDuitku(res.data, false)
+                // snapEmbedDuitku(res.data, false)
                 setLoading(false)
             } catch (e) {
                 console.log(e);
