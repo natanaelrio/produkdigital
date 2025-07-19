@@ -79,6 +79,7 @@ export default function FormData({ data }) {
                 // snapEmbedDuitku(res.data, process.env.NODE_ENV === 'production')
                 snapEmbedDuitku(res.data, false)
                 setLoading(false)
+                setBlack(false)
             } catch (e) {
                 console.log(e);
                 setBlack(false)
@@ -126,7 +127,7 @@ export default function FormData({ data }) {
                             disabled={loading}
                         />
                         <div className={styles.cek}>
-                            Payment <Image src='/qris.svg' alt='qris' width='50' height='80'></Image>
+                            <Image src='/qris.svg' alt='qris' width='50' height='80'></Image>
                         </div>
                     </label>
                     {formik.errors.qris && <div className={styles.er}>{formik.errors.qris}</div>}
