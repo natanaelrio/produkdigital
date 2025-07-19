@@ -1,18 +1,24 @@
+'use client'
 import styles from '@/component/fromData.module.css'
 import { HandlePayment } from '@/service/HandlePayment';
 import useSnapDuitku from '@/service/useSnapDuitku';
+import { initFacebookPixel } from '@/utils/facebookPixel';
 import { GetRandomNumber } from '@/utils/getRandomNumber';
+import { Rupiah } from '@/utils/rupiah';
 import { useBearStore } from '@/zustand/zustand';
 import { useFormik } from 'formik';
 import Image from 'next/image';
-import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function FormData({ data }) {
     const { snapEmbedDuitku } = useSnapDuitku()
     const [loading, setLoading] = useState(false)
     const setBlack = useBearStore((state) => state.setBlack)
     const black = useBearStore((state) => state.black)
+
+    useEffect(() => {
+        initFacebookPixel()
+    }, []);
 
     const validate = values => {
         const errors = {};
@@ -68,14 +74,10 @@ export default function FormData({ data }) {
                 })
 
                 const { trackEvent } = await import('@/utils/facebookPixel');
-                trackEvent('order', { order: formatRupiah(data.price - ((data?.price * data?.diskon) / 100)) });
+                trackEvent('order', { order: Rupiah(data.price - ((data?.price * data?.diskon) / 100)) });
 
-                // console.log(res);
                 // snapEmbedDuitku(res.data, process.env.NODE_ENV === 'production')
-                // const { trackEvent } = await import('@/utils/facebookPixel');
-                // trackEvent('whatsapp', { notif: 'whatsapp' })
-
-                // snapEmbedDuitku(res.data, false)
+                snapEmbedDuitku(res.data, false)
                 setLoading(false)
             } catch (e) {
                 console.log(e);
