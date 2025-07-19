@@ -1,5 +1,4 @@
 'use client'
-
 export const OpenWhatsApp = async () => {
     const { trackEvent } = await import('@/utils/facebookPixel');
     trackEvent('whatsapp', { notif: 'whatsapp' })

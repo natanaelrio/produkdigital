@@ -58,8 +58,8 @@ export default function FormData({ data }) {
             try {
                 setBlack(true)
                 const res = await HandlePayment({
-                    // kodeBank: 'NQ',
-                    kodeBank: 'BC',
+                    kodeBank: 'NQ',
+                    // kodeBank: 'BC',
                     linkProduk: data.linkProduk,
                     note: data?.title,
                     merchantOrderId: GetRandomNumber(),
@@ -77,7 +77,7 @@ export default function FormData({ data }) {
                 trackEvent('order', { order: Rupiah(data.price - ((data?.price * data?.diskon) / 100)) });
 
                 // snapEmbedDuitku(res.data, process.env.NODE_ENV === 'production')
-                snapEmbedDuitku(res.data, false)
+                snapEmbedDuitku(res.data, true)
                 setLoading(false)
                 setBlack(false)
             } catch (e) {
