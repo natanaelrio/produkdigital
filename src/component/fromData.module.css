@@ -132,11 +132,11 @@
 }
 
 .notifikasi .ikon {
-    color: hsl(216, 100%, 50%);
+    color: var(--color);
 }
 
 .notifikasi .text1 {
-    color: hsl(216, 100%, 50%);
+    color: var(--color);
     font-weight: 700;
 }
 
