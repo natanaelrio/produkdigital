@@ -78,7 +78,7 @@ export default function FormData({ data }) {
                 trackEvent('order', { order: Rupiah(data.price - ((data?.price * data?.diskon) / 100)) });
 
                 // snapEmbedDuitku(res.data, process.env.NODE_ENV === 'production')
-                snapEmbedDuitku(res.data, true)
+                snapEmbedDuitku(res.data, false)
                 setLoading(false)
                 setBlack(false)
             } catch (e) {
