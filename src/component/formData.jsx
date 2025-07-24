@@ -9,6 +9,7 @@ import { useBearStore } from '@/zustand/zustand';
 import { useFormik } from 'formik';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
+import { IoIosAlert } from "react-icons/io";
 
 export default function FormData({ data }) {
     const { snapEmbedDuitku } = useSnapDuitku()
@@ -146,6 +147,15 @@ export default function FormData({ data }) {
                     {formik.errors.term && <div className={styles.er}>{formik.errors.term}</div>} */}
                     <button disabled={loading} type="submit">{loading ? 'Loading...' : `BUY NOW - IDR ${data.price - ((data?.price * data?.diskon) / 100)} `}</button>
                 </form>
+                <div className={styles.notifikasi}>
+                    <div>
+                        <div className={styles.ikon}><IoIosAlert /></div>
+                    </div>
+                    <div>
+                        <div className={styles.text1}>Produk Digital</div>
+                        <div className={styles.text2}>Produk Otomatis dikirimkan setelah pembayaran terkonfirmasi</div>
+                    </div>
+                </div>
             </div>
         </>
     )

@@ -44,7 +44,7 @@
 
 .checkboxLabel input[type="checkbox"] {
     transform: scale(1.5);
-    accent-color: hsl(216, 100%, 50%);
+    accent-color: var(--color);
     background-color: white;
     /* warna latar */
     border: 1px solid #ccc;
@@ -62,7 +62,7 @@
 
 .checkboxLabel input[type="checkbox"]:checked::after {
     content: '✔';
-    color: hsl(216, 100%, 50%);
+    color: var(--color);
     position: absolute;
     top: -2px;
     bottom: 0;
@@ -79,9 +79,9 @@
 }
 
 .form input:focus {
-    border-color: hsl(216, 100%, 50%);
+    border-color: var(--color);
     /* warna utama */
-    box-shadow: 0 0 2px hsl(216, 100%, 50%);
+    box-shadow: 0 0 2px var(--color);
     /* efek bercahaya */
 }
 
@@ -92,7 +92,7 @@
 .form button {
     font-size: 1rem;
     padding: 14px;
-    background-color: hsl(216, 100%, 50%);
+    background-color: var(--color);
     cursor: pointer;
     border-radius: 7px;
     font-weight: 700;
@@ -119,10 +119,26 @@
 }
 
 .form a {
-    color: hsl(216, 100%, 50%);
+    color: var(--color);
     font-weight: 700;
 }
 
+.notifikasi {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.8rem;
+}
+
+.notifikasi .ikon {
+    color: hsl(216, 100%, 50%);
+}
+
+.notifikasi .text1 {
+    color: hsl(216, 100%, 50%);
+    font-weight: 700;
+}
 
 
 @media only screen and (max-width: 720px) {
@@ -133,5 +149,9 @@
         right: 0;
         left: 0;
         margin: 0 auto;
+    }
+
+    .notifikasi {
+        font-size: 0.64rem;
     }
 }
