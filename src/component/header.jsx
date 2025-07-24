@@ -5,6 +5,8 @@ import styles from '@/component/header.module.css'
 import { FaWhatsapp } from "react-icons/fa";
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
+import { useEffect } from 'react';
+import { trackPageView } from '@/utils/facebookPixel';
 
 export default function Header({ slug, title }) {
     const text = `Cek ${title ? title : 'produk ini'}, keren banget!`;
@@ -14,6 +16,11 @@ export default function Header({ slug, title }) {
     const pathname = usePathname()
     const back = pathname == "/contact" || pathname == "/terms" || pathname == "/privacy" || pathname == "/about"
     const router = useRouter()
+
+    useEffect(() => {
+        trackPageView()
+    }, []);
+
     return (
         <>
             <div className={styles.luarcontainer}>

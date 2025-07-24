@@ -13,3 +13,10 @@ export const trackEvent = async (event, data) => {
         ReactPixel.trackCustom(event, data);
     }
 };
+
+export const trackPageView = async () => {
+    if (typeof window !== 'undefined') {
+        const ReactPixel = (await import('react-facebook-pixel')).default;
+        ReactPixel.pageView();
+    }
+};
