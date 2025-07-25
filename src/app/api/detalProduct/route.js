@@ -1,106 +1,116 @@
 export async function GET(req) {
-    const authorization = req.headers.get('authorization')
-    const searchParams = req.nextUrl.searchParams;
-    const id = searchParams.get('id');
+  const authorization = req.headers.get('authorization')
+  const searchParams = req.nextUrl.searchParams;
+  const id = searchParams.get('id');
 
-    if (authorization == process.env.API_KEY_SECRET) {
-        const res = [
-            {
-                id: 1,
-                date: "2025-07-10",
-                stock: 100,
-                sold: 20,
-                title: "Template CV Profesional",
-                slug: "template-cv-profesional",
-                deskripsi: `<p>Template CV profesional ini dirancang khusus untuk membantu Anda menonjol di antara pelamar lainnya. Dengan desain modern dan elegan, Anda dapat menyusun pengalaman kerja, pendidikan, dan keahlian dengan rapi serta menarik.</p><p>Template ini dilengkapi panduan penggunaan dan dapat diedit di Word atau Google Docs. Cocok untuk berbagai industri, mulai dari kreatif, marketing, hingga korporasi. Investasi kecil yang dapat memberikan dampak besar dalam karier Anda.</p>`,
-                price: 50000,
-                diskon: 10,
-                image: "https://picsum.photos/500",
-                linkProduk: "https://invesdigi.vercel.app/produk/template-cv-profesional"
-            },
-            {
-                id: 2,
-                date: "2025-07-08",
-                stock: 50,
-                sold: 15,
-                title: "Preset Lightroom Minimalis",
-                slug: "preset-lightroom-minimalis",
-                deskripsi: `<p>Preset Lightroom minimalis ini dirancang bagi Anda yang ingin mempercantik feed media sosial dengan tone cerah dan konsisten. Cukup satu klik untuk mengubah tampilan foto menjadi lebih estetis dan profesional.</p><p>Dilengkapi file DNG yang kompatibel dengan Lightroom mobile maupun desktop, serta tutorial penggunaan bagi pemula. Cocok untuk konten fashion, travel, hingga lifestyle.</p>`,
-                price: 30000,
-                diskon: 20,
-                image: "https://picsum.photos/500",
-                linkProduk: "https://invesdigi.vercel.app/produk/preset-lightroom-minimalis"
-            },
-            {
-                id: 3,
-                date: "2025-07-05",
-                stock: 200,
-                sold: 60,
-                title: "Ebook Cara Sukses Bisnis Online",
-                slug: "ebook-cara-sukses-bisnis-online",
-                deskripsi: `<p>Ebook ini membahas cara membangun bisnis online dari nol hingga menghasilkan omset jutaan. Materi meliputi strategi memilih produk, memasarkan di sosial media, hingga mengelola toko online.</p><p>Ditulis oleh praktisi bisnis digital, ebook ini cocok untuk pemula maupun pelaku usaha yang ingin naik level. Langsung bisa dipraktikkan tanpa teori yang membingungkan.</p>`,
-                price: 75000,
-                diskon: 15,
-                image: "https://picsum.photos/500",
-                linkProduk: "https://invesdigi.vercel.app/produk/ebook-cara-sukses-bisnis-online"
-            },
-            {
-                id: 4,
-                date: "2025-07-03",
-                stock: 80,
-                sold: 25,
-                title: "Font Handwritten Exclusive",
-                slug: "font-handwritten-exclusive",
-                deskripsi: `<p>Koleksi font handwriting eksklusif ini menghadirkan gaya tulisan tangan yang elegan dan alami. Sangat ideal untuk branding, undangan, label produk, atau konten sosial media.</p><p>Tersedia dalam format OTF & TTF dan kompatibel dengan Photoshop, Illustrator, hingga Canva. Membuat desain Anda lebih personal dan premium.</p>`,
-                price: 40000,
-                diskon: 5,
-                image: "https://picsum.photos/500",
-                linkProduk: "https://invesdigi.vercel.app/produk/font-handwritten-exclusive"
-            },
-            {
-                id: 5,
-                date: "2025-07-01",
-                stock: 120,
-                sold: 40,
-                title: "Toolkit Desain Instagram",
-                slug: "toolkit-desain-instagram",
-                deskripsi: `<p>Toolkit ini menyediakan ratusan template feed, story, highlight cover, dan elemen grafis lainnya untuk mempercantik tampilan akun Instagram Anda. Semua desain mudah diedit di Canva atau Photoshop.</p><p>Sangat cocok untuk bisnis online, jasa, UMKM, maupun influencer yang ingin tampil lebih profesional di media sosial tanpa harus membuat desain dari nol.</p>`,
-                price: 60000,
-                diskon: 25,
-                image: "https://picsum.photos/500",
-                linkProduk: "https://invesdigi.vercel.app/produk/toolkit-desain-instagram"
-            },
-            {
-                id: 6,
-                date: "2025-06-28",
-                stock: 90,
-                sold: 30,
-                title: "Mockup Kaos PSD",
-                slug: "mockup-kaos-psd",
-                deskripsi: `<p>Mockup kaos ini memiliki resolusi tinggi dengan efek bayangan realistis untuk menampilkan desain sablon secara profesional. Dapat digunakan untuk presentasi ke klien atau preview produk di toko online.</p><p>File dalam format PSD layered, memungkinkan Anda mengganti desain dan warna kaos dengan cepat menggunakan smart object. Hemat waktu dan tampil meyakinkan.</p>`,
-                price: 55000,
-                diskon: 0,
-                image: "https://picsum.photos/500",
-                linkProduk: "https://invesdigi.vercel.app/produk/mockup-kaos-psd"
-            }
-        ];
+  if (authorization == process.env.API_KEY_SECRET) {
+    const res = [
+      {
+        id: 1,
+        date: "2025-07-10",
+        stock: 100,
+        sold: 20,
+        title: "Rahasia Menuju Trading Bebas Emosi",
+        slug: "rahasia-menuju-trading-bebas-emosi",
+        deskripsi: `<ul>
+     Pelajari cara menguasai psikologi trading
+     Bangun mindset pemenang di pasar yang fluktuatif
+     Kendalikan emosi, maksimalkan hasil
+     <br/>     <br/>
+  </li>
+  <li>
+  <strong>
+  Kata Pengantar
+  </strong>
+  </li>
+  <li>Bertindak berdasarkan kepentingan utama anda</li>
+   <br/>  
+  <li>
+   <strong>
+  Bagian I – Kecakapan-Kecakapan Yang Anda Butuhkan
+    </strong>
+    <ul>
+      <li>Bab 1 – Menetapkan dan Memenuhi Tujuan-Tujuan yang Realistis</li>
+      <li>Bab 2 – Belajar Mencintai Kerugian</li>
+      <li>Bab 3 – Waktu Tidak Ada Hubungannya Dengan Uang</li>
+      <li>Bab 4 – Tetap Fleksibel</li>
+      <li>Bab 5 – Apakah Anda Pantas Untuk Menghasilkan Uang</li>
+      <li>Bab 6 – Aturan-Aturan Trading</li>
+      <li>Bab 7 – Eksekusi Tanpa Cela</li>
+      <li>Bab 8 – Kegunaan Dari Stop Order</li>
+      <li>Bab 9 – Bagaimana Menangani Pasar Jika Ia Tidak Pernah Berhenti Bergerak</li>
+      <li>Bab 10 – Menjadi Objektif</li>
+      <li>Bab 11 – Menjadi Pemenang dan Orang Kalah Yang Aktif</li>
+      <li>Bab 12 – Paper Trading Setelah Sebuah Kerugian</li>
+      <li>Bab 13 – Pengembangan Diri</li>
+    </ul>
+  </li>
+     <br/>  
+  <li>
+  <strong>
+  Bagian II – Kecakapan-Kecakapan Yang Tidak Anda Butuhkan 
+  </strong>
+    <ul>
+      <li>Bab 14 – Kesalahan Terburuk Yang Bisa Anda Lakukan</li>
+      <li>Bab 15 – Trading Balas Dendam</li>
+      <li>Bab 16 – Meminta, Berharap dan Berdoa</li>
+      <li>Bab 17 – Menggandakan: Menambahkan Posisi Rugi</li>
+      <li>Bab 18 – Ketamakan</li>
+      <li>Bab 19 – Rasa Takut</li>
+    </ul>
+  </li>
+       <br/> 
+  <li>
+    <strong>
+  Bagian III – Bagaimana Mengembangkan Diri Anda
+    </strong>
+    <ul>
+      <li>Bab 20 – Apakah Yang Dimaksud Dengan Psycho-Cybernetics?</li>
+      <li>Bab 21 – Beberapa Gambaran Untuk Mempersiapkan Diri Anda</li>
+      <li>Bab 22 – Gambaran-Gambaran Mental</li>
+      <li>Bab 23 – Mekanisme Kesuksesan dan Mekanisme Kegagalan</li>
+      <li>Bab 24 – Memaafkan</li>
+      <li>Bab 25 – Orang-Orang Terkenal Menggunakan Psycho-Cybernetics</li>
+      <li>Bab 26 – Bagaimana Memvisualisasikan Tehnik Untuk Memperbaiki Kemampuan Trading Anda</li>
+      <li>Bab 27 – Latihan Menentukan Tujuan</li>
+      <li>Bab 28 – Memvisualisasikan Keuntungan Besar Yang Tidak Disangka-Sangka</li>
+      <li>Bab 29 – Pernyataan Kenaikan Ekuitas</li>
+      <li>Bab 30 – Latihan Menarik Pelatuk</li>
+      <li>Bab 31 – Latihan Membatasi Resiko</li>
+      <li>Bab 32 – Membersihkan Kalkulator</li>
+      <li>Bab 33 – Membuat Latihan Visualisasi Anda Sendiri</li>
+      <li>Bab 34 – Lebih Banyak Lagi Latihan Relaksasi</li>
+      <li>Bab 35 – Mengapa Teknik Visualisasi Berhasil</li>
+    </ul>
+  </li>
+     <br/> 
+  <li> <strong>Daftar Pustaka </strong></li>
+</ul>
+`,
+        price: 50000,
+        diskon: 10,
+        image: `${process.env.NEXT_PUBLIC_URL}/rahasiamenujutradingbebasemosi.png`,
+        linkProduk: "https://invesdigi.vercel.app/produk/template-cv-profesional"
+      }
 
-        const data = res.find((item) => item.slug == id)
+    ];
 
-        return new Response(JSON.stringify({ isCreated: true, data: data }), {
-            status: 200,
-            headers: { "Content-Type": "application/json" },
-        });
-    }
-    return new Response(JSON.stringify({
-        isCreated: false, data: [{
-            "nama": "DEVeloper NatanaelRiowijaya",
-            "Nomer": "08971041460"
-        }
-        ]
-    }), {
-        status: 500,
-        headers: { "Content-Type": "application/json" },
+    const data = res.find((item) => item.slug == id)
+
+    return new Response(JSON.stringify({ isCreated: true, data: data }), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
     });
+  }
+  return new Response(JSON.stringify({
+    isCreated: false, data: [{
+      "nama": "DEVeloper NatanaelRiowijaya",
+      "Nomer": "08971041460"
+    }
+    ]
+  }), {
+    status: 500,
+    headers: { "Content-Type": "application/json" },
+  });
 
 }
