@@ -36,18 +36,20 @@ export default function Content({ data }) {
                             <h2>DESCRIPTION</h2>
                             <div dangerouslySetInnerHTML={{ __html: data.deskripsi }} />
                         </div>
-                        <button onClick={() => setIsTrue(true)}>AMBIL PROMO</button>
+                        {/* <button onClick={() => setIsTrue(true)}>AMBIL PROMO</button> */}
                     </div>
                 </div>
             </div>
-            <div className={styles.belimobile}>
-                <div className={styles.tombolsharewa}>
-                    <Link  href={'https://wa.me/628971041460'} color='white' target='_blank'>
-                        <FaWhatsapp />
-                    </Link>
-                </div>
-                <div className={styles.tombolbuy} onClick={() => setIsTrue(true)}>
-                    <button>AMBIL PROMO</button>
+            <div className={styles.belimobilecontainer}>
+                <div className={styles.belimobile}>
+                    <div className={styles.tombolsharewa}>
+                        <Link href={'https://wa.me/628971041460'} color='white' target='_blank'>
+                            <FaWhatsapp />
+                        </Link>
+                    </div>
+                    <div className={styles.tombolbuy} onClick={() => setIsTrue(true)}>
+                        <button>AMBIL PROMO</button>
+                    </div>
                 </div>
             </div>
             {isTrue &&

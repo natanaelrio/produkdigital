@@ -97,17 +97,76 @@
     border-radius: 5px;
     cursor: pointer;
     font-weight: 700;
-    background-color: hsl(216, 100%, 50%);
+    background-color: var(--color);
     font-size: 1rem;
 }
 
 .content button:hover {
     transition: all ease 0.2s;
-    background-color: hsl(216, 100%, 40%);
+    background-color: var(--color);
+}
+
+/* .belimobile {
+    display: none;
+} */
+
+.belimobilecontainer {
+    box-shadow: 0 3px 6px #000000;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    background-color: red;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 1001;
+    justify-content: center;
+    background-color: rgb(255, 255, 255);
 }
 
 .belimobile {
-    display: none;
+    width: 1100px;
+    /* height: 60px; */
+    /* box-shadow: 0 3px 6px #000000; */
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+    gap: 16px;
+}
+
+.belimobile .tombolbuy {
+    width: 100%;
+    border-radius: 7px;
+}
+
+.tombolbuy button {
+    width: 100%;
+    background-color: #2836f0;
+    border: 0;
+    height: max-content;
+    padding: 16px;
+    border-radius: 7px;
+    font-weight: 700;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.tombolsharewa {
+    color: #2AB57D;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.tombolsharewa a {
+    border: 1px solid #2AB57D;
+    border-radius: 7px;
+    padding: 14px 16px;
+    display: flex;
 }
 
 .bgblack {
@@ -168,6 +227,7 @@
         background-color: rgb(255, 255, 255);
         position: fixed;
         bottom: 0;
+        left: 0;
         display: flex;
         justify-content: center;
         z-index: 1001;
