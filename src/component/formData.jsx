@@ -129,7 +129,7 @@ export default function FormData({ data }) {
                             disabled={loading}
                         />
                         <div className={styles.cek}>
-                          Payment  <Image src='/qris.svg' alt='qris' width='50' height='80'></Image>
+                            Payment  <Image src='/qris.svg' alt='qris' width='50' height='20'></Image>
                         </div>
                     </label>
                     {formik.errors.qris && <div className={styles.er}>{formik.errors.qris}</div>}
