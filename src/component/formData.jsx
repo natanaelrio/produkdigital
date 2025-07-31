@@ -60,8 +60,8 @@ export default function FormData({ data }) {
             try {
                 setBlack(true)
                 const res = await HandlePayment({
-                    kodeBank: 'SP',
-                    // kodeBank: 'BC',
+                    // kodeBank: 'SP',
+                    kodeBank: 'BC',
                     linkProduk: data.linkProduk,
                     note: data?.title,
                     merchantOrderId: GetRandomNumber(),
@@ -129,7 +129,8 @@ export default function FormData({ data }) {
                             disabled={loading}
                         />
                         <div className={styles.cek}>
-                            Payment  <Image src='/qris.svg' alt='qris' width='50' height='20'></Image>
+                            Payment BCA
+                            {/* <Image src='/qris.svg' alt='qris' width='50' height='20'></Image> */}
                         </div>
                     </label>
                     {formik.errors.qris && <div className={styles.er}>{formik.errors.qris}</div>}
