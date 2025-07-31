@@ -26,6 +26,17 @@
     margin-top: 20px;
     position: relative;
     white-space: nowrap;
+    align-items: center;
+}
+
+.form .cek {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.form .cek a {
+    opacity: 0.7;
 }
 
 .form input,
@@ -114,9 +125,9 @@
 }
 
 
-.form img {
+/* .form img {
     height: fit-content;
-}
+} */
 
 .form a {
     color: var(--color);
