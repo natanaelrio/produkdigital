@@ -31,3 +31,7 @@
 .privacyPolicy p {
     margin-bottom: 16px;
 }
+
+.privacyPolicy a {
+    color: var(--color);
+}

@@ -30,7 +30,7 @@ export default function Terms() {
                 Pengiriman akan dilakukan setelah pembayaran Anda berhasil dikonfirmasi. Produk digital akan dikirimkan melalui email secara otomatis saat melakukan pembelian.
             </p>
             <p>
-                Pastikan Anda mengisi data kontak dengan benar. Keterlambatan atau kegagalan pengiriman akibat kesalahan input bukan tanggung jawab kami.Hubungi Kami jika belum menerima produk setelah pembelian.
+                Pastikan Anda mengisi data kontak dengan benar. Keterlambatan atau kegagalan pengiriman akibat kesalahan input bukan tanggung jawab kami. <Link target='_blank' href={'/contact'}>Hubungi Kami </Link> jika belum menerima produk setelah pembelian.
             </p>
 
             <h2 className={styles.sectionTitle}>5. Pengembalian dan Refund</h2>

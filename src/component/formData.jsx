@@ -8,6 +8,7 @@ import { Rupiah } from '@/utils/rupiah';
 import { useBearStore } from '@/zustand/zustand';
 import { useFormik } from 'formik';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { IoIosAlert } from "react-icons/io";
 
@@ -38,9 +39,9 @@ export default function FormData({ data }) {
         if (!values.qris) {
             errors.qris = 'It is mandatory to check QRIS payments';
         }
-        // if (!values.term) {
-        //     errors.term = 'It is mandatory to check Term of Use';
-        // }
+        if (!values.term) {
+            errors.term = 'It is mandatory to check Term of Use';
+        }
 
         return errors;
     };
@@ -51,7 +52,7 @@ export default function FormData({ data }) {
             email: '',
             nomer: '',
             qris: false,
-            // term: false,
+            term: false,
         },
         validate,
         onSubmit: async (values) => {
@@ -128,11 +129,11 @@ export default function FormData({ data }) {
                             disabled={loading}
                         />
                         <div className={styles.cek}>
-                            <Image src='/qris.svg' alt='qris' width='50' height='80'></Image>
+                          Payment  <Image src='/qris.svg' alt='qris' width='50' height='80'></Image>
                         </div>
                     </label>
                     {formik.errors.qris && <div className={styles.er}>{formik.errors.qris}</div>}
-                    {/* <label className={styles.checkboxLabel}>
+                    <label className={styles.checkboxLabel}>
                         <input
                             type="checkbox"
                             name="term"
@@ -144,7 +145,7 @@ export default function FormData({ data }) {
                             I agree to the <Link href={'/terms'} target='_blank'>Terms of Use</Link>
                         </div>
                     </label>
-                    {formik.errors.term && <div className={styles.er}>{formik.errors.term}</div>} */}
+                    {formik.errors.term && <div className={styles.er}>{formik.errors.term}</div>}
                     <button disabled={loading} type="submit">{loading ? 'Loading...' : `BUY NOW - IDR ${data.price - ((data?.price * data?.diskon) / 100)} `}</button>
                 </form>
                 <div className={styles.notifikasi}>
