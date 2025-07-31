@@ -90,7 +90,7 @@ export async function GET(req) {
         price: 50000,
         diskon: 10,
         image: `${process.env.NEXT_PUBLIC_URL}/rahasiamenujutradingbebasemosi.png`,
-        linkProduk: "https://invesdigi.vercel.app/produk/template-cv-profesional"
+        linkProduk: "https://invesdigi.com/produk/template-cv-profesional"
       }
 
     ];
