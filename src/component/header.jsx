@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { trackPageView } from '@/utils/facebookPixel';
+import Image from 'next/image';
 
 export default function Header({ slug, title }) {
     const text = `Cek ${title ? title : 'produk ini'}, keren banget!`;
@@ -37,10 +38,10 @@ export default function Header({ slug, title }) {
                             </>
                         }
                     </div>
-                    <div></div>
-                    {/* <Link href='/' className="ikon">
-                        <Image src={'/logo.png'} width={60} height={60} alt='logoinvesdigi' ></Image>
-                    </Link > */}
+                    {/* <div></div> */}
+                    <Link href='/' className={styles.ikon}>
+                        <Image src={'/logo.png'} width={30} height={30} alt='logoinvesdigi' ></Image>
+                    </Link >
                     <Link href={`https://wa.me/?text=${message}`} target="_blank" className={styles.share}>
                         Share <FaWhatsapp size={25} />
                     </Link>
