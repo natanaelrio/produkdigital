@@ -60,7 +60,7 @@ export default function FormData({ data }) {
             try {
                 setBlack(true)
                 const res = await HandlePayment({
-                    kodeBank: 'SP',
+                    kodeBank: 'SQ',
                     // kodeBank: 'BC',
                     linkProduk: data.linkProduk,
                     note: data?.title,
