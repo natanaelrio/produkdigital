@@ -16,7 +16,7 @@ Kendalikan emosi, maksimalkan hasil
 `,
         price: 50000,
         diskon: 10,
-        image: `${process.env.NEXT_PUBLIC_URL}/rahasiamenujutradingbebasemosi.png`,
+        image: `${process.env.NEXT_PUBLIC_URL}/rahasiamenujutradingbebasemosi.webp`,
         linkProduk: "https://invesdigi.com/produk/template-cv-profesional"
       }
 

@@ -89,7 +89,7 @@ export async function GET(req) {
 `,
         price: 50000,
         diskon: 10,
-        image: `${process.env.NEXT_PUBLIC_URL}/rahasiamenujutradingbebasemosi.png`,
+        image: `${process.env.NEXT_PUBLIC_URL}/rahasiamenujutradingbebasemosi.webp`,
         linkProduk: "https://drive.google.com/file/d/1I4XTNCSfvHU1zLC7NGWLMY7P8gQDC0Vr/view?usp=sharing"
       }
 
