@@ -6,7 +6,7 @@ import { FaWhatsapp } from "react-icons/fa";
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect } from 'react';
-import { trackPageView } from '@/utils/facebookPixel';
+import { initFacebookPixel, trackPageView } from '@/utils/facebookPixel';
 import Image from 'next/image';
 
 export default function Header({ slug, title }) {
@@ -20,6 +20,7 @@ export default function Header({ slug, title }) {
 
     useEffect(() => {
         trackPageView()
+        initFacebookPixel()
     }, []);
 
     return (
