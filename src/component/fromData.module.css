@@ -19,14 +19,15 @@
     gap: 20px;
 }
 
-.form label {
+.form .textatas {
     display: flex;
     width: fit-content;
     gap: 5px;
-    margin-top: 20px;
+    margin-top: 15px;
     position: relative;
     white-space: nowrap;
     align-items: center;
+    border: none;
 }
 
 .form .cek {
@@ -41,7 +42,7 @@
 
 .form input,
 .form select {
-    font-size: 1.2rem;
+    font-size: 1rem;
     width: 100%;
     border-radius: 5px;
     box-sizing: border-box;
@@ -51,6 +52,17 @@
     padding: 8px;
     outline: none;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.checkboxLabel {
+    display: flex;
+    width: fit-content;
+    gap: 5px;
+    margin-top: 15px;
+    position: relative;
+    white-space: nowrap;
+    align-items: center;
+    border: none;
 }
 
 .checkboxLabel input[type="checkbox"] {
@@ -108,7 +120,7 @@
     border-radius: 7px;
     font-weight: 700;
     width: 100%;
-    margin-top: 20px;
+    margin-top: 15px;
     border: 0;
     color: #fff;
 }
@@ -129,13 +141,13 @@
     height: fit-content;
 } */
 
-.form a {
+/* .form a {
     color: var(--color);
     font-weight: 700;
-}
+} */
 
 .notifikasi {
-    margin-top: 20px;
+    margin-top: 15px;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -150,6 +162,135 @@
     color: var(--color);
     font-weight: 700;
 }
+
+
+.bankInfo {
+    background: #f7f7f7;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 12px;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.rekening {
+    font-size: 15px;
+    margin: 8px 0;
+    color: #333;
+}
+
+.btnWa {
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+    background: #25d366;
+    color: white;
+    padding: 10px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.btnWa .textbtn {
+    display: flex;
+}
+
+.btnWa a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white !important;
+}
+
+.btnWa:hover {
+    background: #1ebe57;
+}
+
+
+.paymentMethod {
+    margin-top: 15px;
+    font-size: 1rem;
+}
+
+/* Container radio */
+.radioGroup {
+    display: flex;
+    /* flex-direction: column; */
+    gap: 10px;
+    /* jarak antar kotak */
+    margin-top: 5px;
+}
+
+.radioGroup span {
+    color: #171717;
+}
+
+.radioLabel {
+    display: flex;
+    align-items: center;
+    /* padding: 0 12px; */
+    /* border: 2px solid #ccc; */
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    width: 100%;
+    transition: border 0.2s ease;
+}
+
+.radioLabel input[type="radio"] {
+    display: none;
+    /* sembunyikan radio default */
+}
+
+/* border biru saat radio dipilih */
+.radioLabel input[type="radio"]:checked+span {
+    border: 2px solid #007bff;
+    display: block;
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    box-sizing: border-box;
+    background-color: #f0f8ff;
+    display: flex;
+    justify-content: center;
+}
+
+
+.radioLabel input[type="radio"]+span {
+    border: 2px solid #007bff33;
+    display: block;
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    font-weight: 700;
+    /* background-color: #f0f8ff; */
+    /* opsional, sedikit warna */
+}
+
+.radioLabel span {
+    position: relative;
+}
+
+.radioLabel input[type="radio"]:checked+span::before {
+    content: '✔';
+    /* simbol centang */
+    position: absolute;
+    right: 10px;
+    /* jarak dari kiri */
+    top: 50%;
+    transform: translateY(-50%);
+    color: #007bff;
+    /* warna centang */
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+}
+
 
 
 @media only screen and (max-width: 720px) {
