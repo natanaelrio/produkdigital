@@ -9,7 +9,7 @@ export default function ListContent({ data }) {
         <>
             <div className={styles.content}>
                 <div className={styles.judul}>
-                    Buku, Ide, Aksi
+                    <div id='produk'>Temukan Buku Digital Terbaik</div>
                 </div>
             </div>
             <div className={styles.contentluar}>
@@ -17,7 +17,6 @@ export default function ListContent({ data }) {
                     <div className={styles.content2dalam}>
                         {data?.map((data, i) => {
                             return (
-
                                 <Link href={`/${Slugify(data?.title)}`} className={styles.kotak} key={i}>
                                     <div className={styles.gambar}>
                                         <Image src={data?.image} alt={data?.title} width='1000' height='400' ></Image>

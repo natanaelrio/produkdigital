@@ -1,32 +1,67 @@
 .content {
     display: flex;
     justify-content: center;
-    padding: 30px;
+    padding: 60px 30px 40px;
+    position: relative;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(243, 244, 246, 0.5) 100%);
 }
 
 .content .judul {
-    font-size: 40px;
-    font-weight: 700;
+    font-size: 2.8rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #60a5fa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+    margin-bottom: 25px;
+    position: relative;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+}
+
+.content .judul::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #1e40af, #3b82f6);
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);
 }
 
 .contentluar {
     display: flex;
     justify-content: center;
-    padding: 20px 0;
+    padding: 40px 0;
     flex-direction: column;
     align-items: center;
+    background: linear-gradient(180deg, rgba(243, 244, 246, 0.5) 0%, rgba(255, 255, 255, 0) 100%);
 }
 
 .content2 {
-    width: 1100px;
+    width: 1200px;
+    max-width: 95%;
 }
 
 .content2dalam {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 40px;
     justify-content: center;
-    /* background-color: red; */
+    padding: 20px 0;
+    perspective: 1000px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #4b5563;
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
 }
 
 .content2 .content2dalam .kotak {
@@ -46,56 +81,134 @@
 }
 
 .kotak {
-    box-shadow: 0 12px 15px rgba(140, 152, 164, 0.1);
-    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
     cursor: pointer;
+    border: 1px solid rgba(59, 130, 246, 0.08);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    box-shadow:
+        0 4px 6px rgba(59, 130, 246, 0.03),
+        0 12px 20px rgba(59, 130, 246, 0.04),
+        0 20px 30px rgba(59, 130, 246, 0.02);
+    transform: translateZ(0);
+    transform-style: preserve-3d;
 }
 
 .kotak:hover {
-    transition: all ease 0.3s;
-    transform: translateY(-5px);
+    transform: translateY(-8px) rotateX(2deg);
+    border-color: rgba(59, 130, 246, 0.15);
+    box-shadow:
+        0 8px 12px rgba(59, 130, 246, 0.04),
+        0 16px 24px rgba(59, 130, 246, 0.06),
+        0 24px 36px rgba(59, 130, 246, 0.08);
 }
 
 .kotak .text {
     display: flex;
-    padding: 20px;
-    gap: 20px;
-    align-items: center;
+    padding: 28px;
+    gap: 24px;
+    align-items: flex-start;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.95));
+    border-top: 1px solid rgba(59, 130, 246, 0.08);
 }
 
 .kotak .text .title {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 5px;
+    gap: 12px;
+    flex: 1;
 }
 
 .kotak .text .title .judul {
     font-weight: 700;
+    font-size: 1.2rem;
+    color: #1a1a1a;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+    transition: color 0.3s ease;
+}
+
+.kotak:hover .text .title .judul {
+    color: #2563eb;
 }
 
 .kotak .text .title .deskripsi {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     overflow: hidden;
+    color: #4b5563;
+    font-size: 1rem;
+    line-height: 1.7;
+    opacity: 0.9;
 }
 
 .kotak .ikon {
-    font-size: 30px;
+    font-size: 26px;
+    color: #3b82f6;
+    padding: 14px;
+    background: rgba(59, 130, 246, 0.08);
+    border-radius: 14px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 6px rgba(59, 130, 246, 0.1);
+}
+
+.kotak:hover .ikon {
+    background: #3b82f6;
+    color: white;
+    transform: scale(1.1) rotate(8deg);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
 }
 
 
 @media only screen and (max-width: 1200px) {
+    .content .judul {
+        font-size: 2.4rem;
+    }
+
     .content2 {
         width: 100%;
-        padding: 0 30px;
+        padding: 0 40px;
+    }
+
+    .content2dalam {
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 30px;
     }
 }
 
-@media only screen and (max-width: 720px) {
+@media only screen and (max-width: 768px) {
+    .content {
+        padding: 40px 20px 30px;
+    }
+
+    .content .judul {
+        font-size: 2rem;
+    }
+
     .content2 {
-        width: 100%;
-        padding: 0 30px;
+        padding: 0 20px;
+    }
+
+    .content2dalam {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .kotak .text {
+        padding: 24px;
+    }
+
+    .kotak .text .title .judul {
+        font-size: 1.1rem;
+    }
+
+    .kotak .ikon {
+        font-size: 22px;
+        padding: 12px;
     }
 }

@@ -3,6 +3,8 @@ import Notifikasi from "@/component/notifikasi";
 import Footer from "@/component/footer";
 import ListContent from "@/component/listContent";
 import { GetListProdutDigital } from "@/service/HandleListProduct";
+import HalamanUtama from "@/component/halamanUtama";
+import Testimoni from "@/component/testimoni";
 
 export const metadata = {
   title: 'Buku Digital Wawasan Luas',
@@ -17,7 +19,9 @@ export default async function Home() {
       <Notifikasi />
       <div style={{ flex: 'auto' }}>
         <Header slug={'/'} />
+        <HalamanUtama />
         <ListContent data={DataListProduk?.data} />
+        <Testimoni />
       </div>
       <Footer />
     </div>

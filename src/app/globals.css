@@ -9,6 +9,15 @@
   --color: hsl(216, 100%, 50%);
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 2rem;
+}
+
+#produk {
+  scroll-margin-top: 2rem;
+}
+
 /* html,
 body {
   max-width: 100%;

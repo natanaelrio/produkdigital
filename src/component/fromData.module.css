@@ -9,8 +9,22 @@
     width: 500px;
     height: fit-content;
     z-index: 1003;
-    padding: 20px;
-    border-radius: 7px;
+    padding: 32px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    animation: formFadeIn 0.3s ease-out;
+}
+
+@keyframes formFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .form .data {
@@ -23,11 +37,20 @@
     display: flex;
     width: fit-content;
     gap: 5px;
-    margin-top: 15px;
+    margin-top: 20px;
+    margin-bottom: 8px;
     position: relative;
     white-space: nowrap;
     align-items: center;
     border: none;
+    font-weight: 500;
+    color: #2c3e50;
+    font-size: 0.95rem;
+    transition: color 0.2s ease;
+}
+
+.form .textatas:hover {
+    color: var(--color);
 }
 
 .form .cek {
@@ -44,14 +67,18 @@
 .form select {
     font-size: 1rem;
     width: 100%;
-    border-radius: 5px;
+    border-radius: 8px;
     box-sizing: border-box;
-    background-color: white;
+    background-color: #f8f9fa;
     color: #171717;
-    border: 1px solid #ccc;
-    padding: 8px;
+    border: 2px solid transparent;
+    padding: 12px 16px;
     outline: none;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    transition: all 0.2s ease;
+}
+
+.form input:hover {
+    background-color: #f0f1f2;
 }
 
 .checkboxLabel {
@@ -63,37 +90,47 @@
     white-space: nowrap;
     align-items: center;
     border: none;
+    cursor: pointer;
+    user-select: none;
+    padding: 4px 0;
 }
 
 .checkboxLabel input[type="checkbox"] {
-    transform: scale(1.5);
-    accent-color: var(--color);
-    background-color: white;
-    /* warna latar */
-    border: 1px solid #ccc;
-    /* biar kotaknya tetap terlihat */
-    border-radius: 4px;
-    margin-right: 10px;
-    cursor: pointer;
     appearance: none;
-    /* hilangkan style default browser */
-    width: 15px;
-    height: 15px;
-    display: inline-block;
+    background-color: white;
+    border: 2px solid #e2e8f0;
+    border-radius: 4px;
+    cursor: pointer;
+    height: 18px;
+    width: 18px;
+    margin-right: 10px;
     position: relative;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.checkboxLabel input[type="checkbox"]:hover {
+    border-color: var(--color);
+}
+
+.checkboxLabel input[type="checkbox"]:checked {
+    background-color: var(--color);
+    border-color: var(--color);
 }
 
 .checkboxLabel input[type="checkbox"]:checked::after {
-    content: '✔';
-    color: var(--color);
+    content: '';
+    width: 6px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
     position: absolute;
-    top: -2px;
-    bottom: 0;
-    left: 3px;
-    right: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -60%) rotate(45deg);
     margin: 0;
-    /* left: 4px; */
-    font-size: 14px;
 }
 
 .form input::placeholder {
@@ -114,20 +151,81 @@
 
 .form button {
     font-size: 1rem;
-    padding: 14px;
+    padding: 16px;
     background-color: var(--color);
     cursor: pointer;
-    border-radius: 7px;
+    border-radius: 10px;
     font-weight: 700;
     width: 100%;
     margin-top: 15px;
     border: 0;
     color: #fff;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* width: fit-content; */
+}
+
+.form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.form button:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.form button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.headerForm {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
 }
 
 .judul {
-    color: #40404094;
+    color: #2c3e50;
     font-weight: 700;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.closeBtn {
+    background: none !important;
+    border: none !important;
+    padding: 8px !important;
+    margin: -8px -8px -8px 0 !important;
+    color: #666 !important;
+    cursor: pointer;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50% !important;
+    transition: all 0.2s ease !important;
+}
+
+.closeBtn:hover {
+    background: #f0f0f0 !important;
+    color: #333 !important;
+}
+
+.judul::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 32px;
+    top: 64px;
+    width: 40px;
+    height: 3px;
+    background-color: var(--color);
+    border-radius: 2px;
 }
 
 .form .er {
@@ -165,12 +263,19 @@
 
 
 .bankInfo {
-    background: #f7f7f7;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 12px;
-    margin-top: 10px;
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 12px;
+    /* padding: 20px; */
+    margin-top: 16px;
     font-size: 14px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.bankInfo:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
 }
 
 .rekening {
@@ -246,7 +351,7 @@
 
 /* border biru saat radio dipilih */
 .radioLabel input[type="radio"]:checked+span {
-    border: 2px solid #007bff;
+    border: 2px solid var(--color);
     display: block;
     width: 100%;
     padding: 12px;
@@ -278,17 +383,18 @@
 
 .radioLabel input[type="radio"]:checked+span::before {
     content: '✔';
-    /* simbol centang */
     position: absolute;
-    right: 10px;
-    /* jarak dari kiri */
-    top: 50%;
+    right: -2px;
+    top: 0;
     transform: translateY(-50%);
-    color: #007bff;
-    /* warna centang */
+    color: var(--color);
     font-size: 20px;
     display: flex;
     justify-content: center;
+    border-radius: 50%;
+    background: #ffffff;
+    padding: 0 6px;
+    border: 1px solid var(--color);
 }
 
 
@@ -306,4 +412,46 @@
     .notifikasi {
         font-size: 0.64rem;
     }
+}
+
+.rekening {
+    background-color: #f8f9fa;
+    /* padding: 12px; */
+    border-radius: 8px;
+    font-size: 0.95rem;
+}
+
+.rekeningItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+}
+
+.rekeningItem span {
+    font-weight: 500;
+}
+
+.rekeningName {
+    font-size: 0.85rem;
+    color: #666;
+    text-align: center;
+    padding-top: 8px;
+    border-top: 1px solid #eee;
+}
+
+.copyBtn {
+    color: var(--color) !important;
+    background: none !important;
+    border: none !important;
+    padding: 4px 8px !important;
+    margin: 0 !important;
+    font-size: 0.85rem !important;
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.copyBtn:hover {
+    opacity: 1;
+    text-decoration: underline;
 }

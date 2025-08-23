@@ -5,7 +5,7 @@ import useSnapDuitku from '@/service/useSnapDuitku';
 import { initFacebookPixel } from '@/utils/facebookPixel';
 import { GetRandomNumber } from '@/utils/getRandomNumber';
 import { Rupiah } from '@/utils/rupiah';
-import { useBearStore } from '@/zustand/zustand';
+import { useBearStore, useBearClose } from '@/zustand/zustand';
 import { useFormik } from 'formik';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
@@ -13,12 +13,22 @@ import { FaWhatsapp } from "react-icons/fa6";
 import { IoIosAlert } from "react-icons/io";
 import { useRouter } from 'nextjs-toploader/app';
 import Image from 'next/image';
+import { FaRegCopy } from "react-icons/fa6";
+import { IoClose } from "react-icons/io5";
 
 export default function FormData({ data }) {
     const router = useRouter();
     const { snapEmbedDuitku } = useSnapDuitku()
     const [loading, setLoading] = useState(false)
     const setBlack = useBearStore((state) => state.setBlack)
+    const setIsTrue = useBearClose((state) => state.setIsTrue)
+
+
+    const handleClose = () => {
+        setLoading(false)
+        setBlack(false)
+        setIsTrue(false)
+    }
 
     const waNumber = "628971041460";
     const hargaFinal = data.price - ((data?.price * data?.diskon) / 100);
@@ -101,7 +111,15 @@ Mohon segera diproses. Terima kasih.`;
 
     return (
         <div className={styles.form}>
-            <div className={styles.judul}>BUYER INFO</div>
+            <div className={styles.headerForm}>
+                <div className={styles.judul}>BUYER INFO</div>
+                <button
+                    style={{ width: 'fit-content' }}
+                    onClick={handleClose}
+                    className={styles.closeBtn}>
+                    <IoClose size={24} />
+                </button>
+            </div>
             <form onSubmit={formik.handleSubmit}>
                 <label className={styles.textatas} htmlFor="email"><span>*</span>Email Address</label>
                 <input
@@ -160,11 +178,39 @@ Mohon segera diproses. Terima kasih.`;
                 </div>
                 {formik.values.paymentMethod === "bank" && (
                     <div className={styles.bankInfo}>
-                        <p>Pembayaran dapat dilakukan melalui transfer ke rekening berikut:</p>
                         <div className={styles.rekening}>
-                            <strong>BANK BCA - 0132248336 - Natanael Rio Wijaya</strong>
-                            <br></br>
-                            <strong>Jumlah: {Rupiah(hargaFinal)} </strong>
+                            <div className={styles.rekeningItem}>
+                                <div>
+                                    <div><strong>No. Rekening BCA</strong></div>
+                                    <div>0132248336 (Natanael Rio Wijaya)</div>
+                                </div>
+                                <button
+                                    style={{ width: 'fit-content' }}
+                                    className={styles.copyBtn}
+                                    onClick={() => {
+                                        navigator.clipboard.writeText('0132248336');
+                                        alert('Nomor rekening telah disalin');
+                                    }}
+                                >
+                                    <FaRegCopy />
+                                </button>
+                            </div>
+                            <div className={styles.rekeningItem}>
+                                <div>
+                                    <div><strong>Jumlah Transfer</strong></div>
+                                    <div>{Rupiah(hargaFinal)}</div>
+                                </div>
+                                <button
+                                    style={{ width: 'fit-content' }}
+                                    className={styles.copyBtn}
+                                    onClick={() => {
+                                        navigator.clipboard.writeText(hargaFinal.toString());
+                                        alert('Jumlah transfer telah disalin');
+                                    }}
+                                >
+                                    <FaRegCopy />
+                                </button>
+                            </div>
                         </div>
                         {/* <p>Setelah transfer, mohon kirim bukti pembayaran untuk kami proses.</p> */}
                         <button
@@ -172,7 +218,7 @@ Mohon segera diproses. Terima kasih.`;
                             className={styles.btnWa}
                             disabled={loading} type="submit">
                             <div className={styles.textbtn}>
-                                <FaWhatsapp fontSize={17} />
+                                <FaWhatsapp fontSize={20} />
                             </div>
                             <div className={styles.textbtn}>
                                 {loading ? 'Loading...' : `Kirim Bukti via WhatsApp`}

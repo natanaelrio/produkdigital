@@ -6,11 +6,13 @@ import FormData from '@/component/formData';
 import { useState } from 'react';
 import Image from 'next/image';
 import { Rupiah } from '@/utils/rupiah';
-import { useBearStore } from '@/zustand/zustand';
+import { useBearClose, useBearStore } from '@/zustand/zustand';
 
 export default function Content({ data }) {
-    const [isTrue, setIsTrue] = useState(false)
+    // const [isTrue, setIsTrue] = useState(false)
     const black = useBearStore((state) => state.black)
+    const isTrue = useBearClose((state) => state.isTrue)
+    const setIsTrue = useBearClose((state) => state.setIsTrue)
 
     return (
         <>
