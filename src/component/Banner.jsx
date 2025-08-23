@@ -1,5 +1,5 @@
 'use client'
-import styles from '@/component/HalamanUtama.module.css'
+import styles from '@/component/Banner.module.css'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 

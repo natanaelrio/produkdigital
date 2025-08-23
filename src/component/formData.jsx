@@ -21,14 +21,15 @@ export default function FormData({ data }) {
     const { snapEmbedDuitku } = useSnapDuitku()
     const [loading, setLoading] = useState(false)
     const setBlack = useBearStore((state) => state.setBlack)
+    const black = useBearStore((state) => state.black)
     const setIsTrue = useBearClose((state) => state.setIsTrue)
 
 
     const handleClose = () => {
         setLoading(false)
-        setBlack(false)
-        setIsTrue(false)
+        setIsTrue(black ? true : false)
     }
+
 
     const waNumber = "628971041460";
     const hargaFinal = data.price - ((data?.price * data?.diskon) / 100);

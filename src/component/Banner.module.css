@@ -17,9 +17,51 @@
     transition: all 0.8s ease-out;
 }
 
+.content::before {
+    content: '';
+    position: absolute;
+    width: 500px;
+    height: 600px;
+    left: -10%;
+    top: -20%;
+    background: linear-gradient(45deg, rgba(59, 130, 246, 0.03) 0%, rgba(59, 130, 246, 0.08) 100%);
+    border-radius: 0 40px 40px 0;
+    transform: rotate(-15deg) perspective(500px) rotateY(20deg);
+    z-index: -1;
+    box-shadow: 20px 0 50px rgba(59, 130, 246, 0.05);
+}
+
+.content::after {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 600px;
+    left: -10%;
+    top: -20%;
+    background: linear-gradient(45deg, rgba(59, 130, 246, 0.08) 0%, rgba(59, 130, 246, 0.12) 100%);
+    border-radius: 40px 0 0 40px;
+    transform: rotate(-15deg) perspective(500px) rotateY(20deg);
+    z-index: -1;
+    box-shadow: inset -10px 0 20px rgba(0, 0, 0, 0.05);
+}
+
 .content.visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+.content.visible::before,
+.content.visible::after {
+    animation: bookFloat 6s ease-in-out infinite;
+}
+
+@keyframes bookFloat {
+    0%, 100% {
+        transform: rotate(-15deg) perspective(500px) rotateY(20deg) translateY(0);
+    }
+    50% {
+        transform: rotate(-15deg) perspective(500px) rotateY(20deg) translateY(-20px);
+    }
 }
 
 .textSection {
@@ -181,7 +223,7 @@
     }
 
     .decorativeElements {
-        opacity: 0.3;
+        opacity: 0.5;
     }
 }
 

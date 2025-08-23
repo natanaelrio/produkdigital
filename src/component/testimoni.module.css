@@ -1,13 +1,118 @@
 .container {
-    padding: 80px 20px;
+    padding: 20px;
     background: linear-gradient(to bottom, #ffffff, #f8fafc);
     overflow: hidden;
+    position: relative;
+}
+
+/* Curved Arrow Decorations */
+.container::before,
+.container::after,
+.content::before,
+.content::after {
+    content: '';
+    position: absolute;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* S-Curved Arrow */
+.container::before {
+    width: 180px;
+    height: 120px;
+    top: 15%;
+    left: 2%;
+    background: #FF4D4D;
+    clip-path: path('M20,60 C50,60 50,20 90,20 C130,20 130,60 160,60 L150,70 C120,70 120,30 90,30 C60,30 60,70 30,70 L20,60');
+    transform: rotate(-10deg);
+    animation: floatArrow1 8s ease-in-out infinite;
+    opacity: 0.85;
+}
+
+/* Double Wave Arrow */
+.container::after {
+    width: 200px;
+    height: 100px;
+    bottom: 20%;
+    right: 5%;
+    background: #4CAF50;
+    clip-path: path('M10,50 Q50,20 90,50 T170,50 L160,60 Q120,30 90,60 T20,60 L10,50');
+    transform: rotate(15deg);
+    animation: floatArrow2 7s ease-in-out infinite;
+    opacity: 0.85;
+}
+
+/* Circular Arrow */
+.content::before {
+    width: 150px;
+    height: 150px;
+    top: 60%;
+    left: 5%;
+    background: #FF9800;
+    clip-path: path('M75,10 A65,65 0 1,1 74.99,10 L85,20 A53,53 0 1,0 85.01,20 L75,10');
+    animation: rotateArrow 12s linear infinite;
+    opacity: 0.85;
+}
+
+/* Loop Arrow */
+.content::after {
+    width: 160px;
+    height: 160px;
+    top: 20%;
+    right: 8%;
+    background: #9C27B0;
+    clip-path: path('M80,20 C140,20 140,80 80,80 C20,80 20,20 80,20 L70,30 C30,30 30,70 80,70 C130,70 130,30 90,30 L80,20');
+    transform: rotate(-5deg);
+    animation: floatArrow4 9s ease-in-out infinite;
+    opacity: 0.85;
+}
+
+@keyframes floatArrow1 {
+    0%, 100% {
+        transform: rotate(-10deg) translate(0, 0);
+    }
+
+    50% {
+        transform: rotate(-10deg) translate(15px, -15px);
+    }
+}
+
+@keyframes floatArrow2 {
+    0%, 100% {
+        transform: rotate(15deg) translate(0, 0);
+    }
+
+    50% {
+        transform: rotate(15deg) translate(-15px, 10px);
+    }
+}
+
+@keyframes rotateArrow {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes floatArrow4 {
+    0%, 100% {
+        transform: rotate(-5deg) scale(1);
+    }
+
+    50% {
+        transform: rotate(-5deg) scale(1.1);
+    }
 }
 
 .content {
     max-width: 1200px;
     margin: 0 auto;
     opacity: 0;
+    position: relative;
+    z-index: 1;
     transform: translateY(20px);
     transition: all 0.8s ease-out;
 }
@@ -205,8 +310,17 @@
 }
 
 @media (max-width: 768px) {
+
+    /* Curved Arrow Decorations */
+    .container::before,
+    .container::after,
+    .content::before,
+    .content::after {
+        z-index: -1;
+    }
+
     .container {
-        padding: 40px 15px;
+        padding: 20px;
     }
 
     .title {

@@ -3,7 +3,6 @@ import styles from '@/component/content.module.css'
 import Link from 'next/link'
 import { FaWhatsapp } from "react-icons/fa";
 import FormData from '@/component/formData';
-import { useState } from 'react';
 import Image from 'next/image';
 import { Rupiah } from '@/utils/rupiah';
 import { useBearClose, useBearStore } from '@/zustand/zustand';
