@@ -6,7 +6,6 @@ export async function HandleCekPayment(GabungData) {
             method: 'POST',
             body: JSON.stringify(GabungData),
             headers: {
-                'Content-Type': 'application/json',
                 'Authorization': `${process.env.API_KEY_SECRET}`
             },
             next: { revalidate: 0 }
