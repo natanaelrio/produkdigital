@@ -99,8 +99,8 @@ Mohon segera diproses. Terima kasih.`;
 
                 const { trackEvent } = await import('@/utils/facebookPixel');
                 trackEvent('order', { order: Rupiah(data.price - ((data?.price * data?.diskon) / 100)) });
-                setLoading(false)
                 router.push(res.data.paymentUrl);
+                setLoading(false)
                 // snapEmbedDuitku(res.data, false)
             } catch (e) {
                 console.log(e);
