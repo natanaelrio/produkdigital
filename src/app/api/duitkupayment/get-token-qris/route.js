@@ -10,6 +10,7 @@ export async function POST(req) {
         email,
         itemDetails,
         note,
+        linkProduk
     } = await req.json()
 
     const totalPrice = itemDetails.map((data) => data.price).reduce((acc, curr) => acc + curr, 0)
@@ -31,6 +32,11 @@ export async function POST(req) {
         "returnUrl": `${process.env.NEXT_PUBLIC_URL}`,
         signature,
         expiryPeriod: 10,
+        "additionalParam": JSON.stringify({
+            email: email,
+            name: customerVaName,
+            linkProduk: linkProduk
+        })
     };
 
     const resDuitku = await fetch(process.env.NEXT_PUBLIC_QRIS, {

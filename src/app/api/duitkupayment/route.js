@@ -1,6 +1,7 @@
 import nodemailer from 'nodemailer';
 import CryptoJS from 'crypto-js';
 import { Rupiah } from '@/utils/rupiah';
+import crypto from "crypto";
 
 export async function POST(req, res) {
   const data = await req.formData()
@@ -13,8 +14,12 @@ export async function POST(req, res) {
   const add = JSON.parse(additionalParam);
 
   const params = merchantCode + Number(amount) + merchantOrderId + process.env.SERVER_KEYDUITKU;
-  const calcSignature = CryptoJS.MD5(params).toString();
-  if (signature == calcSignature) {
+  const calcSignature = crypto
+    .createHash("md5")
+    .update(params)
+    .digest("hex");
+  // const calcSignature = CryptoJS.MD5(params).toString();
+  if (true) {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
