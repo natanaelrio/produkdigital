@@ -3,8 +3,8 @@ import crypto from "crypto";
 
 export async function POST(req) {
     const authorization = req.headers.get('authorization')
-
-    const { merchantOrderId } = await req.json()
+    const dataForm = await req.formData()
+    const merchantOrderId = dataForm.get('merchantOrderId')
 
     const signature = crypto
         .createHash("md5")

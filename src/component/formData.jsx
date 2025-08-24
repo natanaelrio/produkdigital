@@ -50,7 +50,7 @@ export default function FormData({ data }) {
             const result = await res.json();
 
             if (result.statusCode == "00") {
-                setPaymentStatus(result.statusMessage + " Cek Email :D");
+                setPaymentStatus(result.statusMessage + " - Cek Email 😁");
             } else {
                 setPaymentStatus("Gagal mendapatkan status transaksi");
             }
