@@ -6,7 +6,7 @@ export async function HandleCekPayment(GabungData) {
     }
     try {
         // DUITKU
-        const resPayment = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/duitkupayment/cek-payment`, {
+        const resPayment = await fetch(`https://www.invesdigi.com/api/duitkupayment/cek-payment`, {
             method: 'POST',
             body: formData,
             headers: {

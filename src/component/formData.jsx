@@ -8,15 +8,15 @@ import { useBearStore, useBearClose, useBearPayment } from '@/zustand/zustand';
 import { useFormik } from 'formik';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { FaWhatsapp } from "react-icons/fa6";
+import { FaWhatsapp, FaRegCopy } from "react-icons/fa6";
 import { IoIosAlert } from "react-icons/io";
 import { useRouter } from 'nextjs-toploader/app';
 import Image from 'next/image';
-import { FaRegCopy } from "react-icons/fa6";
 import { IoClose } from "react-icons/io5";
-import { QRCodeCanvas } from 'qrcode.react';
 import { IoIosArrowBack } from "react-icons/io";
+import { QRCodeCanvas } from 'qrcode.react';
 import { HandleCekPayment } from '@/service/HandleCekPayment';
+import { MdEmail } from "react-icons/md";
 
 export default function FormData({ data }) {
     useEffect(() => {
@@ -35,22 +35,20 @@ export default function FormData({ data }) {
     const [dataPayment, setDataPayment] = useState(null);
     const [checking, setChecking] = useState(false);
     const [paymentStatus, setPaymentStatus] = useState(null);
-
+    const [isSuccess, setIsSuccess] = useState(false); // ✅ TAMBAHAN
 
     const handleCheckStatus = async () => {
-        const res = await HandleCekPayment({ merchantOrderId: merchantOrderId });
+        const res = await HandleCekPayment({ merchantOrderId: 'ID-OSAERA8' });
+        setChecking(true);
         if (!res?.data?.merchantOrderId) {
             alert("Transaksi belum ditemukan!");
             return;
         }
         try {
-            setChecking(true);
-
             if (res?.data?.statusCode == "00") {
+                setIsSuccess(true); // ✅ Jika sukses tampilkan halaman notifikasi email
                 setPaymentStatus(res?.data?.statusMessage + " - Cek Email kamu😁");
-                alert(res?.data?.statusMessage + " - Cek Email kamu😁")
-                setIsPayment(false)
-                setIsTrue(black ? true : false)
+                // alert(res?.data?.statusMessage + " - Cek Email kamu😁")
                 setLoading(false)
             } else {
                 setPaymentStatus("Gagal mendapatkan status transaksi");
@@ -63,15 +61,15 @@ export default function FormData({ data }) {
         }
     };
 
-
     const handleClose = () => {
         setLoading(false)
         setIsTrue(black ? true : false)
     }
+
     const handleClosePayment = () => {
         setIsPayment(false)
+        isSuccess && setIsTrue(black ? true : false)
         setLoading(false)
-        // setIsTrue(black ? true : false)
     }
 
     const waNumber = "628971041460";
@@ -81,16 +79,9 @@ export default function FormData({ data }) {
         const errors = {};
         if (!values.email) errors.email = 'Required';
         else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) errors.email = 'Invalid email address';
-
         if (!values.nama) errors.nama = 'Required';
         else if (values.nama.length > 20) errors.nama = 'Must be 20 characters or less';
-
         if (!values.paymentMethod) errors.paymentMethod = 'Please select a payment method';
-
-        // if (values.paymentMethod !== 'bank' && !values.term) {
-        //     errors.term = 'It is mandatory to check Term of Use';
-        // }
-
         return errors;
     };
 
@@ -118,7 +109,7 @@ Mohon segera diproses. Terima kasih.`;
                 router.push(`https://wa.me/${waNumber}?text=${encodeURIComponent(waMessage)}`);
                 setLoading(false)
                 return
-            }; // kalau bank, tidak submit ke Duitku
+            };
 
             try {
                 const kodeBank = values.paymentMethod === 'qris' ? 'SP' : 'BC';
@@ -131,13 +122,12 @@ Mohon segera diproses. Terima kasih.`;
                     email: values.email,
                     itemDetails: [{
                         name: data.title,
-                        price: data.price - ((data?.price * data?.diskon) / 100),
+                        price: hargaFinal,
                         quantity: 1
                     }]
                 })
-
                 const { trackEvent } = await import('@/utils/facebookPixel');
-                trackEvent('order', { order: Rupiah(data.price - ((data?.price * data?.diskon) / 100)) });
+                trackEvent('order', { order: Rupiah(hargaFinal) });
                 setDataPayment(res.data)
                 setIsPayment(true)
                 setLoading(false)
@@ -152,8 +142,33 @@ Mohon segera diproses. Terima kasih.`;
 
     return (
         <div className={styles.form}>
-            {isPayment ?
-                (
+            {isPayment ? (
+                isSuccess ? (
+                    <>
+                        <div className={styles.headerForm}>
+                            <div className={styles.judul}>PAYMENT SUCCESS</div>
+                            <button
+                                style={{ width: 'fit-content' }}
+                                onClick={handleClosePayment}
+                                className={styles.closeBtn}
+                                disabled={loading}
+                            >
+                                <IoIosArrowBack size={24} />
+                            </button>
+                        </div>
+
+                        <div className={styles.emailContainer}>
+                            <MdEmail className={styles.emailIcon} />
+                            <h3>Pembayaran Berhasil 🎉</h3>
+                            <p>Produk kamu sudah dikirim ke email:</p>
+                            <strong>{formik.values.email}</strong>
+                            <p>Silakan cek inbox atau folder spam untuk mendapatkan produkmu.</p>
+                            <button onClick={handleClosePayment} className={styles.checkBtn}>
+                                Kembali ke Beranda
+                            </button>
+                        </div>
+                    </>
+                ) : (
                     <>
                         <div className={styles.headerForm}>
                             <div className={styles.judul}>QRIS</div>
@@ -171,7 +186,7 @@ Mohon segera diproses. Terima kasih.`;
                             <div className={styles.qrContainer}>
                                 <QRCodeCanvas
                                     value={dataPayment.qrString}
-                                    size={250} // ukuran QR
+                                    size={250}
                                     bgColor="#ffffff"
                                     fgColor="#000000"
                                     level="H"
@@ -202,8 +217,7 @@ Mohon segera diproses. Terima kasih.`;
                         )}
                     </>
                 )
-
-                :
+            ) : (
                 <>
                     <div className={styles.headerForm}>
                         <div className={styles.judul}>BUYER INFO</div>
@@ -253,7 +267,8 @@ Mohon segera diproses. Terima kasih.`;
                                         disabled={loading}
                                     />
                                     <span>
-                                        <Image src={`${process.env.NEXT_PUBLIC_URL}/qris.svg`} width={50} height={20} alt='bca'></Image></span>
+                                        <Image src={`${process.env.NEXT_PUBLIC_URL}/qris.svg`} width={50} height={20} alt='qris'></Image>
+                                    </span>
                                 </label>
                                 <label className={styles.radioLabel}>
                                     <input
@@ -307,7 +322,6 @@ Mohon segera diproses. Terima kasih.`;
                                         </button>
                                     </div>
                                 </div>
-                                {/* <p>Setelah transfer, mohon kirim bukti pembayaran untuk kami proses.</p> */}
                                 <button
                                     style={{ background: '#25d366' }}
                                     className={styles.btnWa}
@@ -325,23 +339,14 @@ Mohon segera diproses. Terima kasih.`;
                         {formik.values.paymentMethod !== "bank" && (
                             <>
                                 <label className={styles.checkboxLabel}>
-                                    {/* <input
-                                        type="checkbox"
-                                        name="term"
-                                        checked={formik.values.term}
-                                        onChange={formik.handleChange}
-                                        disabled={loading}
-                                    /> */}
                                     <div className={styles.cek}>
                                         By buying, you agree to the <Link href={'/terms'} target='_blank'>Terms of Use</Link>
                                     </div>
                                 </label>
                                 {formik.errors.term && <div className={styles.er}>{formik.errors.term}</div>}
-
                                 <button disabled={loading} type="submit">
                                     {loading ? 'Loading...' : `BUY NOW - IDR ${hargaFinal}`}
                                 </button>
-
                                 <div className={styles.notifikasi}>
                                     <div className={styles.ikon}><IoIosAlert /></div>
                                     <div>
@@ -353,8 +358,7 @@ Mohon segera diproses. Terima kasih.`;
                         )}
                     </form>
                 </>
-            }
-
+            )}
         </div>
     )
 }
