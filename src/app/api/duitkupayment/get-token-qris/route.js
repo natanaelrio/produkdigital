@@ -57,7 +57,7 @@ export async function POST(req) {
         "paymentMethod": "PS"
     }
 
-    const resDuitku = await fetch("https://passport.duitku.com/webapi/api/merchant/v2/inquiry", {
+    const resDuitku = await fetch("https://passport.duitku.com/webapi/api/merchant/paymentmethod/getpaymentmethod", {
         method: 'POST',
         headers: headers,
         body: JSON.stringify(bodynya)
