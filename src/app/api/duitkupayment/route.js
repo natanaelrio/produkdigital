@@ -19,7 +19,7 @@ export async function POST(req, res) {
     .update(params)
     .digest("hex");
   // const calcSignature = CryptoJS.MD5(params).toString();
-  if (true) {
+  if (signature == calcSignature) {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
