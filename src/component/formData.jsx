@@ -107,7 +107,7 @@ Detail produk:
 
 Mohon segera diproses. Terima kasih.`;
                 const { trackEvent } = await import('@/utils/facebookPixel');
-                trackEvent('order', { order: Rupiah(data.price - ((data?.price * data?.diskon) / 100)) });
+                trackEvent('order', { order: Rupiah(hargaFinal) });
 
                 router.push(`https://wa.me/${waNumber}?text=${encodeURIComponent(waMessage)}`);
                 setLoading(false)
