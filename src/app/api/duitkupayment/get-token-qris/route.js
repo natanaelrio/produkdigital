@@ -29,13 +29,20 @@ export async function POST(req) {
         'x-duitku-merchantcode': process.env.SERVER_KODEMC
     };
 
+    const payload = {
+        merchantcode: process.env.SERVER_KODEMC,
+        amount: totalPrice,
+        datetime: datetime,
+        signature: signature,
+    };
+
 
     console.log(process.env.SERVER_KODEMC);
     console.log(datetime);
     console.log(process.env.SERVER_KEYDUITKU);
     console.log(totalPrice);
     console.log(signature);
-    
+
 
 
     const bodynya = {
@@ -59,8 +66,10 @@ export async function POST(req) {
 
     const resDuitku = await fetch("https://passport.duitku.com/webapi/api/merchant/paymentmethod/getpaymentmethod", {
         method: 'POST',
-        headers: headers,
-        body: JSON.stringify(bodynya)
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload)
     })
 
     const data = await resDuitku.json()
