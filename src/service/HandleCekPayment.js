@@ -1,10 +1,14 @@
 'use server'
 export async function HandleCekPayment(GabungData) {
+    const formData = new FormData();
+    for (const key in GabungData) {
+        formData.append(key, GabungData[key]);
+    }
     try {
         // DUITKU
         const resPayment = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/duitkupayment/cek-payment`, {
             method: 'POST',
-            body: JSON.stringify(GabungData),
+            body: formData,
             headers: {
                 'Authorization': `${process.env.API_KEY_SECRET}`
             },

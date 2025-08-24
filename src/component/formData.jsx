@@ -35,8 +35,6 @@ export default function FormData({ data }) {
     const [dataPayment, setDataPayment] = useState(null);
     const [checking, setChecking] = useState(false);
     const [paymentStatus, setPaymentStatus] = useState(null);
-    console.log(merchantOrderId);
-
 
     const handleCheckStatus = async () => {
         // if (!dataPayment?.merchantOrderId) {
@@ -47,10 +45,9 @@ export default function FormData({ data }) {
         try {
             setChecking(true);
             const res = await HandleCekPayment({ merchantOrderId: merchantOrderId });
-            const result = await res.json();
 
-            if (result.statusCode == "00") {
-                setPaymentStatus(result.statusMessage + " - Cek Email 😁");
+            if (res.data.statusCode == "00") {
+                setPaymentStatus(res.data.statusMessage + " - Cek Email kamu😁");
             } else {
                 setPaymentStatus("Gagal mendapatkan status transaksi");
             }
@@ -151,7 +148,7 @@ Mohon segera diproses. Terima kasih.`;
 
     return (
         <div className={styles.form}>
-            {isPayment ?
+            {!isPayment ?
                 (
                     <>
                         <div className={styles.headerForm}>
