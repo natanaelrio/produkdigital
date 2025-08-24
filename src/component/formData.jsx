@@ -25,6 +25,7 @@ export default function FormData({ data }) {
 
     const router = useRouter();
     const merchantOrderId = GetRandomNumber()
+    console.log(merchantOrderId);
     const [loading, setLoading] = useState(false)
     const setBlack = useBearStore((state) => state.setBlack)
     const black = useBearStore((state) => state.black)
@@ -85,9 +86,9 @@ export default function FormData({ data }) {
 
         if (!values.paymentMethod) errors.paymentMethod = 'Please select a payment method';
 
-        if (values.paymentMethod !== 'bank' && !values.term) {
-            errors.term = 'It is mandatory to check Term of Use';
-        }
+        // if (values.paymentMethod !== 'bank' && !values.term) {
+        //     errors.term = 'It is mandatory to check Term of Use';
+        // }
 
         return errors;
     };
@@ -323,15 +324,15 @@ Mohon segera diproses. Terima kasih.`;
                         {formik.values.paymentMethod !== "bank" && (
                             <>
                                 <label className={styles.checkboxLabel}>
-                                    <input
+                                    {/* <input
                                         type="checkbox"
                                         name="term"
                                         checked={formik.values.term}
                                         onChange={formik.handleChange}
                                         disabled={loading}
-                                    />
+                                    /> */}
                                     <div className={styles.cek}>
-                                        I agree to the <Link href={'/terms'} target='_blank'>Terms of Use</Link>
+                                        By buying, you agree to the <Link href={'/terms'} target='_blank'>Terms of Use</Link>
                                     </div>
                                 </label>
                                 {formik.errors.term && <div className={styles.er}>{formik.errors.term}</div>}
