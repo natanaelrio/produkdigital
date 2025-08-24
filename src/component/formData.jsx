@@ -16,6 +16,7 @@ import { FaRegCopy } from "react-icons/fa6";
 import { IoClose } from "react-icons/io5";
 import { QRCodeCanvas } from 'qrcode.react';
 import { IoIosArrowBack } from "react-icons/io";
+import { HandleCekPayment } from '@/service/HandleCekPayment';
 
 export default function FormData({ data }) {
     useEffect(() => {
@@ -23,6 +24,7 @@ export default function FormData({ data }) {
     }, []);
 
     const router = useRouter();
+    const merchantOrderId = GetRandomNumber()
     const [loading, setLoading] = useState(false)
     const setBlack = useBearStore((state) => state.setBlack)
     const black = useBearStore((state) => state.black)
@@ -31,6 +33,34 @@ export default function FormData({ data }) {
     const isPayment = useBearPayment((state) => state.isPayment)
 
     const [dataPayment, setDataPayment] = useState(null);
+    const [checking, setChecking] = useState(false);
+    const [paymentStatus, setPaymentStatus] = useState(null);
+
+
+    const handleCheckStatus = async () => {
+        // if (!dataPayment?.merchantOrderId) {
+        //     alert("Transaksi belum ditemukan!");
+        //     return;
+        // }
+
+        try {
+            setChecking(true);
+            const res = await HandleCekPayment({ merchantOrderId: merchantOrderId });
+            const result = await res.json();
+
+            if (result.statusCode == "00") {
+                setPaymentStatus(result.statusMessage + "Cek Email :D");
+            } else {
+                setPaymentStatus("Gagal mendapatkan status transaksi");
+            }
+        } catch (error) {
+            console.log(error);
+            setPaymentStatus("Terjadi kesalahan, coba lagi.");
+        } finally {
+            setChecking(false);
+        }
+    };
+
 
     const handleClose = () => {
         setLoading(false)
@@ -39,7 +69,7 @@ export default function FormData({ data }) {
     const handleClosePayment = () => {
         setIsPayment(false)
         setLoading(false)
-        setIsTrue(black ? true : false)
+        // setIsTrue(black ? true : false)
     }
 
     const waNumber = "628971041460";
@@ -94,7 +124,7 @@ Mohon segera diproses. Terima kasih.`;
                     kodeBank,
                     linkProduk: data.linkProduk,
                     note: data?.title,
-                    merchantOrderId: GetRandomNumber(),
+                    merchantOrderId: merchantOrderId,
                     customerVaName: values.nama,
                     email: values.email,
                     itemDetails: [{
@@ -155,6 +185,19 @@ Mohon segera diproses. Terima kasih.`;
                             <div><strong>Produk:</strong> {data?.title}</div>
                             <div><strong>Total:</strong> {Rupiah(hargaFinal)}</div>
                         </div>
+                        <button
+                            onClick={handleCheckStatus}
+                            disabled={checking}
+                            className={styles.checkBtn}
+                        >
+                            {checking ? "Mengecek..." : "Cek Status Pembayaran"}
+                        </button>
+
+                        {paymentStatus && (
+                            <div className={styles.paymentStatus}>
+                                <strong>Status:</strong> {paymentStatus}
+                            </div>
+                        )}
                     </>
                 )
 

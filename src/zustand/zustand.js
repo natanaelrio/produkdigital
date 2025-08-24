@@ -10,5 +10,5 @@ export const useBearClose = create((set) => ({
 }))
 export const useBearPayment = create((set) => ({
     isPayment: false,
-    setIsPayment: (e) => set((state) => ({ isPayment: e ? e : !state.isPayment }))
+    setIsPayment: (e) => set(() => ({ isPayment: e }))
 }))
