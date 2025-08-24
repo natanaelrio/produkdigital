@@ -38,18 +38,20 @@ export default function FormData({ data }) {
     const [isSuccess, setIsSuccess] = useState(false); // ✅ TAMBAHAN
 
     const handleCheckStatus = async () => {
-        const res = await HandleCekPayment({ merchantOrderId: merchantOrderId });
-        setChecking(true);
-        if (!res?.data?.merchantOrderId) {
-            alert("Transaksi belum ditemukan!");
-            return;
-        }
+        setChecking(true); // ✅ Set checking ON dulu sebelum fetch
+
         try {
-            if (res?.data?.statusCode == "00") {
-                setIsSuccess(true); // ✅ Jika sukses tampilkan halaman notifikasi email
+            const res = await HandleCekPayment({ merchantOrderId });
+
+            if (!res?.data?.merchantOrderId) {
+                alert("Transaksi belum ditemukan!");
+                return;
+            }
+
+            if (res?.data?.statusCode === "00") {
+                setIsSuccess(true);
                 setPaymentStatus(res?.data?.statusMessage + " - Cek Email kamu😁");
-                // alert(res?.data?.statusMessage + " - Cek Email kamu😁")
-                setLoading(false)
+                setLoading(false);
             } else {
                 setPaymentStatus("Gagal mendapatkan status transaksi");
             }
@@ -57,9 +59,10 @@ export default function FormData({ data }) {
             console.log(error);
             setPaymentStatus("Terjadi kesalahan, coba lagi.");
         } finally {
-            setChecking(false);
+            setChecking(false); // ✅ Matikan loading setelah selesai
         }
     };
+
 
     const handleClose = () => {
         setLoading(false)
@@ -153,7 +156,7 @@ Mohon segera diproses. Terima kasih.`;
                                 className={styles.closeBtn}
                                 disabled={loading}
                             >
-                                <IoIosArrowBack size={24} />
+                                <IoClose size={24} />
                             </button>
                         </div>
 
