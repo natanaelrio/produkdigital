@@ -38,7 +38,7 @@ export default function FormData({ data }) {
     const [isSuccess, setIsSuccess] = useState(false); // ✅ TAMBAHAN
 
     const handleCheckStatus = async () => {
-        const res = await HandleCekPayment({ merchantOrderId: 'ID-OSAERA8' });
+        const res = await HandleCekPayment({ merchantOrderId: merchantOrderId });
         setChecking(true);
         if (!res?.data?.merchantOrderId) {
             alert("Transaksi belum ditemukan!");
