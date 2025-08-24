@@ -9,6 +9,7 @@ export async function POST(req) {
         customerVaName,
         email,
         itemDetails,
+        note,
     } = await req.json()
 
     const totalPrice = itemDetails.map((data) => data.price).reduce((acc, curr) => acc + curr, 0)
@@ -22,7 +23,7 @@ export async function POST(req) {
         "paymentAmount": itemDetails.map((data) => data.price).reduce((acc, curr) => acc + curr, 0),
         "paymentMethod": "SP", // contoh: "VC", "QRIS", "VA"
         merchantOrderId,
-        "productDetails": 'InvesDigi',
+        "productDetails": note ? note : 'tidak ada catatan',
         customerVaName: customerVaName,
         email,
         itemDetails: itemDetails,

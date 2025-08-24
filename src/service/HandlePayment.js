@@ -2,7 +2,7 @@
 export async function HandlePayment(GabungData) {
     try {
         // DUITKU
-        const resPayment = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/duitkupayment/get-token`, {
+        const resPayment = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/duitkupayment/get-token-qris`, {
             method: 'POST',
             body: JSON.stringify(GabungData),
             headers: {
