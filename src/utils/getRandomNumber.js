@@ -4,6 +4,6 @@ export function GetRandomNumber() {
     for (let i = 0; i < 7; i++) {
         result += chars[Math.floor(Math.random() * chars.length)];
     }
-    return `DI-${result.toLocaleUpperCase()}`;
+    return `ID-${result.toLocaleUpperCase()}`;
 }
 
