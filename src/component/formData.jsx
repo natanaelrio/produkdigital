@@ -36,18 +36,22 @@ export default function FormData({ data }) {
     const [checking, setChecking] = useState(false);
     const [paymentStatus, setPaymentStatus] = useState(null);
 
-    const handleCheckStatus = async () => {
-        // if (!dataPayment?.merchantOrderId) {
-        //     alert("Transaksi belum ditemukan!");
-        //     return;
-        // }
 
+    const handleCheckStatus = async () => {
+        const res = await HandleCekPayment({ merchantOrderId: merchantOrderId });
+        if (!res?.data?.merchantOrderId) {
+            alert("Transaksi belum ditemukan!");
+            return;
+        }
         try {
             setChecking(true);
-            const res = await HandleCekPayment({ merchantOrderId: merchantOrderId });
 
-            if (res.data.statusCode == "00") {
-                setPaymentStatus(res.data.statusMessage + " - Cek Email kamu😁");
+            if (res?.data?.statusCode == "00") {
+                setPaymentStatus(res?.data?.statusMessage + " - Cek Email kamu😁");
+                alert(res?.data?.statusMessage + " - Cek Email kamu😁")
+                setIsPayment(false)
+                setIsTrue(black ? true : false)
+                setLoading(false)
             } else {
                 setPaymentStatus("Gagal mendapatkan status transaksi");
             }
@@ -148,7 +152,7 @@ Mohon segera diproses. Terima kasih.`;
 
     return (
         <div className={styles.form}>
-            {!isPayment ?
+            {isPayment ?
                 (
                     <>
                         <div className={styles.headerForm}>
