@@ -24,6 +24,9 @@ export async function POST(req) {
         'x-duitku-timestamp': Timestamps,
         'x-duitku-merchantcode': process.env.SERVER_KODEMC
     };
+    console.log(process.env.SERVER_KODEMC);
+    console.log(Timestamps);
+    console.log(process.env.SERVER_KEYDUITKU);
 
     const bodynya = {
         "paymentAmount": itemDetails.map((data) => data.price).reduce((acc, curr) => acc + curr, 0),
@@ -41,10 +44,10 @@ export async function POST(req) {
         "callbackUrl": `${process.env.NEXT_PUBLIC_URL}/api/duitkupayment`,
         "returnUrl": `${process.env.NEXT_PUBLIC_URL}`,
         "expiryPeriod": 60,
-        "paymentMethod": kodeBank
+        "paymentMethod": "PS"
     }
 
-    const resDuitku = await fetch(process.env.NEXT_PUBLIC_POSTDUITKU, {
+    const resDuitku = await fetch("https://sandbox.duitku.com/webapi/api/merchant/v2/inquiry", {
         method: 'POST',
         headers: headers,
         body: JSON.stringify(bodynya)
