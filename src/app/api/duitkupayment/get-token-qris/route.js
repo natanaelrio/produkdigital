@@ -54,6 +54,10 @@ export async function POST(req) {
     })
 
     const data = await resDuitku.json()
-    const res = await ResponseData(data, authorization)
+    return new Response(JSON.stringify({ isCreated: true, data: data }), {
+        status: 200,
+        headers: { "Content-Type": "application/json" },
+    });
+    // const res = await ResponseData(data, authorization)
     return res
 }
