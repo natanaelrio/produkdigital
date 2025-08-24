@@ -1,6 +1,8 @@
 import CryptoJS from 'crypto-js';
 import getJakartaUnixTimestamp from '@/utils/getJakartaUnixTimestamp';
 import { ResponseData } from '@/utils/responseData';
+import GetTimeQris from '@/utils/getTimeQris';
+import crypto from "crypto";
 
 export async function POST(req) {
     const authorization = req.headers.get('authorization')
@@ -16,17 +18,29 @@ export async function POST(req) {
         linkProduk,
     } = await req.json()
 
-    const Timestamps = getJakartaUnixTimestamp()
+    const totalPrice = itemDetails.map((data) => data.price).reduce((acc, curr) => acc + curr, 0)
+    const datetime = new Date().toISOString().slice(0, 19).replace("T", " ");
+    const signature = crypto
+        .createHash("sha256")
+        .update(process.env.SERVER_KODEMC + totalPrice + datetime + process.env.SERVER_KEYDUITKU)
+        .digest("hex");
+
     const headers = {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'x-duitku-signature': CryptoJS.SHA256(process.env.SERVER_KODEMC + Timestamps + process.env.SERVER_KEYDUITKU).toString(CryptoJS.enc.Hex),
-        'x-duitku-timestamp': Timestamps,
+        'x-duitku-signature': signature,
+        'x-duitku-timestamp': datetime,
         'x-duitku-merchantcode': process.env.SERVER_KODEMC
     };
+
+
     console.log(process.env.SERVER_KODEMC);
-    console.log(Timestamps);
+    console.log(datetime);
     console.log(process.env.SERVER_KEYDUITKU);
+    console.log(totalPrice);
+    console.log(signature);
+    
+
 
     const bodynya = {
         "paymentAmount": itemDetails.map((data) => data.price).reduce((acc, curr) => acc + curr, 0),
@@ -47,7 +61,7 @@ export async function POST(req) {
         "paymentMethod": "PS"
     }
 
-    const resDuitku = await fetch("https://sandbox.duitku.com/webapi/api/merchant/paymentmethod/getpaymentmethod", {
+    const resDuitku = await fetch("https://passport.duitku.com/webapi/api/merchant/v2/inquiry", {
         method: 'POST',
         headers: headers,
         body: JSON.stringify(bodynya)
