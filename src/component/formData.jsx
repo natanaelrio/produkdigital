@@ -24,8 +24,6 @@ export default function FormData({ data }) {
     }, []);
 
     const router = useRouter();
-    const merchantOrderId = GetRandomNumber()
-    console.log(merchantOrderId);
     const [loading, setLoading] = useState(false)
     const setBlack = useBearStore((state) => state.setBlack)
     const black = useBearStore((state) => state.black)
@@ -33,9 +31,11 @@ export default function FormData({ data }) {
     const setIsPayment = useBearPayment((state) => state.setIsPayment)
     const isPayment = useBearPayment((state) => state.isPayment)
 
+    const [merchantOrderId] = useState(() => GetRandomNumber());
     const [dataPayment, setDataPayment] = useState(null);
     const [checking, setChecking] = useState(false);
     const [paymentStatus, setPaymentStatus] = useState(null);
+    console.log(merchantOrderId);
 
 
     const handleCheckStatus = async () => {
