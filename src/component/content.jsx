@@ -16,11 +16,11 @@ export default function Content({ data }) {
 
     return (
         <>
-            <div className={styles.containerlink}>
+            {/* <div className={styles.containerlink}>
                 <div className={styles.link}>
                     <span><Link href={'/'}>Home</Link></span> <span>&nbsp; / &nbsp; </span> <span>{data.title}</span>
                 </div>
-            </div>
+            </div> */}
             <div className={styles.container}>
                 <div className={styles.content}>
                     <div className={styles.gambar}>

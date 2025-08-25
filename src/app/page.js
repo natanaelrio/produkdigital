@@ -6,6 +6,9 @@ import { GetListProdutDigital } from "@/service/HandleListProduct";
 import HalamanUtama from "@/component/Banner";
 import Testimoni from "@/component/testimoni";
 import Faq from "@/component/faq";
+import HeaderNew from "@/component/headernew";
+import BannerNew from "@/component/BannerNew";
+import Banner from "@/component/Banner";
 
 export const metadata = {
   title: 'Buku Digital Wawasan Luas',
@@ -19,8 +22,11 @@ export default async function Home() {
     <div style={{ display: 'flex', minHeight: '100dvh', flexDirection: 'column', justifyContent: 'space-between' }}>
       <Notifikasi />
       <div style={{ flex: 'auto' }}>
-        <Header slug={'/'} />
+        {/* <Banner /> */}
+        <HeaderNew />
+        {/* <Header slug={'/'} /> */}
         <HalamanUtama />
+        {/* <BannerNew /> */}
         <ListContent data={DataListProduk?.data} />
         <Testimoni />
         <Faq />

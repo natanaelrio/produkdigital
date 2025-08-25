@@ -1,9 +1,11 @@
 .container {
     display: flex;
     justify-content: center;
+    margin-top: 60px;
 }
 
 .containerlink {
+    margin-top: 60px;
     display: flex;
     justify-content: center;
 }
@@ -49,6 +51,7 @@
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -56,7 +59,7 @@
 }
 
 .content .gambar {
-    width: 100%;
+    width: fit-content;
     border-radius: 16px;
     /* overflow: hidden; */
     /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); */
@@ -72,13 +75,13 @@
     height: fit-content;
     object-fit: contain;
     position: sticky;
-    top: 50px;
+    top: 90px;
     border-radius: 16px;
     transition: transform 0.3s ease;
 }
 
 .content .deskripsi {
-    width: 100%;
+    width: 80%;
     padding-left: 30px;
     display: flex;
     flex-direction: column;
@@ -267,9 +270,14 @@
 
 @media only screen and (max-width: 720px) {
 
+    .content .deskripsi {
+        width: 100%;
+    }
+
     .content img {
         position: static;
         top: auto;
+        border-radius: 0;
     }
 
     .content {

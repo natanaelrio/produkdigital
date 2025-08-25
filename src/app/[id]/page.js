@@ -4,6 +4,7 @@ import Content from "@/component/content";
 import Header from "@/component/header";
 import { GetDetailProdutDigital } from "@/service/HandleDetailProduct";
 import { notFound } from "next/navigation";
+import HeaderNew from "@/component/headernew";
 
 
 export async function generateMetadata({ params, searchParams }, parent) {
@@ -37,9 +38,10 @@ export default async function page({ params }) {
     else
         return (
             <div style={{ display: 'flex', minHeight: '100dvh', flexDirection: 'column', justifyContent: 'space-between' }}>
-                <Notifikasi />
+                {/* <Notifikasi /> */}
                 <div style={{ flex: 'auto' }}>
-                    <Header slug={params?.id} title={data.data.title} />
+                    <HeaderNew slug={params?.id} title={data.data.title} />
+                    {/* <Header slug={params?.id} title={data.data.title} /> */}
                     {/* {params.id} */}
                     <Content data={data?.data} />
                     {/* <ListContent /> */}
