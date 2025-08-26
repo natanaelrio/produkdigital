@@ -1,13 +1,9 @@
-import Header from "@/component/header";
-import Notifikasi from "@/component/notifikasi";
 import Footer from "@/component/footer";
 import ListContent from "@/component/listContent";
 import { GetListProdutDigital } from "@/service/HandleListProduct";
-import HalamanUtama from "@/component/Banner";
 import Testimoni from "@/component/testimoni";
 import Faq from "@/component/faq";
-import HeaderNew from "@/component/headernew";
-import BannerNew from "@/component/BannerNew";
+import HeaderNew from "@/component/header";
 import Banner from "@/component/Banner";
 
 export const metadata = {
@@ -19,19 +15,11 @@ export default async function Home() {
   const DataListProduk = await GetListProdutDigital()
 
   return (
-    <div style={{ display: 'flex', minHeight: '100dvh', flexDirection: 'column', justifyContent: 'space-between' }}>
-      <Notifikasi />
-      <div style={{ flex: 'auto' }}>
-        {/* <Banner /> */}
-        <HeaderNew />
-        {/* <Header slug={'/'} /> */}
-        <HalamanUtama />
-        {/* <BannerNew /> */}
-        <ListContent data={DataListProduk?.data} />
-        <Testimoni />
-        <Faq />
-      </div>
-      <Footer />
-    </div>
+    <>
+      <Banner />
+      <ListContent data={DataListProduk?.data} />
+      <Testimoni />
+      <Faq />
+    </>
   );
 }

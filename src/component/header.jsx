@@ -1,13 +1,10 @@
-'use client'
-import React from 'react'
-import styles from '@/component/header.module.css'
-// import { ImBooks } from "react-icons/im";
-import { FaWhatsapp } from "react-icons/fa";
-import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
-import { useEffect } from 'react';
-import { initFacebookPixel, trackPageView } from '@/utils/facebookPixel';
-import Image from 'next/image';
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState, useRef, useEffect } from "react";
+import styles from "@/component/header.module.css";
+import Image from "next/image";
 
 export default function Header({ slug, title }) {
     const text = `Cek ${title ? title : 'produk ini'}, keren banget!`;
@@ -16,41 +13,95 @@ export default function Header({ slug, title }) {
     const message = encodeURIComponent(`${text} ${title ? url : url2}`);
     const pathname = usePathname()
     const back = pathname == "/contact" || pathname == "/terms" || pathname == "/privacy" || pathname == "/about"
-    const router = useRouter()
 
+    const [open, setOpen] = useState(false);
+    const navRef = useRef(null);
+
+    const navItems = [
+        { name: "Home", href: "/" },
+        { name: "Produk", href: "/#produk" },
+        { name: "Kontak", href: "/contact" },
+    ];
+
+    // Tutup menu jika klik di luar nav
     useEffect(() => {
-        trackPageView()
-        initFacebookPixel()
-    }, []);
+        const handleClickOutside = (e) => {
+            if (navRef.current && !navRef.current.contains(e.target)) {
+                setOpen(false);
+            }
+        };
+        if (open) {
+            document.addEventListener("mousedown", handleClickOutside);
+        } else {
+            document.removeEventListener("mousedown", handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [open]);
 
     return (
-        <>
-            <div className={styles.luarcontainer}>
-                <div className={styles.container}>
-                    <div className={styles.made}>
-                        {back ? <Link href='/'>Home</Link> :
-                            <>
-                                <div className={styles.by}>
-                                    Made by
-                                </div>
-                                <div className={styles.name}>
-                                    <Link href='/about'>R</Link>
-                                </div>
-                            </>
-                        }
-                    </div>
-                    {/* <div></div> */}
-                    <Link href='/' className={styles.ikon}>
-                        <Image src={'/logo.png'} width={30} height={30} alt='logoinvesdigi' ></Image>
-                    </Link >
+        <header className={styles.header}>
+            <div className={styles.containerHeader}>
+                {/* Logo */}
+                <Link href="/" className={styles.logoHeader}>
+                    <Image
+                        src={'/logo.png'}
+                        width={30}
+                        height={30}
+                        alt='logoinvesdigi'
+                    />
+                    Invesdigi
+                </Link>
+
+                {/* Desktop Nav */}
+                <nav className={styles.navHeader}>
+                    {navItems.map((item) => (
+                        <Link
+                            key={item.href}
+                            href={item.href}
+                            className={`${styles.navLink} ${pathname === item.href ? styles.activeLink : ""
+                                }`}
+                        >
+                            {item.name}
+                        </Link>
+                    ))}
+                </nav>
+
+                {/* Right Icons */}
+                <div className={styles.rightHeader}>
                     <Link href={`https://wa.me/?text=${message}`} target="_blank" className={styles.share}>
-                        Share <FaWhatsapp size={25} />
+                        <button className={styles.shareBtn}>🔗</button>
                     </Link>
+                    <button
+                        className={styles.menuBtn}
+                        onClick={() => setOpen(!open)}
+                        aria-label="Toggle menu"
+                    >
+                        <span className={styles.menuIcon}>
+                            {open ? "✕" : "☰"}
+                        </span>
+                    </button>
                 </div>
-            </div >
-        </>
-    )
+            </div>
+
+            {/* Mobile Nav */}
+            {open && (
+                <nav ref={navRef} className={styles.mobileNav}>
+                    {navItems.map((item) => (
+                        <Link
+                            key={item.href}
+                            href={item.href}
+                            onClick={() => setOpen(false)}
+                            className={`${styles.mobileLink} ${pathname === item.href ? styles.activeLink : ""
+                                }`}
+                        >
+                            {item.name}
+                        </Link>
+                    ))}
+                </nav>
+            )}
+        </header>
+    );
 }
-
-
-

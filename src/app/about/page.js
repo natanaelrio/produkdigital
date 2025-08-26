@@ -8,16 +8,11 @@ export const metadata = {
     description: 'Kenali lebih dekat pembuat produk digital ini. Saya menciptakan solusi digital yang praktis, efisien, dan bermanfaat untuk mempermudah pekerjaan serta meningkatkan produktivitas pengguna.',
 }
 
-
 export default function Page() {
     return (
-        <div style={{ display: 'flex', minHeight: '100dvh', flexDirection: 'column', justifyContent: 'space-between' }}>
-            <Notifikasi />
-            <div style={{ flex: 'auto' }}>
-                <Header />
-                <About />
-            </div>
-            <Footer />
-        </div>
+        <>
+            <Header />
+            <About />
+        </>
     )
 }

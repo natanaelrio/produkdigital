@@ -1,6 +1,8 @@
 import localFont from "next/font/local";
 import "./globals.css";
 import NextTopLoader from 'nextjs-toploader';
+import Header from "@/component/header";
+import Footer from "@/component/footer";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -24,7 +26,13 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <NextTopLoader />
-        {children}
+        <div style={{ display: 'flex', minHeight: '100dvh', flexDirection: 'column', justifyContent: 'space-between' }}>
+          <div style={{ flex: 'auto' }}>
+            <Header />
+            {children}
+          </div>
+          <Footer />
+        </div>
       </body>
     </html>
   );

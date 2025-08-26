@@ -1,11 +1,7 @@
-import Notifikasi from "@/component/notifikasi";
-import Footer from "@/component/footer";
 import Content from "@/component/content";
 import Header from "@/component/header";
 import { GetDetailProdutDigital } from "@/service/HandleDetailProduct";
 import { notFound } from "next/navigation";
-import HeaderNew from "@/component/headernew";
-
 
 export async function generateMetadata({ params, searchParams }, parent) {
     // read route params
@@ -37,18 +33,9 @@ export default async function page({ params }) {
     }
     else
         return (
-            <div style={{ display: 'flex', minHeight: '100dvh', flexDirection: 'column', justifyContent: 'space-between' }}>
-                {/* <Notifikasi /> */}
-                <div style={{ flex: 'auto' }}>
-                    <HeaderNew slug={params?.id} title={data.data.title} />
-                    {/* <Header slug={params?.id} title={data.data.title} /> */}
-                    {/* {params.id} */}
-                    <Content data={data?.data} />
-                    {/* <ListContent /> */}
-                </div>
-                <Footer />
-            </div>
+            <>
+                <Header slug={params?.id} title={data.data.title} />
+                <Content data={data?.data} />
+            </>
         )
-
-
 }

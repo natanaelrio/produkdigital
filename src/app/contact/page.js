@@ -11,13 +11,9 @@ export const metadata = {
 
 export default function Page() {
     return (
-        <div style={{ display: 'flex', minHeight: '100dvh', flexDirection: 'column', justifyContent: 'space-between' }}>
-            <Notifikasi />
-            <div style={{ flex: 'auto' }}>
-                <Header />
-                <Contact />
-            </div>
-            <Footer />
-        </div>
+        <>
+            <Header />
+            <Contact />
+        </>
     )
 }
