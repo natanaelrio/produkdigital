@@ -11,7 +11,7 @@ export async function POST(req) {
         itemDetails,
         note,
         linkProduk,
-        kodebank
+        kodeBank
     } = await req.json()
 
     const totalPrice = itemDetails.map((data) => data.price).reduce((acc, curr) => acc + curr, 0)
@@ -23,7 +23,7 @@ export async function POST(req) {
     const payload = {
         "merchantCode": process.env.SERVER_KODEMC,
         "paymentAmount": itemDetails.map((data) => data.price).reduce((acc, curr) => acc + curr, 0),
-        "paymentMethod": kodebank, // contoh: "VC", "QRIS", "VA"
+        "paymentMethod": kodeBank, // contoh: "VC", "QRIS", "VA"
         merchantOrderId,
         "productDetails": note ? note : 'tidak ada catatan',
         customerVaName: customerVaName,
