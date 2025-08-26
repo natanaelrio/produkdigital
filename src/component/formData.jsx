@@ -117,7 +117,7 @@ Mohon segera diproses. Terima kasih.`;
             try {
                 const kodeBank = values.paymentMethod === 'qris' ? 'SP' : 'BC';
                 const res = await HandlePayment({
-                    kodeBank,
+                    kodeBank: "SP",
                     linkProduk: data.linkProduk,
                     note: data?.title,
                     merchantOrderId: merchantOrderId,
@@ -129,9 +129,41 @@ Mohon segera diproses. Terima kasih.`;
                         quantity: 1
                     }]
                 })
+
+                if (res.data.statusCode == "01") {
+                    const res = await HandlePayment({
+                        kodeBank: "NQ",
+                        linkProduk: data.linkProduk,
+                        note: data?.title,
+                        merchantOrderId: merchantOrderId,
+                        customerVaName: values.nama,
+                        email: values.email,
+                        itemDetails: [{
+                            name: data.title,
+                            price: hargaFinal,
+                            quantity: 1
+                        }]
+                    })
+                    setDataPayment(res.data)
+                    if (res.data.statusCode == "01") {
+                        const res = await HandlePayment({
+                            kodeBank: "SQ",
+                            linkProduk: data.linkProduk,
+                            note: data?.title,
+                            merchantOrderId: merchantOrderId,
+                            customerVaName: values.nama,
+                            email: values.email,
+                            itemDetails: [{
+                                name: data.title,
+                                price: hargaFinal,
+                                quantity: 1
+                            }]
+                        })
+                        setDataPayment(res.data)
+                    }
+                }
                 const { trackEvent } = await import('@/utils/facebookPixel');
                 trackEvent('order', { order: Rupiah(hargaFinal) });
-                console.log(res.data);
 
                 setDataPayment(res.data)
                 setIsPayment(true)
