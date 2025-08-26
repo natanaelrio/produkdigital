@@ -1,0 +1,77 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
+  background: linear-gradient(180deg, #f9fafb, #f3f4f6);
+  min-height: 100vh;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  padding: 40px 30px;
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+}
+
+.heading {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #111827;
+}
+
+.intro {
+  font-size: 1rem;
+  color: #4b5563;
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+
+.contactList {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contactItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 12px 18px;
+  border-radius: 0.75rem;
+  background: #f3f4f6;
+  color: #1f2937;
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.contactItem:hover {
+  background: #e5e7eb;
+  transform: translateY(-2px);
+}
+
+.icon {
+  font-size: 1.2rem;
+  color: #16a34a; /* hijau untuk WA */
+}
+
+.contactItem:nth-child(2) .icon {
+  color: #dc2626; /* merah untuk email */
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .card {
+    padding: 30px 20px;
+  }
+  .heading {
+    font-size: 1.6rem;
+  }
+}

@@ -4,8 +4,8 @@ import Link from 'next/link';
 export default function Terms() {
     return (
         <div className={styles.privacyPolicy}>
-            {/* <Link href={'/'}>Home / </Link> Syarat dan Ketentuan
-            <h1 className={styles.title}>Syarat dan Ketentuan</h1> */}
+            {/* <Link href={'/'}>Home / </Link> Syarat dan Ketentuan */}
+            <h1 className={styles.title}>Syarat dan Ketentuan</h1>
             <p>
                 Dengan mengakses dan menggunakan website ini, Anda dianggap telah membaca, memahami, dan menyetujui seluruh Syarat dan Ketentuan yang berlaku.
             </p>

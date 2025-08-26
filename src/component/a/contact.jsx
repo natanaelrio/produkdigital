@@ -1,16 +1,38 @@
-import styles from '@/component/a/about.module.css'
+"use client"
+
+import styles from '@/component/a/contact.module.css'
 import Link from 'next/link'
+import { FaWhatsapp, FaEnvelope } from "react-icons/fa";
 
 export default function Contact() {
     return (
-        <div className={styles.container}>
-            <h1 className={styles.heading}>Contact</h1>
-            <p className={styles.intro}>
-                Whatsapp:   <Link style={{ textDecoration: 'underline' }} href={'https://wa.me/628971041460'} target='_blank'>+628971041460</Link>
-                <br />
-                Gmail:   <Link style={{ textDecoration: 'underline' }} href={'mailto:invesdigi.official@gmail.com'} target='_blank'>invesdigi.official@gmail.com</Link>
-            </p>
+        <section className={styles.container}>
+            <div className={styles.card}>
+                <h1 className={styles.heading}>Contact Us</h1>
+                <p className={styles.intro}>
+                    Jika ada pertanyaan atau kerja sama, silakan hubungi kami melalui:
+                </p>
 
-        </div>
+                <div className={styles.contactList}>
+                    <Link 
+                        href="https://wa.me/628971041460" 
+                        target="_blank" 
+                        className={styles.contactItem}
+                    >
+                        <FaWhatsapp className={styles.icon} />
+                        <span>+62 897 1041 460</span>
+                    </Link>
+
+                    <Link 
+                        href="mailto:invesdigi.official@gmail.com" 
+                        target="_blank" 
+                        className={styles.contactItem}
+                    >
+                        <FaEnvelope className={styles.icon} />
+                        <span>invesdigi.official@gmail.com</span>
+                    </Link>
+                </div>
+            </div>
+        </section>
     )
 }
