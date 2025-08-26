@@ -4,8 +4,8 @@ import Link from 'next/link';
 export default function Privacy() {
     return (
         <div className={styles.privacyPolicy}>
-            <Link href={'/'}>Home / </Link> Kebijakan Privasi
-            <h1 className={styles.title}>Kebijakan Privasi</h1>
+            {/* <Link href={'/'}>Home / </Link> Kebijakan Privasi
+            <h1 className={styles.title}>Kebijakan Privasi</h1> */}
             <p>
                 Kami menghargai privasi Anda. Kebijakan Privasi ini menjelaskan bagaimana kami mengumpulkan, menggunakan, dan melindungi informasi pribadi Anda saat Anda melakukan pembelian melalui website kami.
             </p>
