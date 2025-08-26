@@ -1,6 +1,3 @@
-import Header from "@/component/header";
-import Notifikasi from "@/component/notifikasi";
-import Footer from "@/component/footer";
 import Privacy from "@/component/a/privacy";
 
 export const metadata = {
@@ -11,9 +8,6 @@ export const metadata = {
 
 export default function Page() {
     return (
-        <>
-            <Header />
-            <Privacy />
-        </>
+        <Privacy />
     )
 }

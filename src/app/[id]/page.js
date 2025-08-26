@@ -1,5 +1,4 @@
 import Content from "@/component/content";
-import Header from "@/component/header";
 import { GetDetailProdutDigital } from "@/service/HandleDetailProduct";
 import { notFound } from "next/navigation";
 

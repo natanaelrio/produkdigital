@@ -1,7 +1,4 @@
 import Terms from '@/component/a/terms'
-import Header from "@/component/header";
-import Notifikasi from "@/component/notifikasi";
-import Footer from "@/component/footer";
 
 export const metadata = {
     title: 'Syarat dan Ketentuan',
@@ -10,9 +7,6 @@ export const metadata = {
 
 export default function Page() {
     return (
-        <>
-            <Header />
-            <Terms />
-        </>
+        <Terms />
     )
 }
