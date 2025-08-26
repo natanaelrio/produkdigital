@@ -30,9 +30,8 @@ body {
   font-family: "Inter", sans-serif;
   /* font-family: "Montserrat", sans-serif; */
   font-optical-sizing: auto;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
+  /* -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; */
 }
 
 * {
