@@ -131,6 +131,8 @@ Mohon segera diproses. Terima kasih.`;
                 })
                 const { trackEvent } = await import('@/utils/facebookPixel');
                 trackEvent('order', { order: Rupiah(hargaFinal) });
+                console.log(res.data);
+
                 setDataPayment(res.data)
                 setIsPayment(true)
                 setLoading(false)

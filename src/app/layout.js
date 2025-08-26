@@ -1,4 +1,3 @@
-import localFont from "next/font/local";
 import "./globals.css";
 import NextTopLoader from 'nextjs-toploader';
 import Header from "@/component/header";

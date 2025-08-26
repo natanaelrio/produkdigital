@@ -29,11 +29,7 @@ export default function ListContent({ data }) {
                                             <div className={styles.judul}>
                                                 {data?.title}
                                             </div>
-                                            {/* <div className={styles.download}>
-                                                Download File (.pdf)
-                                            </div> */}
                                             <div dangerouslySetInnerHTML={{ __html: data.deskripsi }} className={styles.deskripsi}>
-                                                {/* {data?.deskripsi} */}
                                             </div>
                                         </div>
                                     </div>
