@@ -33,9 +33,6 @@ export default async function page({ params }) {
     }
     else
         return (
-            <>
-                <Header slug={params?.id} title={data.data.title} />
-                <Content data={data?.data} />
-            </>
+            <Content data={data?.data} />
         )
 }

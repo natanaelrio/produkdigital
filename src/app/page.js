@@ -1,9 +1,7 @@
-import Footer from "@/component/footer";
 import ListContent from "@/component/listContent";
 import { GetListProdutDigital } from "@/service/HandleListProduct";
 import Testimoni from "@/component/testimoni";
 import Faq from "@/component/faq";
-import HeaderNew from "@/component/header";
 import Banner from "@/component/Banner";
 
 export const metadata = {

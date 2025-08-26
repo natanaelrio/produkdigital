@@ -59,6 +59,7 @@
     0%, 100% {
         transform: rotate(-15deg) perspective(500px) rotateY(20deg) translateY(0);
     }
+
     50% {
         transform: rotate(-15deg) perspective(500px) rotateY(20deg) translateY(-20px);
     }
@@ -180,6 +181,7 @@
     0%, 100% {
         transform: translateY(0);
     }
+
     50% {
         transform: translateY(-20px);
     }
@@ -189,6 +191,7 @@
     from {
         transform: rotate(0deg);
     }
+
     to {
         transform: rotate(360deg);
     }
@@ -198,6 +201,7 @@
     0%, 100% {
         opacity: 0.3;
     }
+
     50% {
         opacity: 0.8;
     }
@@ -207,6 +211,7 @@
     0%, 100% {
         opacity: 0.8;
     }
+
     50% {
         opacity: 1;
     }
