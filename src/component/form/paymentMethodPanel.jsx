@@ -23,6 +23,7 @@ import { useEffect, useState } from 'react';
 import { IoClose } from "react-icons/io5";
 import NotifikasiSuccess from './notifikasiSuccess';
 import { initFacebookPixel } from '@/utils/facebookPixel';
+import Image from 'next/image';
 
 export default function PaymentMethodPanel({ data, hargaFinal }) {
     useEffect(() => { initFacebookPixel() }, []);
@@ -194,7 +195,7 @@ export default function PaymentMethodPanel({ data, hargaFinal }) {
                 <div className={styles.paymentMethodPanel}>
                     {/* RADIO GROUP */}
                     <div className={styles.radioGroupFull}>
-                        {["qris", "bca", "mandiri", "bni", "bri", "ft"].map((method) => (
+                        {["qris", "bca (transfer)", "mandiri (virtual account)", "bni (virtual account)", "bri (virtual account)", "ft (Alfamart/Pos)"].map((method) => (
                             <label
                                 key={method}
                                 className={`${styles.radioLabelFull} ${formik.values.paymentMethod === method ? styles.selected : ""}`}
@@ -210,7 +211,22 @@ export default function PaymentMethodPanel({ data, hargaFinal }) {
                                     }}
                                     disabled={loading}
                                 />
-                                <span>{method.toUpperCase()}</span>
+                                <Image
+                                    src={
+                                        method === "qris" ? "https://www.invesdigi.com/qris.svg"
+                                            : method === "bca (transfer)" ? "https://images.duitku.com/hotlink-ok/BC.PNG"
+                                                : method === "bni (virtual account)" ? "https://images.duitku.com/hotlink-ok/I1.PNG"
+                                                    : method === "bri (virtual account)" ? "https://images.duitku.com/hotlink-ok/BR.PNG"
+                                                        : method === "mandiri (virtual account)" ? "https://images.duitku.com/hotlink-ok/M2.PNG"
+                                                            : method === "ft (Alfamart/Pos)" ? "https://images.duitku.com/hotlink-ok/FT.PNG"
+                                                                : ""
+                                    }
+                                    width={70}
+                                    height={50}
+                                    alt={method}
+                                    className={styles.paymentLogo}
+                                />
+                                <span className={styles.paymentName}>{method.toUpperCase()}</span>
                             </label>
                         ))}
                     </div>

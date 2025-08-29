@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: ['i0.wp.com', 'picsum.photos', 'localhost', 'invesdigi.vercel.app', 'invesdigi.com', 'www.invesdigi.com'],
+        domains: ['i0.wp.com', 'picsum.photos', 'localhost', 'invesdigi.vercel.app', 'invesdigi.com', 'www.invesdigi.com', 'images.duitku.com'],
     }, async headers() {
         return [
             {

@@ -65,7 +65,7 @@ export default function ViewGenerate({ formik, hargaFinal, handleCheckStatus, da
                 </div>
             )}
 
-            {formik.values.paymentMethod === "bca" && (
+            {formik.values.paymentMethod === "bca (transfer)" && (
                 <div className={styles.bankInfo}>
                     <div className={styles.rekening}>
                         <div className={styles.rekeningItem}>
@@ -96,7 +96,7 @@ export default function ViewGenerate({ formik, hargaFinal, handleCheckStatus, da
                 <div><strong>Total:</strong> {Rupiah(hargaFinal)}</div>
             </div>
 
-            {formik.values.paymentMethod == "bca" ?
+            {formik.values.paymentMethod == "bca (transfer)" ?
                 <button onClick={kirimWA} style={{ background: '#25d366' }} className={styles.btnWa}>
                     <FaWhatsapp fontSize={20} /> {`Kirim Bukti via WhatsApp`}
                 </button>
