@@ -65,7 +65,7 @@ export default function ViewGenerate({ formik, hargaFinal, handleCheckStatus, da
                 </div>
             )}
 
-            {formik.values.paymentMethod === "bca (transfer)" && (
+            {formik.values.paymentMethod === "bca" && (
                 <div className={styles.bankInfo}>
                     <div className={styles.rekening}>
                         <div className={styles.rekeningItem}>

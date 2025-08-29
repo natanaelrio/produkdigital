@@ -1,4 +1,4 @@
-import styles from '@/component/form/paymentMethodPanel.module.css'
+import styles from '@/component/form/paymentMethodPanel.module.css';
 import {
     useBearChecking,
     useBearSuccess,
@@ -28,35 +28,45 @@ import Image from 'next/image';
 export default function PaymentMethodPanel({ data, hargaFinal }) {
     useEffect(() => { initFacebookPixel() }, []);
 
-    const setShowPaymentPanel = useBearPaymentPanel((state) => state.setShowPaymentPanel)
-    const setIsSuccess = useBearSuccess((state) => state.setIsSuccess)
-    const isSuccess = useBearSuccess((state) => state.isSuccess)
-    const setIsPayment = useBearPayment((state) => state.setIsPayment)
-    const setDataPayment = useBearDataPayment((state) => state.setDataPayment)
-    const isPayment = useBearPayment((state) => state.isPayment)
-    // const handleClosePayment = useBearPayment((state) => state.handleClosePayment)
-    const setPaymentStatus = useBearPaymentStatus((state) => state.setPaymentStatus)
-    const loading = useBearLoading((state) => state.loading)
-    const setLoading = useBearLoading((state) => state.setLoading)
-    const setChecking = useBearChecking((state) => state.setChecking)
-    const setBlack = useBearStore((state) => state.setBlack)
-    const setIsTrue = useBearClose((state) => state.setIsTrue)
+    // Zustand states
+    const setShowPaymentPanel = useBearPaymentPanel((state) => state.setShowPaymentPanel);
+    const setIsSuccess = useBearSuccess((state) => state.setIsSuccess);
+    const isSuccess = useBearSuccess((state) => state.isSuccess);
+    const setIsPayment = useBearPayment((state) => state.setIsPayment);
+    const setDataPayment = useBearDataPayment((state) => state.setDataPayment);
+    const isPayment = useBearPayment((state) => state.isPayment);
+    const setPaymentStatus = useBearPaymentStatus((state) => state.setPaymentStatus);
+    const loading = useBearLoading((state) => state.loading);
+    const setLoading = useBearLoading((state) => state.setLoading);
+    const setChecking = useBearChecking((state) => state.setChecking);
+    const setBlack = useBearStore((state) => state.setBlack);
+    const setIsTrue = useBearClose((state) => state.setIsTrue);
 
-    const handleCloseViewGenerate = () => {
-        setIsPayment(false)
-        setIsSuccess(false)
-        setLoading(false)
-    }
-
-    const handleClosePaymentSuccess = () => {
-        setIsTrue(false)
-        setIsPayment(false)
-        setLoading(false)
-        setShowPaymentPanel(false)
-        setBlack(false)
-    }
     const [merchantOrderId] = useState(() => GetRandomNumber());
 
+    // Daftar metode pembayaran → clean & mudah di-maintain
+    const paymentMethods = [
+        { value: "qris", label: "QRIS", img: "https://www.invesdigi.com/qris.svg", kodeBank: "SP" },
+        { value: "bca", label: "BCA (Transfer)", img: "https://images.duitku.com/hotlink-ok/BC.PNG", kodeBank: "BC" },
+        { value: "mandiri", label: "Mandiri (Virtual Account)", img: "https://images.duitku.com/hotlink-ok/M2.PNG", kodeBank: "M2" },
+        { value: "bni", label: "BNI (Virtual Account)", img: "https://images.duitku.com/hotlink-ok/I1.PNG", kodeBank: "I1" },
+        { value: "bri", label: "BRI (Virtual Account)", img: "https://images.duitku.com/hotlink-ok/BR.PNG", kodeBank: "BR" },
+        { value: "ft", label: "FT (Alfamart / Pos)", img: "https://images.duitku.com/hotlink-ok/FT.PNG", kodeBank: "FT" },
+    ];
+
+    const handleCloseViewGenerate = () => {
+        setIsPayment(false);
+        setIsSuccess(false);
+        setLoading(false);
+    };
+
+    const handleClosePaymentSuccess = () => {
+        setIsTrue(false);
+        setIsPayment(false);
+        setLoading(false);
+        setShowPaymentPanel(false);
+        setBlack(false);
+    };
 
     const handleCheckStatus = async () => {
         setChecking(true);
@@ -69,16 +79,11 @@ export default function PaymentMethodPanel({ data, hargaFinal }) {
             }
             if (res?.data?.statusCode === "00") {
                 setIsSuccess(true);
-                // setPaymentStatus(res?.data?.statusMessage + " - Cek Email kamu😁");
                 setLoading(false);
-            }
-            if (res?.data?.statusCode === "01") {
-                // setIsSuccess(true);
+            } else if (res?.data?.statusCode === "01") {
                 alert(`Transaksi belum ditemukan!, ${res?.data?.statusMessage}`);
                 setPaymentStatus('Transaksi belum ditemukan!');
-                // setLoading(false);
-            }
-            else {
+            } else {
                 setPaymentStatus("Gagal mendapatkan status transaksi");
             }
         } catch (error) {
@@ -89,20 +94,8 @@ export default function PaymentMethodPanel({ data, hargaFinal }) {
         }
     };
 
-    // Mapping metode → kodeBank
-    const getKodeBank = (method) => {
-        switch (method) {
-            case "qris": return "SP";
-            case "mandiri": return "M2";
-            case "bni": return "I1";
-            case "bri": return "BR";
-            case "ft": return "FT";
-            case "bca": return "BC";
-            default: return "SP";
-        }
-    };
-
-    const validate = values => {
+    // Formik untuk validasi & submit
+    const validate = (values) => {
         const errors = {};
         if (!values.paymentMethod) errors.paymentMethod = 'Silakan pilih metode pembayaran';
         return errors;
@@ -114,20 +107,24 @@ export default function PaymentMethodPanel({ data, hargaFinal }) {
         onSubmit: async (values) => {
             if (values.paymentMethod === "bca") {
                 setIsPayment(true);
-                return
+                return;
             }
+
             setLoading(true);
             setBlack(false);
-            setIsSuccess(false)
-            setPaymentStatus(null)
+            setIsSuccess(false);
+            setPaymentStatus(null);
 
-
-
-            // CASE QRIS & BANK LAIN → HandlePayment otomatis
             try {
-                const kodeBank = getKodeBank(values.paymentMethod);
+                const selectedMethod = paymentMethods.find((m) => m.value === values.paymentMethod);
+
+                if (!selectedMethod) {
+                    alert("Metode pembayaran tidak valid!");
+                    return;
+                }
+
                 const res = await HandlePayment({
-                    kodeBank,
+                    kodeBank: selectedMethod.kodeBank,
                     linkProduk: data.linkProduk,
                     note: data?.title,
                     merchantOrderId,
@@ -137,14 +134,16 @@ export default function PaymentMethodPanel({ data, hargaFinal }) {
                         quantity: 1
                     }]
                 });
-
+                if (res.data.Message) {
+                    alert(res.data.Message);
+                    return;
+                }
                 const { trackEvent } = await import('@/utils/facebookPixel');
                 trackEvent('order', { order: Rupiah(hargaFinal) });
 
                 setDataPayment(res.data);
                 setIsPayment(true);
                 setBlack(true);
-                setLoading(false);
             } catch (e) {
                 console.log(e);
                 alert("Gagal memproses pembayaran, silakan coba lagi.");
@@ -173,7 +172,7 @@ export default function PaymentMethodPanel({ data, hargaFinal }) {
             ) : (
                 <>
                     <Title
-                        handleClose={() => handleCloseViewGenerate()}
+                        handleClose={handleCloseViewGenerate}
                         icon={<IoIosArrowBack size={24} />}
                         title='Pembayaran'
                     />
@@ -182,7 +181,7 @@ export default function PaymentMethodPanel({ data, hargaFinal }) {
                         formik={formik}
                         isVA={isVA}
                         hargaFinal={hargaFinal}
-                        handleCheckStatus={() => handleCheckStatus()}
+                        handleCheckStatus={handleCheckStatus}
                     />
                 </>
             )
@@ -191,20 +190,22 @@ export default function PaymentMethodPanel({ data, hargaFinal }) {
                 <Title
                     handleClose={() => setShowPaymentPanel(false)}
                     icon={<IoIosArrowBack size={24} />}
-                    title='Metode Pembayaran' />
+                    title='Metode Pembayaran'
+                />
+
                 <div className={styles.paymentMethodPanel}>
                     {/* RADIO GROUP */}
                     <div className={styles.radioGroupFull}>
-                        {["qris", "bca (transfer)", "mandiri (virtual account)", "bni (virtual account)", "bri (virtual account)", "ft (Alfamart/Pos)"].map((method) => (
+                        {paymentMethods.map(({ value, label, img }) => (
                             <label
-                                key={method}
-                                className={`${styles.radioLabelFull} ${formik.values.paymentMethod === method ? styles.selected : ""}`}
+                                key={value}
+                                className={`${styles.radioLabelFull} ${formik.values.paymentMethod === value ? styles.selected : ""}`}
                             >
                                 <input
                                     type="radio"
                                     name="paymentMethod"
-                                    value={method}
-                                    checked={formik.values.paymentMethod === method}
+                                    value={value}
+                                    checked={formik.values.paymentMethod === value}
                                     onChange={(e) => {
                                         formik.handleChange(e);
                                         formik.setFieldTouched("paymentMethod", true);
@@ -212,21 +213,13 @@ export default function PaymentMethodPanel({ data, hargaFinal }) {
                                     disabled={loading}
                                 />
                                 <Image
-                                    src={
-                                        method === "qris" ? "https://www.invesdigi.com/qris.svg"
-                                            : method === "bca (transfer)" ? "https://images.duitku.com/hotlink-ok/BC.PNG"
-                                                : method === "bni (virtual account)" ? "https://images.duitku.com/hotlink-ok/I1.PNG"
-                                                    : method === "bri (virtual account)" ? "https://images.duitku.com/hotlink-ok/BR.PNG"
-                                                        : method === "mandiri (virtual account)" ? "https://images.duitku.com/hotlink-ok/M2.PNG"
-                                                            : method === "ft (Alfamart/Pos)" ? "https://images.duitku.com/hotlink-ok/FT.PNG"
-                                                                : ""
-                                    }
+                                    src={img}
                                     width={70}
                                     height={50}
-                                    alt={method}
+                                    alt={label}
                                     className={styles.paymentLogo}
                                 />
-                                <span className={styles.paymentName}>{method.toUpperCase()}</span>
+                                <span className={styles.paymentName}>{label}</span>
                             </label>
                         ))}
                     </div>
@@ -239,7 +232,9 @@ export default function PaymentMethodPanel({ data, hargaFinal }) {
                     <label className={styles.checkboxLabel}>
                         <div className={styles.cek}>
                             Dengan melakukan pembelian, Anda menyetujui{" "}
-                            <Link href={'/terms'} className={styles.term} target='_blank'>Syarat dan Ketentuan</Link>
+                            <Link href={'/terms'} className={styles.term} target='_blank'>
+                                Syarat dan Ketentuan
+                            </Link>
                         </div>
                     </label>
 
@@ -248,19 +243,15 @@ export default function PaymentMethodPanel({ data, hargaFinal }) {
                         onClick={formik.handleSubmit}
                         disabled={loading}
                     >
-                        {loading ? "Tungguu..." : <>
-                            <div>
-                                BAYAR SEKARANG
-                            </div>
-                            <div>
-                                IDR {hargaFinal}
-                            </div>
-                        </>
-                        }
+                        {loading ? "Tungguu..." : (
+                            <>
+                                <div>BAYAR SEKARANG</div>
+                                <div>IDR {hargaFinal}</div>
+                            </>
+                        )}
                     </button>
                 </div>
             </>
-
         )
     );
 }

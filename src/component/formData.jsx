@@ -4,10 +4,8 @@ import { initFacebookPixel } from '@/utils/facebookPixel';
 import {
     useBearStore,
     useBearClose,
-    useBearPayment,
     useBearPaymentPanel,
     useBearLoading,
-    useBearSuccess
 } from '@/zustand/zustand';
 import { useFormik } from 'formik';
 import { useEffect } from 'react';
