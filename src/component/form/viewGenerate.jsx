@@ -96,7 +96,7 @@ export default function ViewGenerate({ formik, hargaFinal, handleCheckStatus, da
                 <div><strong>Total:</strong> {Rupiah(hargaFinal)}</div>
             </div>
 
-            {formik.values.paymentMethod == "bca (transfer)" ?
+            {formik.values.paymentMethod == "bca" ?
                 <button onClick={kirimWA} style={{ background: '#25d366' }} className={styles.btnWa}>
                     <FaWhatsapp fontSize={20} /> {`Kirim Bukti via WhatsApp`}
                 </button>
