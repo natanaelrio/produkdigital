@@ -15,11 +15,19 @@ export default function ViewGenerate({ formik, hargaFinal, handleCheckStatus, da
     const checking = useBearChecking((state) => state.checking)
     const paymentStatus = useBearPaymentStatus((state) => state.paymentStatus)
 
+    const [formData, setFormData] = useState(null);
+    console.log(formData);
+    useEffect(() => {
+        const savedForm = localStorage.getItem("formData");
+        if (savedForm) {
+            setFormData(JSON.parse(savedForm));
+        }
+    }, []);
     const kirimWA = async () => {
         const waMessage = `
     Halo Invesdigi,
-    
-    Saya sudah mentransfer ke:
+
+    Saya ${formData?.nama} (${formData?.email}) sudah mentransfer ke:
     BANK BCA - 0132248336 - Natanael Rio Wijaya
     
     Detail produk:
