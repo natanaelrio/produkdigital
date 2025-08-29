@@ -6,7 +6,7 @@ import { Rupiah } from '@/utils/rupiah';
 import { FaWhatsapp } from "react-icons/fa";
 import { useRouter } from 'nextjs-toploader/app';
 import { initFacebookPixel } from '@/utils/facebookPixel';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function ViewGenerate({ formik, hargaFinal, handleCheckStatus, data }) {
     useEffect(() => { initFacebookPixel() }, []);

@@ -43,6 +43,7 @@ export default function FormData({ data }) {
         initialValues: { nama: '', email: '', term: false },
         validate,
         onSubmit: async (values) => {
+            localStorage.setItem("formData", JSON.stringify(values));
             setBlack(true)
             setShowPaymentPanel(true)
         },
