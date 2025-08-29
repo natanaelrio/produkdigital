@@ -55,10 +55,10 @@ export default function ViewGenerate({ formik, hargaFinal, handleCheckStatus, da
             )}
 
             {formik.values.paymentMethod !== "bca" && dataPayment?.vaNumber && (
-                <div className={styles.qrContainer}>
+                <div className={styles.qrContainer} onClick={() => { navigator.clipboard.writeText(dataPayment.vaNumber); alert(`VA Number ${formik.values.paymentMethod.toUpperCase()} disalin`) }}>
                     <h3>Virtual Account {formik.values.paymentMethod.toUpperCase()}</h3>
                     <div className={styles.rekeningItem}>
-                        <button className={styles.vaNumber} onClick={() => { navigator.clipboard.writeText(dataPayment.vaNumber); alert('VA Number disalin') }}>
+                        <button className={styles.vaNumber}>
                             {dataPayment.vaNumber}    <FaRegCopy />
                         </button>
                     </div>

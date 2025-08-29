@@ -174,7 +174,7 @@ export default function PaymentMethodPanel({ data, hargaFinal }) {
                     <Title
                         handleClose={() => handleCloseViewGenerate()}
                         icon={<IoIosArrowBack size={24} />}
-                        title='Metode Pembayaran'
+                        title='Pembayaran'
                     />
                     <ViewGenerate
                         data={data}
