@@ -1,0 +1,45 @@
+.headerForm {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.judul {
+    color: #2c3e50;
+    font-weight: 700;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.closeBtn {
+    background: none !important;
+    border: none !important;
+    padding: 8px !important;
+    margin: -8px -8px -8px 0 !important;
+    color: #666 !important;
+    cursor: pointer;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50% !important;
+    transition: all 0.2s ease !important;
+}
+
+.closeBtn:hover {
+    background: #f0f0f0 !important;
+    color: #333 !important;
+}
+
+.judul::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 32px;
+    top: 64px;
+    width: 40px;
+    height: 3px;
+    background-color: var(--color);
+    border-radius: 2px;
+}

@@ -1,0 +1,29 @@
+.emailContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 30px 15px;
+    gap: 8px;
+}
+
+.emailIcon {
+    color: #3b82f6;
+    /* biru */
+    font-size: 80px;
+    margin-bottom: 10px;
+}
+
+.emailContainer h3 {
+    color: #16a34a;
+    /* hijau sukses */
+    font-size: 22px;
+    margin-bottom: 5px;
+}
+
+.emailContainer p {
+    font-size: 14px;
+    color: #555;
+    margin: 0;
+}

@@ -1,0 +1,62 @@
+.qrContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    /* margin: 60px 0; */
+}
+
+.qrText {
+    font-size: 14px;
+    color: #555;
+    text-align: center;
+}
+
+.qrDetail {
+    margin-top: 20px;
+    padding: 10px;
+    background: #f5f5f5;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.checkBtn {
+    background-color: rgb(0, 0, 0) !important;
+}
+
+.rekeningItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+}
+
+.rekeningItem span {
+    font-weight: 500;
+}
+
+.rekeningName {
+    font-size: 0.85rem;
+    color: #666;
+    text-align: center;
+    padding-top: 8px;
+    border-top: 1px solid #eee;
+}
+
+.copyBtn {
+    color: var(--color) !important;
+    background: none !important;
+    border: none !important;
+    padding: 4px 8px !important;
+    margin: 0 !important;
+    font-size: 0.85rem !important;
+    cursor: pointer;
+    opacity: 0.8;
+    width: fit-content !important;
+}
+
+.copyBtn:hover {
+    opacity: 1;
+    text-decoration: underline;
+}

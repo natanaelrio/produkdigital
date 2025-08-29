@@ -5,7 +5,7 @@ import { FaWhatsapp } from "react-icons/fa";
 import FormData from '@/component/formData';
 import Image from 'next/image';
 import { Rupiah } from '@/utils/rupiah';
-import { useBearClose, useBearStore,useBearPayment } from '@/zustand/zustand';
+import { useBearClose, useBearStore, useBearPayment, useBearPaymentPanel } from '@/zustand/zustand';
 
 export default function Content({ data }) {
     // const [isTrue, setIsTrue] = useState(false)
@@ -13,6 +13,7 @@ export default function Content({ data }) {
     const isTrue = useBearClose((state) => state.isTrue)
     const setIsTrue = useBearClose((state) => state.setIsTrue)
     const setIsPayment = useBearPayment((state) => state.setIsPayment)
+    const setShowPaymentPanel = useBearPaymentPanel((state) => state.setShowPaymentPanel)
 
     return (
         <>
@@ -57,7 +58,11 @@ export default function Content({ data }) {
             {isTrue &&
                 <>
                     <FormData data={data} />
-                    <div className={styles.bgblack} onClick={() => {setIsTrue(black ? true : false), setIsPayment(false)}}></div>
+                    <div className={styles.bgblack} onClick={() => {
+                        setIsTrue(black ? false : true),
+                            setIsPayment(black ? false : true),
+                            setShowPaymentPanel(black ? false : true)
+                    }}></div>
                 </>
             }
         </>
