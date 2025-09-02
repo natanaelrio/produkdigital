@@ -1,5 +1,4 @@
 import nodemailer from 'nodemailer';
-import CryptoJS from 'crypto-js';
 import { Rupiah } from '@/utils/rupiah';
 import crypto from "crypto";
 

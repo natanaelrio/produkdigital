@@ -1,28 +1,41 @@
-import { useBearDataPayment, useBearChecking, useBearPaymentStatus } from '@/zustand/zustand';
+import {
+    useBearDataPayment,
+    useBearChecking,
+    useBearPaymentStatus,
+    useBearPayment,
+    useBearClose
+} from '@/zustand/zustand';
 import { FaRegCopy } from "react-icons/fa6";
 import styles from '@/component/form/viewGenerate.module.css'
 import { QRCodeCanvas } from 'qrcode.react';
 import { Rupiah } from '@/utils/rupiah';
-import { FaWhatsapp } from "react-icons/fa";
+import { FaWhatsapp, FaDownload } from "react-icons/fa";
 import { useRouter } from 'nextjs-toploader/app';
 import { initFacebookPixel } from '@/utils/facebookPixel';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 export default function ViewGenerate({ formik, hargaFinal, handleCheckStatus, data }) {
     useEffect(() => { initFacebookPixel() }, []);
     const router = useRouter();
-    const dataPayment = useBearDataPayment((state) => state.dataPayment)
-    const checking = useBearChecking((state) => state.checking)
-    const paymentStatus = useBearPaymentStatus((state) => state.paymentStatus)
+    const dataPayment = useBearDataPayment((state) => state.dataPayment);
+    const checking = useBearChecking((state) => state.checking);
+    const setIsTrue = useBearClose((state) => state.setIsTrue);
+    const setIsPayment = useBearPayment((state) => state.setIsPayment);
+    const paymentStatus = useBearPaymentStatus((state) => state.paymentStatus);
 
     const [formData, setFormData] = useState(null);
-    console.log(formData);
+    const [timeLeft, setTimeLeft] = useState(600); // 600 detik = 10 menit
+
+    // 🔹 Ref untuk mengambil QR Canvas
+    const qrRef = useRef(null);
+
     useEffect(() => {
         const savedForm = localStorage.getItem("formData");
         if (savedForm) {
             setFormData(JSON.parse(savedForm));
         }
     }, []);
+
     const kirimWA = async () => {
         const waMessage = `
     Halo Invesdigi,
@@ -40,14 +53,60 @@ export default function ViewGenerate({ formik, hargaFinal, handleCheckStatus, da
         trackEvent('order', { order: Rupiah(hargaFinal) });
 
         router.push(`https://wa.me/${process.env.NEXT_PUBLIC_WA}?text=${encodeURIComponent(waMessage)}`);
-        setLoading(false);
-    }
-    // CASE BCA → manual via WhatsApp
+    };
+
+    const HandleCloseTimer = () => {
+        setIsTrue(false);
+        setIsPayment(false);
+    };
+
+    // TIMER 10 MENIT OTOMATIS
+    useEffect(() => {
+        if (timeLeft <= 0) {
+            HandleCloseTimer();
+            return;
+        }
+
+        const interval = setInterval(() => {
+            setTimeLeft((prev) => prev - 1);
+        }, 1000);
+
+        return () => clearInterval(interval);
+    }, [timeLeft]);
+
+    // Format menit:detik
+    const formatTime = (seconds) => {
+        const m = Math.floor(seconds / 60);
+        const s = seconds % 60;
+        return `${m}:${s < 10 ? '0' : ''}${s}`;
+    };
+
+    // 🔹 Fungsi untuk download QRIS
+    const handleDownloadQR = () => {
+        const canvas = qrRef.current.querySelector("canvas");
+        if (!canvas) return;
+
+        const pngUrl = canvas.toDataURL("image/png");
+        const link = document.createElement("a");
+        link.href = pngUrl;
+        link.download = `QRIS-${data?.title || 'payment'}.png`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
 
     return (
         <>
+            {/* TIMER HITUNG MUNDUR */}
+            <div className={styles.timerBox}>
+                <p><strong>Batas Waktu Pembayaran:</strong></p>
+                <div className={styles.timer}>
+                    {formatTime(timeLeft)}
+                </div>
+            </div>
+
             {formik.values.paymentMethod === "qris" && dataPayment?.qrString && (
-                <div className={styles.qrContainer}>
+                <div className={styles.qrContainer} ref={qrRef}>
                     <QRCodeCanvas
                         value={dataPayment.qrString}
                         size={250}
@@ -59,6 +118,14 @@ export default function ViewGenerate({ formik, hargaFinal, handleCheckStatus, da
                     <p className={styles.qrText}>
                         Scan kode QR di atas menggunakan aplikasi e-wallet kamu (Dana, OVO, Gopay, ShopeePay, dll)
                     </p>
+
+                    {/* 🔹 Tombol Download QR */}
+                    <button
+                        onClick={handleDownloadQR}
+                        className={styles.downloadBtn}
+                    >
+                        <FaDownload /> Download QRIS
+                    </button>
                 </div>
             )}
 
@@ -95,7 +162,6 @@ export default function ViewGenerate({ formik, hargaFinal, handleCheckStatus, da
                             </button>
                         </div>
                     </div>
-
                 </div>
             )}
 
@@ -104,20 +170,21 @@ export default function ViewGenerate({ formik, hargaFinal, handleCheckStatus, da
                 <div><strong>Total:</strong> {Rupiah(hargaFinal)}</div>
             </div>
 
-            {formik.values.paymentMethod == "bca" ?
+            {formik.values.paymentMethod === "bca" ? (
                 <button onClick={kirimWA} style={{ background: '#25d366' }} className={styles.btnWa}>
                     <FaWhatsapp fontSize={20} /> {`Kirim Bukti via WhatsApp`}
                 </button>
-                :
+            ) : (
                 <button onClick={handleCheckStatus} disabled={checking} className={styles.checkBtn}>
                     {checking ? "Mengecek..." : "Cek Status Pembayaran"}
                 </button>
-            }
+            )}
+
             {paymentStatus && (
                 <div className={styles.paymentStatus}>
                     <strong>Status:</strong> {paymentStatus}
                 </div>
             )}
         </>
-    )
+    );
 }

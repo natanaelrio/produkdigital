@@ -50,7 +50,7 @@ export default function Content({ data }) {
                             <FaWhatsapp />
                         </Link>
                     </div>
-                    <div className={styles.tombolbuy} onClick={() => setIsTrue(true)}>
+                    <div className={styles.tombolbuy} onClick={() => { setIsTrue(true), setShowPaymentPanel(false) }}>
                         <button>AMBIL PROMO</button>
                     </div>
                 </div>

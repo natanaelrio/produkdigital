@@ -189,8 +189,8 @@
 
 .paymentName {
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 500;
     color: #333;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     color: black !important;
 }
