@@ -98,20 +98,23 @@ export default function ViewGenerate({ formik, hargaFinal, handleCheckStatus, da
     };
 
     return (
-        <>
+        <div className={styles.container}>
             {/* TIMER HITUNG MUNDUR */}
-            <div className={styles.timerBox}>
-                <p><strong>Batas Waktu Pembayaran:</strong></p>
-                <div className={styles.timer}>
-                    {formatTime(timeLeft)}
+            {/* {
+                formik.values.paymentMethod !== "bca" || formik.values.paymentMethod !== "qris" && <div className={styles.timerBox}>
+                    <p><strong>Batas Waktu Pembayaran:</strong></p>
+                    <div className={styles.timer}>
+                        {formatTime(timeLeft)}
+                    </div>
                 </div>
-            </div>
+            } */}
+
 
             {formik.values.paymentMethod === "qris" && dataPayment?.qrString && (
                 <div className={styles.qrContainer} ref={qrRef}>
                     <QRCodeCanvas
                         value={dataPayment.qrString}
-                        size={250}
+                        size={200}
                         bgColor="#ffffff"
                         fgColor="#000000"
                         level="H"
@@ -169,8 +172,10 @@ export default function ViewGenerate({ formik, hargaFinal, handleCheckStatus, da
 
             <div className={styles.qrDetail}>
                 <div><strong>Produk:</strong> {data?.title}</div>
-                <div><strong>Total:</strong> {Rupiah(hargaFinal)}</div>
+                <div className={styles.harga}><strong>Total:</strong> <div className={styles.hargadalam}>{Rupiah(hargaFinal)} </div> <div className={styles.hargalama}>{Rupiah(data?.price)}</div></div>
+                <div><strong>Batas Promo:</strong> {formatTime(timeLeft)} Menit</div>
             </div>
+
 
             {formik.values.paymentMethod === "bca" ? (
                 <button onClick={kirimWA} style={{ background: '#25d366' }} className={styles.btnWa}>
@@ -178,7 +183,7 @@ export default function ViewGenerate({ formik, hargaFinal, handleCheckStatus, da
                 </button>
             ) : (
                 <>
-                    <span>Produk dikirim otomatis setelah pembayaran</span>
+                    <p className={styles.notifikasi}>Produk dikirim otomatis setelah pembayaran</p>
                     <button onClick={handleCheckStatus} disabled={checking} className={styles.checkBtn}>
                         {checking ? "Mengecek..." : "Cek Status Pembayaran"}
                     </button>
@@ -190,6 +195,6 @@ export default function ViewGenerate({ formik, hargaFinal, handleCheckStatus, da
                     <strong>Status:</strong> {paymentStatus}
                 </div>
             )}
-        </>
+        </div>
     );
 }
