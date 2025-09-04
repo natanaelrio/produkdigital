@@ -30,8 +30,10 @@ export default async function page({ params }) {
     if (data.data === undefined) {
         return notFound()
     }
-    else
-        return (
-            <Content data={data?.data} />
-        )
+
+    const hargaFinal = data?.data?.price - ((data?.data?.price * data?.data?.diskon) / 100);
+
+    return (
+        <Content data={data?.data} hargaFinal={hargaFinal} />
+    )
 }

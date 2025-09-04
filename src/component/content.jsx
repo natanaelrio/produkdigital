@@ -6,22 +6,20 @@ import FormData from '@/component/formData';
 import Image from 'next/image';
 import { Rupiah } from '@/utils/rupiah';
 import { useBearClose, useBearStore, useBearPayment, useBearPaymentPanel } from '@/zustand/zustand';
+import { useEffect } from 'react';
+import { trackPageView } from '@/utils/facebookPixel';
 
-export default function Content({ data }) {
-    // const [isTrue, setIsTrue] = useState(false)
+export default function Content({ data, hargaFinal }) {
     const black = useBearStore((state) => state.black)
     const isTrue = useBearClose((state) => state.isTrue)
     const setIsTrue = useBearClose((state) => state.setIsTrue)
     const setIsPayment = useBearPayment((state) => state.setIsPayment)
     const setShowPaymentPanel = useBearPaymentPanel((state) => state.setShowPaymentPanel)
 
+    useEffect(() => { trackPageView(data.title, "buku", hargaFinal) }, []);
+
     return (
         <>
-            {/* <div className={styles.containerlink}>
-                <div className={styles.link}>
-                    <span><Link href={'/'}>Home</Link></span> <span>&nbsp; / &nbsp; </span> <span>{data.title}</span>
-                </div>
-            </div> */}
             <div className={styles.container}>
                 <div className={styles.content}>
                     <div className={styles.gambar}>
@@ -31,7 +29,7 @@ export default function Content({ data }) {
                         <div className={styles.atasjudulharga}>
                             <h1 className={styles.judul}>{data.title}</h1>
                             <div className={styles.harga}>
-                                <span>{Rupiah(data.price - ((data?.price * data?.diskon) / 100))}</span>
+                                <span>{Rupiah(hargaFinal)}</span>
                                 <span>{Rupiah(data?.price)}</span>
                             </div>
                         </div>
@@ -60,8 +58,8 @@ export default function Content({ data }) {
                     <FormData data={data} />
                     <div className={styles.bgblack} onClick={() => {
                         setIsTrue(black ? false : true),
-                            setIsPayment(black ? false : true),
-                            setShowPaymentPanel(black ? false : true)
+                            setIsPayment(black ? false : true)
+                            // setShowPaymentPanel(black ? false : true)
                     }}></div>
                 </>
             }

@@ -22,12 +22,9 @@ import { HandleCekPayment } from '@/service/HandleCekPayment';
 import { useEffect, useState } from 'react';
 import { IoClose } from "react-icons/io5";
 import NotifikasiSuccess from './notifikasiSuccess';
-import { initFacebookPixel } from '@/utils/facebookPixel';
 import Image from 'next/image';
 
 export default function PaymentMethodPanel({ data, hargaFinal }) {
-    useEffect(() => { initFacebookPixel() }, []);
-
     // Zustand states
     const setShowPaymentPanel = useBearPaymentPanel((state) => state.setShowPaymentPanel);
     const setIsSuccess = useBearSuccess((state) => state.setIsSuccess);
@@ -139,7 +136,11 @@ export default function PaymentMethodPanel({ data, hargaFinal }) {
                     return;
                 }
                 const { trackEvent } = await import('@/utils/facebookPixel');
-                trackEvent('order', { order: Rupiah(hargaFinal) });
+                trackEvent('InitiateCheckout', {
+                    value: hargaFinal,
+                    currency: "IDR",
+                    num_items: 1
+                });
 
                 setDataPayment(res.data);
                 setIsPayment(true);
@@ -155,6 +156,7 @@ export default function PaymentMethodPanel({ data, hargaFinal }) {
 
     const isVA = ["mandiri", "bni", "bri", "ft"].includes(formik.values.paymentMethod);
 
+
     return (
         isPayment ? (
             isSuccess ? (
@@ -167,6 +169,7 @@ export default function PaymentMethodPanel({ data, hargaFinal }) {
                     <NotifikasiSuccess
                         formik={formik}
                         handleClosePayment={handleClosePaymentSuccess}
+                        hargaFinal={hargaFinal}
                     />
                 </>
             ) : (

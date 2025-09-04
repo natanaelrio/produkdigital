@@ -11,11 +11,9 @@ import { QRCodeCanvas } from 'qrcode.react';
 import { Rupiah } from '@/utils/rupiah';
 import { FaWhatsapp, FaDownload } from "react-icons/fa";
 import { useRouter } from 'nextjs-toploader/app';
-import { initFacebookPixel } from '@/utils/facebookPixel';
 import { useEffect, useState, useRef } from 'react';
 
 export default function ViewGenerate({ formik, hargaFinal, handleCheckStatus, data }) {
-    useEffect(() => { initFacebookPixel() }, []);
     const router = useRouter();
     const dataPayment = useBearDataPayment((state) => state.dataPayment);
     const checking = useBearChecking((state) => state.checking);
@@ -50,7 +48,11 @@ export default function ViewGenerate({ formik, hargaFinal, handleCheckStatus, da
     Mohon segera diproses. Terima kasih.`;
 
         const { trackEvent } = await import('@/utils/facebookPixel');
-        trackEvent('order', { order: Rupiah(hargaFinal) });
+        trackEvent('InitiateCheckout', {
+            value: hargaFinal,
+            currency: "IDR",
+            num_items: 1
+        });
 
         router.push(`https://wa.me/${process.env.NEXT_PUBLIC_WA}?text=${encodeURIComponent(waMessage)}`);
     };
@@ -175,9 +177,12 @@ export default function ViewGenerate({ formik, hargaFinal, handleCheckStatus, da
                     <FaWhatsapp fontSize={20} /> {`Kirim Bukti via WhatsApp`}
                 </button>
             ) : (
-                <button onClick={handleCheckStatus} disabled={checking} className={styles.checkBtn}>
-                    {checking ? "Mengecek..." : "Cek Status Pembayaran"}
-                </button>
+                <>
+                    <span>Produk dikirim otomatis setelah pembayaran</span>
+                    <button onClick={handleCheckStatus} disabled={checking} className={styles.checkBtn}>
+                        {checking ? "Mengecek..." : "Cek Status Pembayaran"}
+                    </button>
+                </>
             )}
 
             {paymentStatus && (

@@ -1,6 +1,5 @@
 'use client'
 import styles from '@/component/fromData.module.css'
-import { initFacebookPixel } from '@/utils/facebookPixel';
 import {
     useBearStore,
     useBearClose,
@@ -8,13 +7,11 @@ import {
     useBearLoading,
 } from '@/zustand/zustand';
 import { useFormik } from 'formik';
-import { useEffect } from 'react';
 import { IoClose } from "react-icons/io5";
 import PaymentMethodPanel from './form/paymentMethodPanel';
 import Title from './form/title';
 
 export default function FormData({ data }) {
-    useEffect(() => { initFacebookPixel() }, []);
 
     const setBlack = useBearStore((state) => state.setBlack)
     const setIsTrue = useBearClose((state) => state.setIsTrue)
