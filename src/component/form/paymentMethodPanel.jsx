@@ -25,6 +25,9 @@ import NotifikasiSuccess from './notifikasiSuccess';
 import Image from 'next/image';
 
 export default function PaymentMethodPanel({ data, hargaFinal }) {
+
+    console.log(data);
+
     // Zustand states
     const setShowPaymentPanel = useBearPaymentPanel((state) => state.setShowPaymentPanel);
     const setIsSuccess = useBearSuccess((state) => state.setIsSuccess);
