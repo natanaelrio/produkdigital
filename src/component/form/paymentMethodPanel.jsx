@@ -12,7 +12,6 @@ import {
 } from '@/zustand/zustand';
 import { HandlePayment } from '@/service/HandlePayment';
 import { useFormik } from 'formik';
-import { Rupiah } from '@/utils/rupiah';
 import Link from 'next/link';
 import Title from './title';
 import { IoIosArrowBack } from "react-icons/io";
@@ -25,9 +24,6 @@ import NotifikasiSuccess from './notifikasiSuccess';
 import Image from 'next/image';
 
 export default function PaymentMethodPanel({ data, hargaFinal }) {
-
-    console.log(data);
-
     // Zustand states
     const setShowPaymentPanel = useBearPaymentPanel((state) => state.setShowPaymentPanel);
     const setIsSuccess = useBearSuccess((state) => state.setIsSuccess);
@@ -43,7 +39,14 @@ export default function PaymentMethodPanel({ data, hargaFinal }) {
     const setIsTrue = useBearClose((state) => state.setIsTrue);
 
     const [merchantOrderId] = useState(() => GetRandomNumber());
+    const [formData, setFormData] = useState(null);
 
+    useEffect(() => {
+        const savedForm = localStorage.getItem("formData");
+        if (savedForm) {
+            setFormData(JSON.parse(savedForm));
+        }
+    }, []);
     // Daftar metode pembayaran → clean & mudah di-maintain
     const paymentMethods = [
         { value: "qris", label: "QRIS", img: "https://www.invesdigi.com/qris.svg", kodeBank: "SP" },
@@ -128,6 +131,8 @@ export default function PaymentMethodPanel({ data, hargaFinal }) {
                     linkProduk: data.linkProduk,
                     note: data?.title,
                     merchantOrderId,
+                    customerVaName: formData?.nama,
+                    email: formData?.email,
                     itemDetails: [{
                         name: data.title,
                         price: hargaFinal,
