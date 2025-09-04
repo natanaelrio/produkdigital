@@ -5,8 +5,12 @@ import { usePathname } from "next/navigation";
 import { useState, useRef, useEffect } from "react";
 import styles from "@/component/header.module.css";
 import Image from "next/image";
+import { initFacebookPixel } from "@/utils/facebookPixel";
 
 export default function Header({ slug, title }) {
+    useEffect(() => {
+        initFacebookPixel()
+    }, [])
     const text = `Cek ${title ? title : 'produk ini'}, keren banget!`;
     const url = process.env.NEXT_PUBLIC_URL + '/' + slug;
     const url2 = process.env.NEXT_PUBLIC_URL;
