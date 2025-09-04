@@ -1,5 +1,6 @@
 import styles from '@/component/form/notifikasiSuccess.module.css'
 import { trackEvent } from '@/utils/facebookPixel';
+import { useEffect } from 'react';
 import { MdEmail } from "react-icons/md";
 
 export default function NotifikasiSuccess({ formik, handleClosePayment, hargaFinal }) {
