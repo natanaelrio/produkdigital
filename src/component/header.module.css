@@ -20,7 +20,7 @@
 .logoHeader {
     font-size: 1.25rem;
     font-weight: bold;
-    color: #2563eb;
+    color: var(--color);
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -45,11 +45,11 @@
 }
 
 .navLink:hover {
-    color: #2563eb;
+    color: var(--color);
 }
 
 .activeLink {
-    color: #2563eb;
+    color: var(--color);
 }
 
 /* Right Side */
@@ -93,11 +93,11 @@
 }
 
 .mobileLink:hover {
-    color: #2563eb;
+    color: var(--color);
 }
 
 .mobileLink.activeLink {
-    color: #2563eb;
+    color: var(--color);
 }
 
 .menuIcon {

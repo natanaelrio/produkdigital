@@ -183,7 +183,7 @@
 }
 
 .quoteIcon {
-    color: #3b82f6;
+    color: var(--color);
     font-size: 1.5rem;
     margin-bottom: 15px;
 }
@@ -247,13 +247,13 @@
     align-items: center;
     justify-content: center;
     font-size: 1.2rem;
-    color: #3b82f6;
+    color: var(--color);
     transition: all 0.3s ease;
     z-index: 2;
 }
 
 .scrollButton:hover {
-    background: #3b82f6;
+    background: var(--color);
     color: white;
 }
 
@@ -283,7 +283,7 @@
 }
 
 .indicator.active {
-    background: #3b82f6;
+    background: var(--color);
     transform: scale(1.2);
 }
 
