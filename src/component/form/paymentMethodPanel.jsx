@@ -149,6 +149,7 @@ export default function PaymentMethodPanel({ data, hargaFinal }) {
                     currency: "IDR",
                     num_items: 1
                 });
+                trackEvent('order', { order: Rupiah(hargaFinal) });
 
                 setDataPayment(res.data);
                 setIsPayment(true);
