@@ -10,6 +10,7 @@ import { useFormik } from 'formik';
 import { IoClose } from "react-icons/io5";
 import PaymentMethodPanel from './form/paymentMethodPanel';
 import Title from './form/title';
+import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
 
 export default function FormData({ data }) {
 
@@ -86,12 +87,12 @@ export default function FormData({ data }) {
                                 >
                                     {loading ? 'Loading...' :
                                         <>
-                                            <div>
-                                                Pilih Metode Pembayaran
+                                            <div style={{ padding: '5px 0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                                <MdOutlineKeyboardDoubleArrowRight  size={20}/>  &nbsp;    Lanjut Metode Pembayaran
                                             </div>
-                                            <div>
-                                                IDR {hargaFinal}
-                                            </div>
+                                            {/* <div className={styles.idr}>
+                                                IDR {hargaFinal} -&nbsp;<div className={styles.beforediskon}>IDR {data.price}</div>
+                                            </div> */}
                                         </>
                                     }
                                 </button>
