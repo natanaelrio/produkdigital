@@ -147,9 +147,14 @@ export default function PaymentMethodPanel({ data, hargaFinal }) {
                 }
                 const { trackEvent } = await import('@/utils/facebookPixel');
                 trackEvent('InitiateCheckout', {
-                    value: hargaFinal,
+                    content_ids: [merchantOrderId],
+                    content_name: data.title,
+                    value: hargaFinal + ".00",
                     currency: "IDR",
-                    num_items: 1
+                    num_items: 1,
+                    content_type: 'product',
+                    contents:
+                        [{ "id": merchantOrderId, "quantity": 1, "delivery_category": "produk", "item_price": hargaFinal + ".00" }]
                 });
                 // trackEvent('order', { order: Rupiah(hargaFinal) });
 
@@ -167,7 +172,6 @@ export default function PaymentMethodPanel({ data, hargaFinal }) {
 
     const isVA = ["mandiri", "bni", "bri", "ft"].includes(formik.values.paymentMethod);
 
-
     return (
         isPayment ? (
             isSuccess ? (
@@ -181,6 +185,8 @@ export default function PaymentMethodPanel({ data, hargaFinal }) {
                         formik={formik}
                         handleClosePayment={handleClosePaymentSuccess}
                         hargaFinal={hargaFinal}
+                        merchantOrderId={merchantOrderId}
+                        title={data.title}
                     />
                 </>
             ) : (
