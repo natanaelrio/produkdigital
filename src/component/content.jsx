@@ -48,7 +48,7 @@ export default function Content({ data, hargaFinal }) {
                             <FaWhatsapp />
                         </Link>
                     </div>
-                    <div className={styles.tombolbuy} onClick={() => { setIsTrue(true), setShowPaymentPanel(false) }}>
+                    <div className={styles.tombolbuy} onClick={() => { setIsTrue(true) }}>
                         <button>AMBIL PROMO</button>
                     </div>
                 </div>
@@ -56,11 +56,7 @@ export default function Content({ data, hargaFinal }) {
             {isTrue &&
                 <>
                     <FormData data={data} />
-                    <div className={styles.bgblack} onClick={() => {
-                        setIsTrue(black ? false : true),
-                            setIsPayment(black ? false : true)
-                            // setShowPaymentPanel(black ? false : true)
-                    }}></div>
+                    <div className={styles.bgblack}></div>
                 </>
             }
         </>

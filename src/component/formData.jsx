@@ -64,7 +64,7 @@ export default function FormData({ data }) {
                         title='DATA PEMBELI' />
 
                     <form onSubmit={formik.handleSubmit}>
-                        <label className={styles.textatas}><span>*</span>Alamat Email</label>
+                        <label className={styles.textatas}><span>*</span>Alamat Email (Pastikan benar)</label>
                         <input name="email" type="email" placeholder='Alamat Email'
                             onChange={formik.handleChange} value={formik.values.email} disabled={loading} />
                         {formik.errors.email && <div className={styles.errorMsg}>{formik.errors.email}</div>}

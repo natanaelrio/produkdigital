@@ -6,7 +6,8 @@
 :root {
   --background: #ffffff;
   --foreground: #333;
-  --color: hsl(216, 100%, 50%);
+  /* --color: hsl(216, 100%, 50%); */
+  --color: #004aad;
   /* --subcolor: #4b5563; */
 
   --primary: #0077b6;

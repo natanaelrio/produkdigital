@@ -51,7 +51,7 @@ export default function Header({ slug, title }) {
                 {/* Logo */}
                 <Link href="/" className={styles.logoHeader}>
                     <Image
-                        src={'/logo.png'}
+                        src={'/logo.svg'}
                         width={30}
                         height={30}
                         alt='logoinvesdigi'

@@ -22,6 +22,7 @@ import { useEffect, useState } from 'react';
 import { IoClose } from "react-icons/io5";
 import NotifikasiSuccess from './notifikasiSuccess';
 import Image from 'next/image';
+import { Rupiah } from '@/utils/rupiah';
 
 export default function PaymentMethodPanel({ data, hargaFinal }) {
     // Zustand states
@@ -139,6 +140,7 @@ export default function PaymentMethodPanel({ data, hargaFinal }) {
                         quantity: 1
                     }]
                 });
+
                 if (res.data.Message) {
                     alert(res.data.Message);
                     return;
@@ -149,7 +151,7 @@ export default function PaymentMethodPanel({ data, hargaFinal }) {
                     currency: "IDR",
                     num_items: 1
                 });
-                trackEvent('order', { order: Rupiah(hargaFinal) });
+                // trackEvent('order', { order: Rupiah(hargaFinal) });
 
                 setDataPayment(res.data);
                 setIsPayment(true);
