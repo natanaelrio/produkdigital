@@ -41,6 +41,10 @@ export default function FormData({ data }) {
         initialValues: { nama: '', email: '', term: false },
         validate,
         onSubmit: async (values) => {
+            trackEvent('AddPaymentInfo', {
+                value: hargaFinal + ".00",
+                currency: "IDR",
+            });
             localStorage.setItem("formData", JSON.stringify(values));
             setBlack(true)
             setShowPaymentPanel(true)
@@ -88,7 +92,7 @@ export default function FormData({ data }) {
                                     {loading ? 'Loading...' :
                                         <>
                                             <div style={{ padding: '5px 0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                                <MdOutlineKeyboardDoubleArrowRight  size={20}/>  &nbsp;    Lanjut Metode Pembayaran
+                                                <MdOutlineKeyboardDoubleArrowRight size={20} />  &nbsp;    Lanjut Metode Pembayaran
                                             </div>
                                             {/* <div className={styles.idr}>
                                                 IDR {hargaFinal} -&nbsp;<div className={styles.beforediskon}>IDR {data.price}</div>
