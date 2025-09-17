@@ -1,7 +1,6 @@
 import nodemailer from 'nodemailer';
 import { Rupiah } from '@/utils/rupiah';
 import crypto from "crypto";
-import { trackEvent } from '@/utils/facebookPixel';
 
 export async function POST(req, res) {
   const data = await req.formData()
@@ -20,16 +19,6 @@ export async function POST(req, res) {
     .digest("hex");
   // const calcSignature = CryptoJS.MD5(params).toString();
   if (signature == calcSignature) {
-    await trackEvent('Purchase', {
-      content_ids: [merchantOrderId],
-      content_name: productDetail,
-      value: Number(amount) + ".00",
-      currency: "IDR",
-      num_items: 1,
-      content_type: 'product',
-      contents:
-        [{ "id": merchantOrderId, "quantity": 1, "delivery_category": "produk", "item_price": Number(amount) + ".00" }]
-    });
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
