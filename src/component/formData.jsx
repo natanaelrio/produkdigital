@@ -11,6 +11,7 @@ import { IoClose } from "react-icons/io5";
 import PaymentMethodPanel from './form/paymentMethodPanel';
 import Title from './form/title';
 import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
+import { trackEvent } from '@/utils/facebookPixel';
 
 export default function FormData({ data }) {
 
