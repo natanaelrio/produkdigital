@@ -20,7 +20,7 @@ export async function POST(req, res) {
     .digest("hex");
   // const calcSignature = CryptoJS.MD5(params).toString();
   if (signature == calcSignature) {
-    trackEvent('Purchase', {
+    await trackEvent('Purchase', {
       content_ids: [merchantOrderId],
       content_name: productDetail,
       value: Number(amount) + ".00",

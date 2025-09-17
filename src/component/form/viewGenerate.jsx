@@ -49,7 +49,7 @@ export default function ViewGenerate({ formik, hargaFinal, handleCheckStatus, da
 
         const { trackEvent } = await import('@/utils/facebookPixel');
         trackEvent('InitiateCheckout', {
-            value: hargaFinal,
+            value: hargaFinal + '.00',
             currency: "IDR",
             num_items: 1
         });
