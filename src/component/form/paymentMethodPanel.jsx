@@ -146,7 +146,7 @@ export default function PaymentMethodPanel({ data, hargaFinal }) {
                     return;
                 }
                 const { trackEvent } = await import('@/utils/facebookPixel');
-                trackEvent('InitiateCheckout', {
+                await trackEvent('InitiateCheckout', {
                     content_ids: [merchantOrderId],
                     content_name: data.title,
                     value: hargaFinal + ".00",

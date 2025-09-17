@@ -42,7 +42,7 @@ export default function FormData({ data }) {
         initialValues: { nama: '', email: '', term: false },
         validate,
         onSubmit: async (values) => {
-            trackEvent('AddPaymentInfo', {
+            await trackEvent('AddPaymentInfo', {
                 value: hargaFinal + ".00",
                 currency: "IDR",
             });
