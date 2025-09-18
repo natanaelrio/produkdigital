@@ -18,7 +18,36 @@ export async function POST(req, res) {
     .update(params)
     .digest("hex");
   // const calcSignature = CryptoJS.MD5(params).toString();
-  if (signature == calcSignature) {
+  if (signature === calcSignature) {
+    const payload = {
+      "data": [
+        {
+          "event_name": "Purchase",
+          "event_time": Math.floor(Date.now() / 1000),
+          "action_source": "website",
+          "event_id": merchantOrderId,
+          "user_data": {
+            "em": "06a3e131c5b278aaea29f8994eec3262cfb45d19863c60e7a82026ae16baf44e"
+          },
+          "custom_data": {
+            "currency": "IDR",
+            "value": Number(amount),
+            "content_name": productDetail
+          }
+        }
+      ],
+      "test_event_code": "TEST31132"
+    }
+    const response = await fetch(
+      `https://graph.facebook.com/v18.0/${process.env.SERVER_PIXEL}/events?access_token=${process.env.SERVER_TOKENPIXEL}`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }
+    );
+
+    const pixel = await response.json();
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
@@ -66,7 +95,7 @@ export async function POST(req, res) {
 </div>
 `};
     const data = await transporter.sendMail(mailOptions);
-    return Response.json({ status: 'riooooooooooo', data })
+    return Response.json({ status: 'riooooooooooo', data: pixel, ...data })
   } else {
     return Response.json({ error: 'Bad Signature' });
   }

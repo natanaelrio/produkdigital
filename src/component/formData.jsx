@@ -43,7 +43,7 @@ export default function FormData({ data }) {
         validate,
         onSubmit: async (values) => {
             await trackEvent('AddPaymentInfo', {
-                value: hargaFinal + ".00",
+                value: hargaFinal,
                 currency: "IDR",
             });
             localStorage.setItem("formData", JSON.stringify(values));

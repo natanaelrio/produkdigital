@@ -149,12 +149,12 @@ export default function PaymentMethodPanel({ data, hargaFinal }) {
                 await trackEvent('InitiateCheckout', {
                     content_ids: [merchantOrderId],
                     content_name: data.title,
-                    value: hargaFinal + ".00",
+                    value: hargaFinal,
                     currency: "IDR",
                     num_items: 1,
                     content_type: 'product',
                     contents:
-                        [{ "id": merchantOrderId, "quantity": 1, "delivery_category": "produk", "item_price": hargaFinal + ".00" }]
+                        [{ "id": merchantOrderId, "quantity": 1, "delivery_category": "produk", "item_price": hargaFinal }]
                 });
                 // trackEvent('order', { order: Rupiah(hargaFinal) });
 
