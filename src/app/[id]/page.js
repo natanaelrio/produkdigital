@@ -11,12 +11,12 @@ export async function generateMetadata({ params, searchParams }, parent) {
     const product = await GetDetailProdutDigital(id)
 
     return {
-        title: product.data.title,
-        description: product.data.deskripsi,
+        title: product?.data?.title,
+        description: product?.data?.deskripsi,
         openGraph: {
-            images: [product.image],
+            images: [product?.image],
         },
-        // keywords: product.data.title,
+        // keywords: product?.data.title,
         alternates: {
             canonical: canonicalUrl,
         }

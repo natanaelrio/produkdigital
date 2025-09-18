@@ -61,6 +61,10 @@
   font-size: 1.2rem;
   color: #16a34a; /* hijau untuk WA */
 }
+.icon2 {
+  font-size: 1.2rem;
+  color: #a31616; /* hijau untuk WA */
+}
 
 .contactItem:nth-child(2) .icon {
   color: #dc2626; /* merah untuk email */

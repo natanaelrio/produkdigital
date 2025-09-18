@@ -16,18 +16,18 @@ export default function Content({ data, hargaFinal }) {
     const setIsPayment = useBearPayment((state) => state.setIsPayment)
     const setShowPaymentPanel = useBearPaymentPanel((state) => state.setShowPaymentPanel)
 
-    useEffect(() => { trackPageView(data.title, "buku", hargaFinal) }, []);
+    useEffect(() => { trackPageView(data?.title, "buku", hargaFinal) }, []);
 
     return (
         <>
             <div className={styles.container}>
                 <div className={styles.content}>
                     <div className={styles.gambar}>
-                        <Image src={data.image} alt={data.title} width={500} height={500}></Image>
+                        <Image src={data?.image} alt={data?.title} width={500} height={500}></Image>
                     </div>
                     <div className={styles.deskripsi}>
                         <div className={styles.atasjudulharga}>
-                            <h1 className={styles.judul}>{data.title}</h1>
+                            <h1 className={styles.judul}>{data?.title}</h1>
                             <div className={styles.harga}>
                                 <span>{Rupiah(hargaFinal)}</span>
                                 <span>{Rupiah(data?.price)}</span>
@@ -35,7 +35,7 @@ export default function Content({ data, hargaFinal }) {
                         </div>
                         <div className={styles.des}>
                             <h2>DESCRIPTION</h2>
-                            <div dangerouslySetInnerHTML={{ __html: data.deskripsi }} />
+                            <div dangerouslySetInnerHTML={{ __html: data?.deskripsi }} />
                         </div>
                         {/* <button onClick={() => setIsTrue(true)}>AMBIL PROMO</button> */}
                     </div>
