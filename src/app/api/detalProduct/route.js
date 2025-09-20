@@ -87,8 +87,8 @@ export async function GET(req) {
   <li> <strong>Daftar Pustaka </strong></li>
 </ul>
 `,
-        price: 310000,
-        diskon: 0,
+        price: 90000,
+        diskon: 50,
         image: `${process.env.NEXT_PUBLIC_URL}/rahasiamenujutradingbebasemosi3.webp`,
         linkProduk: "https://drive.google.com/file/d/1I4XTNCSfvHU1zLC7NGWLMY7P8gQDC0Vr/view?usp=sharing"
       }
